@@ -82,7 +82,7 @@ jobs:
                 token: ${{ secrets.GH_ACCESS_TOKEN }}
 
             - name: Generating documentation
-              run: ./module/scripts/doc.sh
+              run: ./module/scripts/sphinx.sh
 
             - name: Launching tests
               run: ./scripts/robot.sh -l WARN -d docs/build/html
@@ -91,7 +91,7 @@ jobs:
               uses: coverallsapp/github-action@master
               with:
                 github-token: ${{ secrets.GH_ACCESS_TOKEN }}
-                path--to-lcov: coverage.xml
+                path-to-lcov: coverage.xml
 
             - name: Push doc to Github Pages
               uses: peaceiris/actions-gh-pages@v3
