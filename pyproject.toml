@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "spike-mock"
+description = "mock for lego spike library"
+authors = [ "Nadège Lemperiere <nadege.lemperiere@gmail.com>" ]
+license = "MIT"
+version = "0.0.0"
+readme = "README.rst"
+packages = [{include = "spike"}]
+repository = "https://github.com/nadegelemperiere/spike-mock/"
+documentation = "https://nadegelemperiere.github.io/spike-mock/"
+classifiers = [
+    "Programming Language :: Python",
+    "Intended Audience :: Testers",
+    "Natural Language :: English",
+    "License :: OSI Approved :: MIT License"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pillow = "^9.4.0"
+openpyxl = "^3.1.1"
+webcolors = "^1.13"
+robotpy-wpimath = "^2023.4.2.1"
+numpy = "^1.24.2"
+multipledispatch = "^0.6.0"
+pyldraw = { git = "https://github.com/nadegelemperiere/python-ldraw.git", tag = "v1.1.0" }
+poetry = { version = "^1.4.0", optional = true }
+
+[tool.poetry.dev-dependencies]
+robotframework = "^6.0.2"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
+
+[tool.poetry.extras]
+plugin = ["poetry"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/nadegelemperiere/spike-mock//issues"
+
+[build-system]
+requires = [
+    "poetry-core>=1.4.0",
+    "poetry-dynamic-versioning>=0.21.4"
+]
+build-backend = "poetry.core.masonry.api"
+

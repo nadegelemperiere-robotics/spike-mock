@@ -1,0 +1,13 @@
+{
+    "data" :    {
+        "mode" : "read",
+        "filename" : "data.xlsx"
+    },
+    "time" :    {
+        "mode" : "realtime"
+    },
+    "ground" :  {
+        "image"  : "mat.png",
+        "scale"  : 0.112
+    }
+}

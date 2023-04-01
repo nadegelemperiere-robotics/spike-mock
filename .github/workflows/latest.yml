@@ -1,0 +1,87 @@
+# -------------------------------------------------------
+#!/bin/bash
+# -------------------------------------------------------
+# Copyright (c) [2022] Nadege LEMPERIERE
+# All rights reserved
+# -------------------------------------------------------
+# Latest pipeline for FLL mocks
+# -------------------------------------------------------
+# Nadège LEMPERIERE, @09 november 2022
+# Latest revision: 09 november 2022
+# -------------------------------------------------------
+
+name: Spike Mock Check Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+
+    check:
+        name: Analyze Package
+        runs-on: ubuntu-latest
+        permissions:
+          security-events: write
+        container:
+          image: docker://nadegelemperiere/fll-test-docker:v2.2.2
+          options: --user root
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+
+            - name: Installing dependencies
+              run: pip install -r requirements.txt --target site-packages
+
+            - name: Creating poetry.lock
+              run: poetry lock
+
+            - name: Linting module
+              continue-on-error: true
+              run: pylint spike
+
+            - name: Run pip-audit to check for vulnerabilities
+              continue-on-error: true
+              run: pip-audit -r requirements.txt --format json
+
+            - name: Run Snyk to check for vulnerabilities
+              continue-on-error: true
+              uses: snyk/actions/python@master
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+                PYTHONPATH: /github/workspace/site-packages
+              with:
+                args: --sarif-file-output=snyk.sarif
+
+            - name: Upload snyk result to GitHub Code Scanning
+              uses: github/codeql-action/upload-sarif@v2
+              if: always()
+              with:
+                sarif_file: snyk.sarif
+
+    test:
+        name: Testing Package
+        runs-on: ubuntu-latest
+        container:
+          image: docker://nadegelemperiere/fll-test-docker:v2.2.2
+          options: --user root
+        needs: [check]
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+              with:
+                path: module
+
+            - name: Checkout lego parts database
+              uses: actions/checkout@master
+              with:
+                repository: nadegelemperiere/fll-ldraw-parts
+                path: parts
+                ref: v1.0.0
+                token: ${{ secrets.GH_ACCESS_TOKEN }}
+
+            - name: Launching tests
+              continue-on-error: true
+              run: ./module/scripts/robot.sh -l WARN -d tests
