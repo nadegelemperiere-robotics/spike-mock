@@ -2,6 +2,7 @@ gitlab.env.yml*
 **/*.log
 **/*.html
 **/*.xml
+**/*.lcov
 **/__pycache__/**
 site-packages
 **/*.egg-info/**
