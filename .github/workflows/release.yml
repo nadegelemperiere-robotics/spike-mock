@@ -1,0 +1,99 @@
+# -------------------------------------------------------
+#!/bin/bash
+# -------------------------------------------------------
+# Copyright (c) [2022] Nadege LEMPERIERE
+# All rights reserved
+# -------------------------------------------------------
+# Release pipeline for FLL mocks
+# -------------------------------------------------------
+# Nadège LEMPERIERE, @09 november 2022
+# Latest revision: 09 november 2022
+# -------------------------------------------------------
+
+name: Spike Mock Release Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+
+    check:
+        name: Analyze Package
+        runs-on: ubuntu-latest
+        container:
+          image: docker://nadegelemperiere/fll-test-docker:v2.2.2
+          options: --user root
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+
+            - name: Installing dependencies
+              run: pip install -r requirements.txt --target site-packages
+
+            - name: Creating poetry.lock
+              run: poetry lock
+
+            - name: Linting module
+              run: pylint spike
+
+            - name: Run pip-audit to check for vulnerabilities
+              continue-on-error: true
+              run: pip-audit -r requirements.txt --format json
+
+            - name: Run Snyk to check for vulnerabilities
+              uses: snyk/actions/python@master
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+                PYTHONPATH: /github/workspace/site-packages
+              with:
+                args: --sarif-file-output=snyk.sarif
+
+            - name: Upload result to GitHub Code Scanning
+              uses: github/codeql-action/upload-sarif@v2
+              if: always()
+              with:
+                sarif_file: snyk.sarif
+
+
+    test:
+        name: Testing Package
+        runs-on: ubuntu-latest
+        container:
+          image: docker://nadegelemperiere/fll-test-docker:v2.2.2
+          options: --user root
+        needs: [check]
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+              with:
+                path: module
+
+            - name: Checkout lego parts database
+              uses: actions/checkout@master
+              with:
+                repository: nadegelemperiere/fll-ldraw-parts
+                path: parts
+                ref: v1.0.0
+                token: ${{ secrets.GH_ACCESS_TOKEN }}
+
+            - name: Generating documentation
+              run: ./module/scripts/doc.sh
+
+            - name: Launching tests
+              run: ./scripts/robot.sh -l WARN -d docs/build/html
+
+            - name: Coveralls
+              uses: coverallsapp/github-action@master
+              with:
+              github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+              path--to-lcov: coverage.xml
+
+            - name: Push doc to Github Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                publish_dir: ./build/html
+                github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+                commit_message: "Generate Documentation"

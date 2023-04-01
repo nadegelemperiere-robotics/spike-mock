@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=import-error, wrong-import-position, too-few-public-methods, undefined-variable, multiple-statements, too-many-branches

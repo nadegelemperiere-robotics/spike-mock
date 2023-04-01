@@ -1,0 +1,60 @@
+# -------------------------------------------------------
+#!/bin/bash
+# -------------------------------------------------------
+# Copyright (c) [2022] Nadege LEMPERIERE
+# All rights reserved
+# -------------------------------------------------------
+# Security pipeline for FLL mocks
+# --------------------à-----------------------------------
+# Nadège LEMPERIERE, @9 november 2022
+# Latest revision: 09 november 2022
+# -------------------------------------------------------
+
+name: Spike Mock Regular Scan Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 0 1 * *'
+
+jobs:
+
+
+    check:
+        name: Analyze Package
+        runs-on: ubuntu-latest
+        container:
+          image: docker://nadegelemperiere/fll-test-docker:v2.2.2
+          options: --user root
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+
+            - name: Installing dependencies
+              run: pip install -r requirements.txt --target site-packages
+
+            - name: Creating poetry.lock
+              run: poetry lock
+
+            - name: Linting module
+              continue-on-error: true
+              run: pylint spike
+
+            - name: Run pip-audit to check for vulnerabilities
+              continue-on-error: true
+              run: pip-audit -r requirements.txt --format json
+
+            - name: Run Snyk to check for vulnerabilities
+              continue-on-error: true
+              uses: snyk/actions/python@master
+              env:
+                SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+                PYTHONPATH: /github/workspace/site-packages
+              with:
+                args: --sarif-file-output=snyk.sarif
+
+            - name: Upload snyk result to GitHub Code Scanning
+              uses: github/codeql-action/upload-sarif@v2
+              if: always()
+              with:
+                sarif_file: snyk.sarif

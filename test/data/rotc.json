@@ -1,0 +1,14 @@
+{
+    "data" :    {
+        "mode" : "read",
+        "filename" : "data.xlsx"
+    },
+    "time" :    {
+        "mode" : "controlled",
+        "period" : 0.1
+    },
+    "ground" :  {
+        "image"  : "mat.png",
+        "scale"  : 0.112
+    }
+}

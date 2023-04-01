@@ -1,0 +1,59 @@
+{
+    "design" : {
+        "filename" : "robot.ldr",
+        "ldu"      : 0.04
+    },
+    "abaqus"     : "abaqus.xlsx",
+    "components" : [
+        {
+            "type"      : "ColorSensor",
+            "id"        : "37308C01",
+            "port"      : "A",
+            "index"     : 0
+        },
+        {
+            "type"      : "ForceSensor",
+            "id"        : "37312C01",
+            "port"      : "B",
+            "index"     : 0
+        },
+        {
+            "type"      : "DistanceSensor",
+            "id"        : "37316C01",
+            "port"      : "C",
+            "index"     : 0
+        },
+        {
+            "type"      : "Motor",
+            "id"        : "54696",
+            "port"      : "D",
+            "index"     : 0
+        },
+        {
+            "type"      : "Motor",
+            "id"        : "54675",
+            "port"      : "E",
+            "index"     : 0
+        },
+        {
+            "type"      : "Motor",
+            "id"        : "54675",
+            "port"      : "F",
+            "index"     : 1
+        },
+        {
+            "type"      : "Wheel",
+            "id"        : "39367PB01",
+            "port"      : "E",
+            "spin"      : 1,
+            "index"     : 0
+        },
+        {
+            "type"      : "Wheel",
+            "id"        : "39367PB01",
+            "port"      : "F",
+            "spin"      : 1,
+            "index"     : 1
+        }
+    ]
+}
