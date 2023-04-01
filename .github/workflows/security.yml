@@ -23,6 +23,8 @@ jobs:
     check:
         name: Analyze Package
         runs-on: ubuntu-latest
+        permissions:
+          security-events: write
         container:
           image: docker://nadegelemperiere/fll-test-docker:v2.2.2
           options: --user root
