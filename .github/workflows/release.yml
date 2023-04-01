@@ -85,7 +85,7 @@ jobs:
               run: ./module/scripts/sphinx.sh
 
             - name: Launching tests
-              run: ./scripts/robot.sh -l WARN -d docs/build/html
+              run: ./module/scripts/robot.sh -l WARN -d ./module/docs/build/html
 
             - name: Coveralls
               uses: coverallsapp/github-action@master

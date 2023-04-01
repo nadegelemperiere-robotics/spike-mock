@@ -25,7 +25,7 @@ pip install --quiet --no-warn-script-location sphinx_rtd_theme
 pip install --quiet --no-warn-script-location $scriptpath/../
 
 # Launch python scripts to setup terraform environment
-sphinx-apidoc -o docs/ spike/
-sphinx-build -b html docs/ docs/build/html
+sphinx-apidoc -o $scriptpath/../docs/ $scriptpath/../spike/
+sphinx-build -b html  $scriptpath/../docs/ $scriptpath/../docs/build/html
 
 deactivate
