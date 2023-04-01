@@ -90,8 +90,8 @@ jobs:
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:
-              github-token: ${{ secrets.GH_ACCESS_TOKEN }}
-              path--to-lcov: coverage.xml
+                github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+                path--to-lcov: coverage.xml
 
             - name: Push doc to Github Pages
               uses: peaceiris/actions-gh-pages@v3
