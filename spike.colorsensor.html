@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.colorsensor &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.distancesensor" href="spike.distancesensor.html" />
+    <link rel="prev" title="spike.button" href="spike.button.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.colorsensor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.colorsensor.ColorSensor"><code class="docutils literal notranslate"><span class="pre">ColorSensor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.__init__"><code class="docutils literal notranslate"><span class="pre">ColorSensor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_ambiant_light"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_ambiant_light()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_reflected_light"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_reflected_light()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_rgb_intensity"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_rgb_intensity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_red"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_red()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_green"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_green()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.get_blue"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_blue()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.wait_until_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.wait_until_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.wait_for_new_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.wait_for_new_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.light_up_all"><code class="docutils literal notranslate"><span class="pre">ColorSensor.light_up_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.light_up"><code class="docutils literal notranslate"><span class="pre">ColorSensor.light_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.__process_command"><code class="docutils literal notranslate"><span class="pre">ColorSensor.__process_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.c_read"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.c_set_lights"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_set_lights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.colorsensor.ColorSensor.port"><code class="docutils literal notranslate"><span class="pre">ColorSensor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.colorsensor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.colorsensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.colorsensor">
+<span id="spike-colorsensor"></span><h1>spike.colorsensor<a class="headerlink" href="#module-spike.colorsensor" title="Permalink to this heading"></a></h1>
+<p>Color sensor mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColorSensor</span></code></a>(port)</p></td>
+<td><p>Color sensor mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.colorsensor.</span></span><span class="sig-name descname"><span class="pre">ColorSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Color sensor mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<em>string</em><em> (</em><em>'A'</em><em>,</em><em>'B'</em><em>,</em><em>'C'</em><em>,</em><em>'D'</em><em>,</em><em>'E'</em><em> or </em><em>'F'</em><em>)</em>) – the hub port to which the sensor is connected</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_color">
+<span class="sig-name descname"><span class="pre">get_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_color" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the detected color of a surface</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>name of the color sensed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_ambiant_light">
+<span class="sig-name descname"><span class="pre">get_ambiant_light</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_ambiant_light" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the intensity of the ambient light.</p>
+<p>This causes the Color Sensor to change modes, which can affect your program in unexpected
+ways. For example, the Color Sensor can’t read colors when it’s in ambient light mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The ambient light intensity.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int [0,100]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_reflected_light">
+<span class="sig-name descname"><span class="pre">get_reflected_light</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_reflected_light" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the intensity of the reflected light.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The reflected light intensity</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int [0,100]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_rgb_intensity">
+<span class="sig-name descname"><span class="pre">get_rgb_intensity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_rgb_intensity" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the overall color intensity, and intensity of red, green, and blue</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>red, green, blue and overall intensity</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple ([0,1024],[0,1024],[0,1024],[0,1024])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_red">
+<span class="sig-name descname"><span class="pre">get_red</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_red" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the color intensity of red.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>red intensity</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [0,1024]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_green">
+<span class="sig-name descname"><span class="pre">get_green</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_green" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the color intensity of green.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>green intensity</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [0,1024]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.get_blue">
+<span class="sig-name descname"><span class="pre">get_blue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.get_blue" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the color intensity of blue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>blue intensity</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [0,1024]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.wait_until_color">
+<span class="sig-name descname"><span class="pre">wait_until_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.wait_until_color" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the Color Sensor detects the specified color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<em>string</em><em> (</em><em>&quot;black&quot;</em><em>,</em><em>&quot;violet&quot;</em><em>,</em><em>&quot;blue&quot;</em><em>,</em><em>&quot;cyan&quot;</em><em>,</em><em>&quot;green&quot;</em><em>,</em><em>&quot;yellow&quot;</em><em>,</em><em>&quot;red&quot;</em><em>,</em><em>&quot;white&quot;</em><em>)</em>) – the name of the color</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.wait_for_new_color">
+<span class="sig-name descname"><span class="pre">wait_for_new_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.wait_for_new_color" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the Color Sensor detects a new color.</p>
+<p>The first time this method is called, it immediately returns the detected color.
+After that, it waits until the Color Sensor detects a color that’s different from
+the color that was detected the last time this method was used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the name of the new color</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string (“black”,”violet”,”blue”,”cyan”,”green”,”yellow”,”red”,”white”)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.light_up_all">
+<span class="sig-name descname"><span class="pre">light_up_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.light_up_all" title="Permalink to this definition"></a></dt>
+<dd><p>Lights up all of the lights on the Color Sensor at the specified brightness.</p>
+<p>This causes the Color Sensor to change modes, which can affect your program in unexpected
+ways. For example, the Color Sensor can’t read colors when it’s in light up mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>brightness</strong> (<em>integer</em><em> (</em><em>[</em><em>0</em><em>,</em><em>100%</em><em>] </em><em>- &quot;0&quot; is off</em><em>, </em><em>and &quot;100&quot; is full brightness.</em><em>)</em>) – the desired brightness of the lights on the Color Sensor, default = 100</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – brightness is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.light_up">
+<span class="sig-name descname"><span class="pre">light_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">light_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">light_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">light_3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.light_up" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the brightness of the individual lights on the Color Sensor.
+This causes the Color Sensor to change modes, which can affect your program in unexpected
+ways. For example, the Color Sensor can’t read colors when it’s in light up mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>light_1</strong> (<em>integer</em><em> (</em><em>[</em><em>0</em><em>,</em><em>100%</em><em>] </em><em>- &quot;0&quot; is off</em><em>, </em><em>and &quot;100&quot; is full brightness.</em><em>)</em>) – the desired brightness of light 1.</p></li>
+<li><p><strong>light_2</strong> (<em>integer</em><em> (</em><em>[</em><em>0</em><em>,</em><em>100%</em><em>] </em><em>- &quot;0&quot; is off</em><em>, </em><em>and &quot;100&quot; is full brightness.</em><em>)</em>) – the desired brightness of light 2.</p></li>
+<li><p><strong>light_3</strong> (<em>integer</em><em> (</em><em>[</em><em>0</em><em>,</em><em>100%</em><em>] </em><em>- &quot;0&quot; is off</em><em>, </em><em>and &quot;100&quot; is full brightness.</em><em>)</em>) – the desired brightness of light 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – light_1, light_2, or light_3 is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.__process_command">
+<span class="sig-name descname"><span class="pre">__process_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.__process_command" title="Permalink to this definition"></a></dt>
+<dd><p>Process command until over</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>generator function</em>) – command to process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.c_read">
+<span class="sig-name descname"><span class="pre">c_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">red</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reflected</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.c_read" title="Permalink to this definition"></a></dt>
+<dd><p>Reads color from external source</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>red</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>1024</em><em>]</em>) – red intensity</p></li>
+<li><p><strong>green</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>1024</em><em>]</em>) – green intensity</p></li>
+<li><p><strong>blue</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>1024</em><em>]</em>) – blue intensity</p></li>
+<li><p><strong>ambiant</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>1024</em><em>]</em>) – ambiant intensity</p></li>
+<li><p><strong>reflected</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>1024</em><em>]</em>) – reflected intensity</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.c_set_lights">
+<span class="sig-name descname"><span class="pre">c_set_lights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">light1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">light2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">light3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.colorsensor.ColorSensor.c_set_lights" title="Permalink to this definition"></a></dt>
+<dd><p>Lights intensity setter</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>light1</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – light1 brightness</p></li>
+<li><p><strong>light2</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – light2 brightness</p></li>
+<li><p><strong>light3</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – light3 brightness</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.colorsensor.ColorSensor.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#spike.colorsensor.ColorSensor.port" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the component connection port</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the component port</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.button.html" class="btn btn-neutral float-left" title="spike.button" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.distancesensor.html" class="btn btn-neutral float-right" title="spike.distancesensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿spike.speaker
+=============
+
+.. automodule:: spike.speaker
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Speaker
+   
+   
+
+   
+   
+   
+
+
+

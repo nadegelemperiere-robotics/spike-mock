@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Getting started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-and-goals">Introduction and Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solution-strategy">Solution strategy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-standards">Data standards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#third-parties">Third parties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-block-view">Building block view</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-layer-description">Data layer description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compute-layer-description">Compute layer description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface-layer-description">Interface layer description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#runtime-view">Runtime view</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from-interface-layer-to-compute-layer">From interface layer to compute layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#passive-elements-update-principle">1 - Passive elements update principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#active-elements-update-principle">2 - Active elements update principle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inside-compute-layer">Inside compute layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scenario-parallel-processing">1 - Scenario parallel processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scenariodynamics-and-scenariopart-interactions">2 - ScenarioDynamics and ScenarioPart interactions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-description">Detailed description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-view">Deployment view</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#coordinates-systems">Coordinates systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ldraw-coordinate-system">Ldraw coordinate system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ned-coordinate-system">NED coordinate system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/design.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="design">
+<h1>Design<a class="headerlink" href="#design" title="Permalink to this heading"></a></h1>
+<section id="introduction-and-goals">
+<h2>Introduction and Goals<a class="headerlink" href="#introduction-and-goals" title="Permalink to this heading"></a></h2>
+<p>The goal of the spike-mock library is to provide the spike lego developer with a way
+to test his/her code on a controlled environment, where the external influences are limited
+and where the synthetic world can be completely mastered.</p>
+<p>The key requirements taken into account during the design are :</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The spike-mock library shall offer the same interface as the spike library and be completely
+interchangeable with it.</p>
+</div>
+<p>Some additional API will be provided to configure and orchestrate the scenario flow.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <em>read</em> mode, the spike-mock library shall be able to mock the spike software component
+using measurements read from an external database</p>
+</div>
+<p>In this mode, the user controls exactly the software component inputs, and the robot commands
+have no impact on the software component output</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <em>computed</em> mode, the spike-mock library shall be able to mock the spike software
+components using a robot model to derive the impact of the robot commands on the robot
+sensors outputs</p>
+</div>
+<p>In this mode, the user commands have impact on the robot state. The library model the robot
+displacement in the synthetic scene to compute the sensors measurements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The spike-mock library shall be able to function in real time, as close as possible to
+the real robot behaviour</p>
+</div>
+<p>According to the documentation, lego spike components have a measurement update frequency of
+100 Hz, which is the spike-library processing rate target</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The spike-mock library shall be able to function on controlled time, providing the user
+with an interface to decidewhen time change.</p>
+</div>
+<p>This mode is useful when testing a complex tracking algorithm where logging and debugging
+reduced the update rate and change algorithm performance compared to real time scenario,
+hence making the debugging challenging.</p>
+</section>
+<section id="solution-strategy">
+<h2>Solution strategy<a class="headerlink" href="#solution-strategy" title="Permalink to this heading"></a></h2>
+<section id="data-standards">
+<h3>Data standards<a class="headerlink" href="#data-standards" title="Permalink to this heading"></a></h3>
+<p>To model the robot behavior, the library needs a description of both the robot mecanics and
+the context it evolves into. To make the library more user-friendly, its configuration will
+be based on as much standard as possible :</p>
+<ul class="simple">
+<li><p>The robot mecanics will be gathered from a <a class="reference external" href="https://www.ldraw.org/">ldraw</a> model. It’s the most widely used in the
+lego world and it can be easily exported from a CAD project made with the bricklink <a class="reference external" href="https://www.bricklink.com/v3/studio/download.page">Studio2.0</a>
+tool. The main drawback is that this standard has not spread in the extended robotics world
+and will therefore require a complex transformation to use more generic robotics libraries</p></li>
+<li><p>The ground on which the robot eveolves will be provided as an image. The scale and coordinates
+system associated to the image will be provided in a configuration file</p></li>
+<li><p>The robot components data for the <em>read</em> mode will be stored in an excel workbook. Since
+spike robot scenario are limited in time, this design choice will make the library more
+user-friendly without limiting its performance.</p></li>
+</ul>
+</section>
+<section id="third-parties">
+<h3>Third parties<a class="headerlink" href="#third-parties" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>There are no well maintained open source packages for <a class="reference external" href="https://www.ldraw.org/">ldraw</a> parsing. To avoid redeveloping
+a new package, the library uses a fork of python-ldraw package, which will have to be maintained
+in parallel to the library.</p></li>
+<li><p>There is a lot of robotics libraries providing amazing functionalities. Libraries such as
+pybullet offer very advanced functionalities but are complex to handle. Though use of
+such libraries shall be considered in future releases, for now the library will use the
+wpimath library through its robotpy python interface. It provides useful 3D geometry tools
+but does not help with the scene rendering.</p></li>
+</ul>
+</section>
+</section>
+<section id="building-block-view">
+<h2>Building block view<a class="headerlink" href="#building-block-view" title="Permalink to this heading"></a></h2>
+<p>The following image shows the layered architecture of the library</p>
+<img alt="_images/layered-architecture.png" class="align-center" src="_images/layered-architecture.png" />
+<hr class="docutils" />
+<section id="data-layer-description">
+<h3>Data layer description<a class="headerlink" href="#data-layer-description" title="Permalink to this heading"></a></h3>
+<p><strong>ScenarioAbaqus</strong> loads abaqus data from excel workbook and provides interpolation function
+to extrapolate abaqus outside of its provided data range. This component is typically used to link
+the motors speed command and its real rotation speed and link wheels ldraw part id to the wheel
+radius. This component relies on openpyxl to parse excel workbook</p>
+<p><strong>ScenarioData</strong> loads scenario sensors measurement when in <em>read</em> mode. The link between the
+data and the component to update are based on the headers : &lt;port&gt;_degrees for motor,
+&lt;side&gt;_is_pressed for button,… This component relies on openpyxl to parse excel workbook and
+collect data.</p>
+<p><strong>ScenarioModel</strong> loads robot parts from an ldraw model file. It then transforms their coordinates
+and orientation from the ldraw coordinate system where x is right, y is down and z is front to the
+more standard north, east, down reference. It then computes the position of the wheel centers which
+will be used as a center point for robot movement. It derives for each part the translation
+and rotation relative to this center, which will be used when the robot moves to update each part
+position and orientation from the robot center displacement. This component relies on python-ldraw
+to parse ldraw file.</p>
+<p><strong>ScenarioTimer</strong> is responsible for the scenario clock management. Depending on the mode (realtime
+or controlled), it will update date as scenario flows. It will be used to mock spike timers.</p>
+<p><strong>ScenarioGround</strong> loads the ground image and its associated scales. It derives the color sensor
+measure from the sensor position as the robot moves. It is also responsible for providing scenario
+image by wrapping the robot position on the ground.</p>
+<p><strong>Scenario</strong> is the single point interface between the spike-like software components and the
+previous component. It sequences them and manages the update thread updating software components in
+parallel to the API call from the end-user main thread.</p>
+</section>
+<section id="compute-layer-description">
+<h3>Compute layer description<a class="headerlink" href="#compute-layer-description" title="Permalink to this heading"></a></h3>
+<p><strong>ScenarioPart</strong> and its children contain description of the lego parts involved in the robot
+movement. They also store dynamics information on the part, and provide functions to model their
+behavior in a scenario.</p>
+<p><strong>ScenarioDynamics</strong> is responsible for the management of the robot displacement. It receives
+the end-user commands, update the robot state, extrapolate the robot position along time and
+derives software components measurements.</p>
+<p><strong>ScenarioCommands</strong> is dedicated to the management of the software components commands. It
+receives command from the end-user through the API software components and either dispatch them
+to the ScenarioDynamics object, or directly updates the components for simple functions who do not
+impact other components.</p>
+<p><strong>ScenarioComponents</strong> register the API software components as they are created and check that
+there compliance with the robot structure. It updates software components along time from either
+data or simulated measurements depending on the mode.</p>
+</section>
+<section id="interface-layer-description">
+<h3>Interface layer description<a class="headerlink" href="#interface-layer-description" title="Permalink to this heading"></a></h3>
+<p>The objects defined in spike libraries (<strong>Motor</strong>, <strong>MotorPair</strong>, <strong>PrimeHub</strong>, <strong>ColorSensor</strong>,
+<strong>DistanceSensor</strong>, <strong>ForceSensor</strong>, <strong>LightMatrix</strong>, <strong>MotionSensor</strong>, <strong>Speaker</strong>,
+<strong>StatusLight</strong>, <strong>Timer</strong>, <strong>Button</strong>) are reproduced with the same API. They are nothing but
+a shell to receive and dispatch data from external sources, either commands from the end-user
+to the scenario or measurement from the scenario to the end-user</p>
+<p><strong>Client</strong> component provides a webclient to pilot scenario and display the robot behaviour.
+It relies on flask to serve this graphical user interface.</p>
+</section>
+</section>
+<section id="runtime-view">
+<h2>Runtime view<a class="headerlink" href="#runtime-view" title="Permalink to this heading"></a></h2>
+<p>The following scenarios show key dynamic behaviour of the library</p>
+<section id="from-interface-layer-to-compute-layer">
+<h3>From interface layer to compute layer<a class="headerlink" href="#from-interface-layer-to-compute-layer" title="Permalink to this heading"></a></h3>
+<section id="passive-elements-update-principle">
+<h4>1 - Passive elements update principle<a class="headerlink" href="#passive-elements-update-principle" title="Permalink to this heading"></a></h4>
+<p>The following sequence diagram details how passive elements of the spike API are updated along time.</p>
+<img alt="_images/hub-sequence-diagram.png" class="align-center" src="_images/hub-sequence-diagram.png" />
+</section>
+<hr class="docutils" />
+<section id="active-elements-update-principle">
+<h4>2 - Active elements update principle<a class="headerlink" href="#active-elements-update-principle" title="Permalink to this heading"></a></h4>
+<p>A command received by a component can have impact on other components. For example, starting a
+MotorPair component will change the left and right motor counted degrees and may also change
+the robot orientation measured by the MotionSensor in the hub component. To handle such a scenario,
+all the command received by the component that impact the robot behaviour are redirected to the
+central Scenario component which will update the robot simulated state and redistribute it to all
+the software components.</p>
+<p>The following sequence diagram details how active elements interfere with the scenario to modify
+the robot state and then the software components state.</p>
+<img alt="_images/motor-pair-sequence-diagram.png" class="align-center" src="_images/motor-pair-sequence-diagram.png" />
+</section>
+</section>
+<hr class="docutils" />
+<section id="inside-compute-layer">
+<h3>Inside compute layer<a class="headerlink" href="#inside-compute-layer" title="Permalink to this heading"></a></h3>
+<section id="scenario-parallel-processing">
+<h4>1 - Scenario parallel processing<a class="headerlink" href="#scenario-parallel-processing" title="Permalink to this heading"></a></h4>
+<p>The following sequence diagram shows the threading principle of Scenario update and the way
+it delegates responsibilities to other compute components.</p>
+</section>
+<section id="scenariodynamics-and-scenariopart-interactions">
+<h4>2 - ScenarioDynamics and ScenarioPart interactions<a class="headerlink" href="#scenariodynamics-and-scenariopart-interactions" title="Permalink to this heading"></a></h4>
+<p>The following sequence diagram shows how ScenarioDynamics leverages ScenarioParts to link
+the command and the structure response.</p>
+</section>
+</section>
+</section>
+<section id="detailed-description">
+<h2>Detailed description<a class="headerlink" href="#detailed-description" title="Permalink to this heading"></a></h2>
+<img alt="_images/parts.png" class="align-center" src="_images/parts.png" />
+</section>
+<hr class="docutils" />
+<section id="deployment-view">
+<h2>Deployment view<a class="headerlink" href="#deployment-view" title="Permalink to this heading"></a></h2>
+<p>The spike-mock is provided under 2 packaging :</p>
+<ul class="simple">
+<li><p>A python module which can be directly used through its API in a larger python code</p></li>
+<li><p>A docker image which can be accessed through a rest API and a web client to manage scenario from a graphical user interface (coming soon)</p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading"></a></h2>
+<section id="coordinates-systems">
+<h3>Coordinates systems<a class="headerlink" href="#coordinates-systems" title="Permalink to this heading"></a></h3>
+<section id="ldraw-coordinate-system">
+<h4>Ldraw coordinate system<a class="headerlink" href="#ldraw-coordinate-system" title="Permalink to this heading"></a></h4>
+<p>The ldraw coordinate system for robot structure description is defined as follows :</p>
+<img alt="_images/ldraw-coordinates.png" class="align-center" src="_images/ldraw-coordinates.png" />
+<hr class="docutils" />
+<p>The x axis of the ldraw coordinate system is oriented from left to right of the scene.</p>
+<p>The y axis of the ldraw coordinate system is oriented from up to down.</p>
+<p>The z axis of the ldraw coordinate system is oriented from back to front.</p>
+<p>When modelling a robot under <a class="reference external" href="https://www.bricklink.com/v3/studio/download.page">Studio2.0</a>, the position of the center can be anywhere in the scene.
+Orientation is key, though : the front of the robot shall be the side viewed when selecting the
+front orientation view to match the library requirements.
+When exported a robot matching this requirements in ldraw format, the x and z axis are not
+adequately oriented, which is corrected in the library.</p>
+</section>
+<section id="ned-coordinate-system">
+<h4>NED coordinate system<a class="headerlink" href="#ned-coordinate-system" title="Permalink to this heading"></a></h4>
+<p>The North-East-Down coordinate system is defined as follows :</p>
+<img alt="_images/ned-coordinates.png" class="align-center" src="_images/ned-coordinates.png" />
+<hr class="docutils" />
+<p>The x axis ot the NED coordinate system is oriented north on the mat world, which is top</p>
+<p>The y axis of the NED coordinate system is oriented east on the mat, which is right</p>
+<p>The z axis of the NED coordinate system is oriented down.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

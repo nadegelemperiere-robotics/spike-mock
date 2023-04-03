@@ -1,0 +1,37 @@
+﻿spike.control
+=============
+
+.. automodule:: spike.control
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      equal_to
+      wait_for_seconds
+      wait_until
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Timer
+   
+   
+
+   
+   
+   
+
+
+

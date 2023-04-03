@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.scenario package &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">spike.scenario package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.scenario.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spike-scenario-package">
+<h1>spike.scenario package<a class="headerlink" href="#spike-scenario-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-spike.scenario.abaqus">
+<span id="spike-scenario-abaqus-module"></span><h2>spike.scenario.abaqus module<a class="headerlink" href="#module-spike.scenario.abaqus" title="Permalink to this heading"></a></h2>
+<p>Class providing abaqus for robot behaviour</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.abaqus.ScenarioAbaqus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.abaqus.</span></span><span class="sig-name descname"><span class="pre">ScenarioAbaqus</span></span><a class="headerlink" href="#spike.scenario.abaqus.ScenarioAbaqus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class storing a robot abaqus
+The abaqus is provided as an excel workbook linking an input
+to one or more values. The abaqus topics are derived from the
+workbook sheet headers</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.abaqus.ScenarioAbaqus.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.abaqus.ScenarioAbaqus.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.abaqus.ScenarioAbaqus.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.abaqus.ScenarioAbaqus.read" title="Permalink to this definition"></a></dt>
+<dd><p>Load an abaqus from an input workbook sheet content</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – name of the workbook file to read data from</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – name of the workbook sheet containing the abaqus</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.abaqus.ScenarioAbaqus.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.abaqus.ScenarioAbaqus.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get abaqus value for a given command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>topic</strong> (<em>string</em>) – command topic</p></li>
+<li><p><strong>command</strong> (<em>integer</em>) – command value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>topic value for the given command.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.commands">
+<span id="spike-scenario-commands-module"></span><h2>spike.scenario.commands module<a class="headerlink" href="#module-spike.scenario.commands" title="Permalink to this heading"></a></h2>
+<p>Software component commands management</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.commands.</span></span><span class="sig-name descname"><span class="pre">ScenarioCommands</span></span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class managing robot command and their impact on dynamics</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.s_shared_timer">
+<span class="sig-name descname"><span class="pre">s_shared_timer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.timer.ScenarioTimer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.s_shared_timer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Commands reset function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configuration function for command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dynamics</strong> (<a class="reference internal" href="spike.scenario.dynamics.html#spike.scenario.dynamics.ScenarioDynamics" title="spike.scenario.dynamics.ScenarioDynamics"><em>ScenarioDynamics</em></a>) – robot dynamic data to update from command</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.give">
+<span class="sig-name descname"><span class="pre">give</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.give" title="Permalink to this definition"></a></dt>
+<dd><p>Register a new command being given to the hub</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component at the origin of the command</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – command name</p></li>
+<li><p><strong>args</strong> (<em>dictionary</em>) – command parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Command not known</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>command to perform</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>generator function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__statuslight_on">
+<span class="sig-name descname"><span class="pre">__statuslight_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__statuslight_on" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight “on” command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__statuslight_off">
+<span class="sig-name descname"><span class="pre">__statuslight_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__statuslight_off" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight “off” command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__colorsensor_light_up">
+<span class="sig-name descname"><span class="pre">__colorsensor_light_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__colorsensor_light_up" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight light up commands</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_show_image">
+<span class="sig-name descname"><span class="pre">__lightmatrix_show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_show_image" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix show image command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_set_pixel">
+<span class="sig-name descname"><span class="pre">__lightmatrix_set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_set_pixel" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix set pixel command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_write">
+<span class="sig-name descname"><span class="pre">__lightmatrix_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_write" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix write command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_off">
+<span class="sig-name descname"><span class="pre">__lightmatrix_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_off" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix off command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_beep">
+<span class="sig-name descname"><span class="pre">__speaker_beep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_beep" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight beep command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_start_beep">
+<span class="sig-name descname"><span class="pre">__speaker_start_beep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_start_beep" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight start beep command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_stop">
+<span class="sig-name descname"><span class="pre">__speaker_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_stop" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight stop command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_set_volume">
+<span class="sig-name descname"><span class="pre">__speaker_set_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_set_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight set volume command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__motorpair_set_stop_action">
+<span class="sig-name descname"><span class="pre">__motorpair_set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__motorpair_set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Process MotorPair set stop action command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__motor_set_stall_detection">
+<span class="sig-name descname"><span class="pre">__motor_set_stall_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__motor_set_stall_detection" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__motor_set_stop_action">
+<span class="sig-name descname"><span class="pre">__motor_set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__motor_set_stop_action" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.components">
+<span id="spike-scenario-components-module"></span><h2>spike.scenario.components module<a class="headerlink" href="#module-spike.scenario.components" title="Permalink to this heading"></a></h2>
+<p>Software component registration management</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.components.</span></span><span class="sig-name descname"><span class="pre">ScenarioComponents</span></span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class managing all registered software components
+and their update along time</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">components</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.reset" title="Permalink to this definition"></a></dt>
+<dd><p>reset method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure components from robot ground truth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<a class="reference internal" href="spike.scenario.model.html#spike.scenario.model.ScenarioModel" title="spike.scenario.model.ScenarioModel"><em>ScenarioModel</em></a>) – robot static description</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.register" title="Permalink to this definition"></a></dt>
+<dd><p>Register a software component associated with the robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – unknown component type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.update_from_data">
+<span class="sig-name descname"><span class="pre">update_from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.update_from_data" title="Permalink to this definition"></a></dt>
+<dd><p>Update component from synthetic data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>float</em>) – current time</p></li>
+<li><p><strong>data</strong> (<a class="reference internal" href="spike.scenario.data.html#spike.scenario.data.ScenarioData" title="spike.scenario.data.ScenarioData"><em>ScenarioData</em></a>) – data to use to update components states</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.update_from_mecanics">
+<span class="sig-name descname"><span class="pre">update_from_mecanics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.update_from_mecanics" title="Permalink to this definition"></a></dt>
+<dd><p>Update component from robot dynamic data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>float</em>) – current time</p></li>
+<li><p><strong>dynamics</strong> (<a class="reference internal" href="spike.scenario.dynamics.html#spike.scenario.dynamics.ScenarioDynamics" title="spike.scenario.dynamics.ScenarioDynamics"><em>ScenarioDynamics</em></a>) – robot dynamic state</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_motor">
+<span class="sig-name descname"><span class="pre">__register_motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_motor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if motor software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.motor.html#spike.motor.Motor" title="spike.motor.Motor"><em>Motor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing port or too many ports provided or unexisting port
+or port does not host a Motor or Motor already created on port</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_motorpair">
+<span class="sig-name descname"><span class="pre">__register_motorpair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_motorpair" title="Permalink to this definition"></a></dt>
+<dd><p>Check if motorpair software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.motorpair.html#spike.motorpair.MotorPair" title="spike.motorpair.MotorPair"><em>MotorPair</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Single motors not created on port or motorpair
+already created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_colorsensor">
+<span class="sig-name descname"><span class="pre">__register_colorsensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_colorsensor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if color sensor software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing port or too many ports provided or unexisting port
+or port does not host a ColorSensor or ColorSensor already created on port</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_forcesensor">
+<span class="sig-name descname"><span class="pre">__register_forcesensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_forcesensor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if force sensor software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.forcesensor.html#spike.forcesensor.ForceSensor" title="spike.forcesensor.ForceSensor"><em>ForceSensor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing port or too many ports provided or unexisting port
+or port does not host a ForceSensor or ForceSensor already created on port</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_distancesensor">
+<span class="sig-name descname"><span class="pre">__register_distancesensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_distancesensor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if distance sensor software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.distancesensor.html#spike.distancesensor.DistanceSensor" title="spike.distancesensor.DistanceSensor"><em>DistanceSensor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing port or too many ports provided or unexisting port
+or port does not host a DistanceSensor or DistanceSensor already created on port</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_button">
+<span class="sig-name descname"><span class="pre">__register_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_button" title="Permalink to this definition"></a></dt>
+<dd><p>Check if button software component can be allocated
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing side or too many sides provided or unknown side
+or Button already created on side</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_lightmatrix">
+<span class="sig-name descname"><span class="pre">__register_lightmatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_lightmatrix" title="Permalink to this definition"></a></dt>
+<dd><p>Check if light matrix software component can be allocated
+LightMatrix is part of the hub and not connected to a hub port
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.lightmatrix.html#spike.lightmatrix.LightMatrix" title="spike.lightmatrix.LightMatrix"><em>LightMatrix</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – port provided or LightMatrix already created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_motion_sensor">
+<span class="sig-name descname"><span class="pre">__register_motion_sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_motion_sensor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if motion sensor software component can be allocated
+MotionSensor is part of the hub and not connected to a hub port
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.motionsensor.html#spike.motionsensor.MotionSensor" title="spike.motionsensor.MotionSensor"><em>MotionSensor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – port provided or MotionSensor already created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_speaker">
+<span class="sig-name descname"><span class="pre">__register_speaker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_speaker" title="Permalink to this definition"></a></dt>
+<dd><p>Check if speaker software component can be allocated
+Speaker is part of the hub and not connected to a hub port
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.speaker.html#spike.speaker.Speaker" title="spike.speaker.Speaker"><em>Speaker</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – port provided or Speaker already created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_statuslight">
+<span class="sig-name descname"><span class="pre">__register_statuslight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_statuslight" title="Permalink to this definition"></a></dt>
+<dd><p>Check if status light software component can be allocated
+StatusLight is part of the hub and not connected to a hub port
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.statuslight.html#spike.statuslight.StatusLight" title="spike.statuslight.StatusLight"><em>StatusLight</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – port provided or StatusLight already created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.components.ScenarioComponents.__register_timer">
+<span class="sig-name descname"><span class="pre">__register_timer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.components.ScenarioComponents.__register_timer" title="Permalink to this definition"></a></dt>
+<dd><p>Check if timer software component can be allocated
+Timer can always be created and is not associated to a hub port
+Atomic operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<a class="reference internal" href="spike.motionsensor.html#spike.motionsensor.MotionSensor" title="spike.motionsensor.MotionSensor"><em>MotionSensor</em></a>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – port provided</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.data">
+<span id="spike-scenario-data-module"></span><h2>spike.scenario.data module<a class="headerlink" href="#module-spike.scenario.data" title="Permalink to this heading"></a></h2>
+<p>Scenario data management</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.data.</span></span><span class="sig-name descname"><span class="pre">ScenarioData</span></span><a class="headerlink" href="#spike.scenario.data.ScenarioData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class managing simulation data</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.s_time_header">
+<span class="sig-name descname"><span class="pre">s_time_header</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'time'</span></em><a class="headerlink" href="#spike.scenario.data.ScenarioData.s_time_header" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.s_invalid_value">
+<span class="sig-name descname"><span class="pre">s_invalid_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1e+16</span></em><a class="headerlink" href="#spike.scenario.data.ScenarioData.s_invalid_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.data.ScenarioData.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor for each instantiation / do nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.data.ScenarioData.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Read scenario data from excel file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – path to excel file in which the scenario data are located</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – sheet from which data shall be retrieved</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.extrapolate">
+<span class="sig-name descname"><span class="pre">extrapolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.data.ScenarioData.extrapolate" title="Permalink to this definition"></a></dt>
+<dd><p>Extrapolate a given data at a given time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> (<em>string</em>) – header of the data to extrapolate</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – extrapolation date in seconds</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – header not found in data</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The extrapolated value at the input time</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>depending on data type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.is_loaded">
+<span class="sig-name descname"><span class="pre">is_loaded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.data.ScenarioData.is_loaded" title="Permalink to this definition"></a></dt>
+<dd><p>Loaded status return function :</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if data are loaded, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.data.ScenarioData.__load_data">
+<span class="sig-name descname"><span class="pre">__load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.data.ScenarioData.__load_data" title="Permalink to this definition"></a></dt>
+<dd><p>Reads data from the excel sheet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sheet</strong> (<em>string</em>) – sheet to read object status from</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.dynamics">
+<span id="spike-scenario-dynamics-module"></span><h2>spike.scenario.dynamics module<a class="headerlink" href="#module-spike.scenario.dynamics" title="Permalink to this heading"></a></h2>
+<p>Robot dynamic state management</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.dynamics.</span></span><span class="sig-name descname"><span class="pre">ScenarioDynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Robot dynamics modelisation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.s_shared_timer">
+<span class="sig-name descname"><span class="pre">s_shared_timer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.timer.ScenarioTimer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.s_shared_timer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">dynamics</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<a class="reference internal" href="spike.scenario.model.html#spike.scenario.model.ScenarioModel" title="spike.scenario.model.ScenarioModel"><em>ScenarioModel</em></a>) – robot static structure model</p></li>
+<li><p><strong>mat</strong> (<a class="reference internal" href="#spike.scenario.ground.ScenarioGround" title="spike.scenario.ground.ScenarioGround"><em>ScenarioGround</em></a>) – mat model</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure dynamics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coordinates</strong> (<em>dictionary {'north'</em><em>, </em><em>'east'</em><em>, </em><em>'yaw'}</em>) – initial robot coordinates, default is None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.current">
+<span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.current" title="Permalink to this definition"></a></dt>
+<dd><p>Current robot dynamic status accessor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current robot dynamics measurements</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.move">
+<span class="sig-name descname"><span class="pre">move</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.move" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.start_tank">
+<span class="sig-name descname"><span class="pre">start_tank</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.start_tank" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.move_tank">
+<span class="sig-name descname"><span class="pre">move_tank</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.move_tank" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.start_tank_at_power">
+<span class="sig-name descname"><span class="pre">start_tank_at_power</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.start_tank_at_power" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.set_degrees_counted">
+<span class="sig-name descname"><span class="pre">set_degrees_counted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.set_degrees_counted" title="Permalink to this definition"></a></dt>
+<dd><p>Single motor set_degrees_counted function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>string</em>) – motor port</p></li>
+<li><p><strong>degrees</strong> (<em>integer</em>) – the number of degrees to set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – The port is not associated to a motor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.run_to_position">
+<span class="sig-name descname"><span class="pre">run_to_position</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.run_to_position" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.run_to_degrees_counted">
+<span class="sig-name descname"><span class="pre">run_to_degrees_counted</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.run_to_degrees_counted" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.run_for_rotations">
+<span class="sig-name descname"><span class="pre">run_for_rotations</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.run_for_rotations" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.run_for_degrees">
+<span class="sig-name descname"><span class="pre">run_for_degrees</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.run_for_degrees" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.run_for_seconds">
+<span class="sig-name descname"><span class="pre">run_for_seconds</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.run_for_seconds" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.start" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.start_at_power">
+<span class="sig-name descname"><span class="pre">start_at_power</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.start_at_power" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.extrapolate">
+<span class="sig-name descname"><span class="pre">extrapolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.extrapolate" title="Permalink to this definition"></a></dt>
+<dd><p>Extrapolate robot status at a given date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time</strong> (<em>float</em><em> (</em><em>seconds</em><em>)</em>) – extrapolation date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__compute_motor_speeds_from_steering">
+<span class="sig-name descname"><span class="pre">__compute_motor_speeds_from_steering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steering</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__compute_motor_speeds_from_steering" title="Permalink to this definition"></a></dt>
+<dd><p>Compute left and right motors command from steering and speed
+The behavior of this function, with a discontinuities between 99% and 100%
+as been validated by experiment using spike motors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>steering</strong> (<em>integer</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – the direction and quantity to steer the Driving Base.</p></li>
+<li><p><strong>steering</strong> – the speed at which the Driving Base will move while performing a curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>motor left and right command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__update_kinematics">
+<span class="sig-name descname"><span class="pre">__update_kinematics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__update_kinematics" title="Permalink to this definition"></a></dt>
+<dd><p>Update robot global kinematics from motor speeds</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__check_pair">
+<span class="sig-name descname"><span class="pre">__check_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__check_pair" title="Permalink to this definition"></a></dt>
+<dd><p>Check if left and right ports connects pairable motors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> (<em>string</em>) – left motor port</p></li>
+<li><p><strong>right</strong> (<em>boolean</em>) – right motor port</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if motors are pairable, False otherwise</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – No motor in input ports or motor can not be paired</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__check_configuration">
+<span class="sig-name descname"><span class="pre">__check_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__check_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Check input json configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conf</strong> (<em>dictionary</em>) – configuration file content</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Missing north, east or yaw coordinates</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.dynamics.ScenarioDynamics.__modulo_dir">
+<span class="sig-name descname"><span class="pre">__modulo_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.dynamics.ScenarioDynamics.__modulo_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Degrees to radians transformation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input</strong> (<em>float</em><em> (</em><em>radians</em><em>)</em>) – angle</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>angle</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float (degrees) [-180,180]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.ground">
+<span id="spike-scenario-ground-module"></span><h2>spike.scenario.ground module<a class="headerlink" href="#module-spike.scenario.ground" title="Permalink to this heading"></a></h2>
+<p>Scenario ground management</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.ground.</span></span><span class="sig-name descname"><span class="pre">ScenarioGround</span></span><a class="headerlink" href="#spike.scenario.ground.ScenarioGround" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Scene mat modelling</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">ground</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.ground.ScenarioGround.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.ground.ScenarioGround.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.ground.ScenarioGround.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure dynamics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<em>dictionary</em>) – ground configuration</p></li>
+<li><p><strong>path</strong> (<em>string</em>) – configuration file path</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround.get_color">
+<span class="sig-name descname"><span class="pre">get_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">north</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">east</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.ground.ScenarioGround.get_color" title="Permalink to this definition"></a></dt>
+<dd><p>Get color from position on mat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>north</strong> (<em>float</em>) – north coordinate in centimeters</p></li>
+<li><p><strong>east</strong> (<em>float</em>) – east coordinate in centimeters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.ground.ScenarioGround.__check_configuration">
+<span class="sig-name descname"><span class="pre">__check_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.ground.ScenarioGround.__check_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Check input json configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conf</strong> (<em>dictionary</em>) – configuration file content</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – missing image or scale information</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.model">
+<span id="spike-scenario-model-module"></span><h2>spike.scenario.model module<a class="headerlink" href="#module-spike.scenario.model" title="Permalink to this heading"></a></h2>
+<p>Classes describing lego robot static structure</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.model.</span></span><span class="sig-name descname"><span class="pre">ScenarioModel</span></span><a class="headerlink" href="#spike.scenario.model.ScenarioModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class modelling robot static relative geometry</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.s_topics">
+<span class="sig-name descname"><span class="pre">s_topics</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['design',</span> <span class="pre">'abaqus',</span> <span class="pre">'components']</span></em><a class="headerlink" href="#spike.scenario.model.ScenarioModel.s_topics" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.s_parts_to_connect">
+<span class="sig-name descname"><span class="pre">s_parts_to_connect</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['Motor',</span> <span class="pre">'ColorSensor',</span> <span class="pre">'DistanceSensor',</span> <span class="pre">'ForceSensor']</span></em><a class="headerlink" href="#spike.scenario.model.ScenarioModel.s_parts_to_connect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.s_ports">
+<span class="sig-name descname"><span class="pre">s_ports</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C',</span> <span class="pre">'D',</span> <span class="pre">'E',</span> <span class="pre">'F']</span></em><a class="headerlink" href="#spike.scenario.model.ScenarioModel.s_ports" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">model</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.model.ScenarioModel.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Robot configuration file path</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Component not found for port, component type does not match ldraw type
+or 2 parts connected to the same hub port or missing attribute for component or missing
+robot design file or missing ldraw unit size or unknown topic in configuration file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.altitude">
+<span class="sig-name descname"><span class="pre">altitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.altitude" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot wheels center altitude in NED local reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot altitude</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (cm)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.ports">
+<span class="sig-name descname"><span class="pre">ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.ports" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the allocated ports with their part type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ports associated with their components</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.by_port">
+<span class="sig-name descname"><span class="pre">by_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.by_port" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot parts indexed by port</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.by_type">
+<span class="sig-name descname"><span class="pre">by_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.by_type" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot parts indexed by type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.all">
+<span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.all" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot active or sensive parts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__check_configuration">
+<span class="sig-name descname"><span class="pre">__check_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__check_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Check input json configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conf</strong> (<em>dictionary</em>) – configuration file content</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – missing attribute for component or missing robot design file
+or missing ldraw unit size or unknown topic in configuration file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__read">
+<span class="sig-name descname"><span class="pre">__read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ldu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.04</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__read" title="Permalink to this definition"></a></dt>
+<dd><p>Build robot model from ldraw file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – ldraw formatted filename path</p></li>
+<li><p><strong>ldu</strong> (<em>float</em>) – ldu (ldraw unit) size in centimeters, default 0.4 mm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>robot parts, robot model, ldraw parts</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list, list, dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__convert_pose">
+<span class="sig-name descname"><span class="pre">__convert_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__convert_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Convert part pose in a new coordinates system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parts</strong> (<em>list</em>) – robot parts with pose in ldraw reference</p></li>
+<li><p><strong>system</strong> (<em>CoordinateSystem</em>) – coordinate system to transform parts into</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>converted parts</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__add_port_to_parts">
+<span class="sig-name descname"><span class="pre">__add_port_to_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__add_port_to_parts" title="Permalink to this definition"></a></dt>
+<dd><p>Add hub ports info to parts from the robot configuration file.
+Extract wheel spins info for further use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<em>dictionary</em>) – robot configuration file content</p></li>
+<li><p><strong>parts</strong> (<em>list</em>) – robot parts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Component not found for port, component type does not match ldraw type
+or 2 parts connected to the same hub port</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>parts, wheel spins</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple (list, dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__organize_parts">
+<span class="sig-name descname"><span class="pre">__organize_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__organize_parts" title="Permalink to this definition"></a></dt>
+<dd><p>Organize parts to be accessible by port or by type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parts</strong> (<em>list</em>) – list of parts to organize</p></li>
+<li><p><strong>spins</strong> (<em>dictionary</em>) – wheel spins already extracted from the configuration file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>extended parts, parts by type, parts by port</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple (list, dictionary, dictionary)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Can not manage other than 2 wheels</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.parts">
+<span id="spike-scenario-parts-module"></span><h2>spike.scenario.parts module<a class="headerlink" href="#module-spike.scenario.parts" title="Permalink to this heading"></a></h2>
+<p>Classes describing lego robot component parts
+<a class="reference external" href="https://www.ldraw.org/article/218.html">https://www.ldraw.org/article/218.html</a> and their dynamic
+data</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class gathering data on a robot part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">parts</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>copy</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><em>ScenarioPart</em></a>) – part to copy if copy constructor, None (default) otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.type" title="Permalink to this definition"></a></dt>
+<dd><p>Part type getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part type</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.id" title="Permalink to this definition"></a></dt>
+<dd><p>Part identifier getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part ldraw identifier</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.pose" title="Permalink to this definition"></a></dt>
+<dd><p>Part 3d absolute pose getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part absolute pose</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pose3d</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.relative">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">relative</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.relative" title="Permalink to this definition"></a></dt>
+<dd><p>Part 3d relative pose getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part 3d relative pose</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pose3d</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.port" title="Permalink to this definition"></a></dt>
+<dd><p>Part port getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part port, None if the component is not connected</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.color">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.color" title="Permalink to this definition"></a></dt>
+<dd><p>Part color getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part color</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.export" title="Permalink to this definition"></a></dt>
+<dd><p>Export part as end-user dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>part representation from the user perspective</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.derive_relative">
+<span class="sig-name descname"><span class="pre">derive_relative</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.derive_relative" title="Permalink to this definition"></a></dt>
+<dd><p>Compute part pose relative to the robot center pose</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>center</strong> (<em>Pose3d</em>) – robot center relative pose</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPart.derive_pose">
+<span class="sig-name descname"><span class="pre">derive_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPart.derive_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Compute part absolute pose from the robot center absolute pose</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>center</strong> (<em>Pose3d</em>) – robot center absolute pose</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class defining motor dynamics part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.s_speed_abaqus">
+<span class="sig-name descname"><span class="pre">s_speed_abaqus</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.abaqus.ScenarioAbaqus</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.s_speed_abaqus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['54696',</span> <span class="pre">'54675']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.configure">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Static method to load speed abaqus from file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – workbook to read abaqus from</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – workbook sheet to read abaqus from</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Motor constructor</p>
+<p>:param part : part to set as motor
+:type part  : ScenarioPart object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – part is not a known motor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Part dynamic data reset function</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.speed" title="Permalink to this definition"></a></dt>
+<dd><p>Rotation speed getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>motor rotation speed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (rads-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.degrees">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">degrees</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.degrees" title="Permalink to this definition"></a></dt>
+<dd><p>degrees getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>motor displacement degrees</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (radians)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.wheel">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wheel</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.wheel" title="Permalink to this definition"></a></dt>
+<dd><p>Wheel getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>motor associated wheel, None if motor is not connected to a wheel</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPartWheel" title="spike.scenario.parts.ScenarioPartWheel">ScenarioPartWheel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.clockwise">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clockwise</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.clockwise" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the direction of the displacement induced by clockwise rotation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>-1 if clockwise rotation means moving backwards, 1 otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.export" title="Permalink to this definition"></a></dt>
+<dd><p>Export motor as end-user dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary representing the motor from the user perspective</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clockwise'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.command" title="Permalink to this definition"></a></dt>
+<dd><p>Derive motor rotation speed from command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>command</strong> (<em>integer</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – motor command</p></li>
+<li><p><strong>direction</strong> (<em>string</em><em> (</em><em>clockwise</em><em> or </em><em>counterclockwise</em><em>)</em>) – motor rotation direction</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.radius">
+<span class="sig-name descname"><span class="pre">radius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.radius" title="Permalink to this definition"></a></dt>
+<dd><p>Access wheel radius if motor is connected to a wheel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wheel radius (None if motor is not linked to a wheel)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.side">
+<span class="sig-name descname"><span class="pre">side</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.side" title="Permalink to this definition"></a></dt>
+<dd><p>Access wheel side if motor is connected to a wheel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wheel side (None if motor is not linked to a wheel)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str (left or right)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.is_pairable">
+<span class="sig-name descname"><span class="pre">is_pairable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.is_pairable" title="Permalink to this definition"></a></dt>
+<dd><p>Check if 2 motors are pairables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPartMotor" title="spike.scenario.parts.ScenarioPartMotor"><em>ScenarioPartMotor</em></a>) – other motor to pair</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if motors can be paired, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartMotor.extrapolate">
+<span class="sig-name descname"><span class="pre">extrapolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartMotor.extrapolate" title="Permalink to this definition"></a></dt>
+<dd><p>Extrapolate motor angular displacement from time difference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>delta</strong> (<em>float</em>) – time period in seconds</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartWheel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class defining wheel dynamics</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.s_wheel_radius_abaqus">
+<span class="sig-name descname"><span class="pre">s_wheel_radius_abaqus</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.abaqus.ScenarioAbaqus</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.s_wheel_radius_abaqus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['39367PB01',</span> <span class="pre">'49295C01',</span> <span class="pre">'32020C01']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.s_sides">
+<span class="sig-name descname"><span class="pre">s_sides</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['left',</span> <span class="pre">'right']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.s_sides" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.configure">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Static method to load speed abaqus from file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – workbook to read abaqus from</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – workbook sheet to read abaqus from</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPartMotor" title="spike.scenario.parts.ScenarioPartMotor"><em>ScenarioPartMotor</em></a>) – part to set as sheel</p></li>
+<li><p><strong>part</strong> – motor associated to the wheel</p></li>
+<li><p><strong>spin</strong> – 1 if the wheel rotates in the same direction as its motor
+(even number of gears), -1 otherwise (odd number of gears)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – part is not a known wheel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.side">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">side</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.side" title="Permalink to this definition"></a></dt>
+<dd><p>Wheel side getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wheel side on robot</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string (left, right)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.radius">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.radius" title="Permalink to this definition"></a></dt>
+<dd><p>Wheel radius getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wheel radius</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (cm)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.speed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speed</span></span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.speed" title="Permalink to this definition"></a></dt>
+<dd><p>Wheel linear speed getter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wheel linear</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (cms-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.set_side">
+<span class="sig-name descname"><span class="pre">set_side</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.set_side" title="Permalink to this definition"></a></dt>
+<dd><p>Set wheel side on model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPartWheel" title="spike.scenario.parts.ScenarioPartWheel"><em>ScenarioPartWheel</em></a>) – other wheel to compare for left/right</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.export" title="Permalink to this definition"></a></dt>
+<dd><p>Export wheel as end-user dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary representing the wheel from the user perspective</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartWheel.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wheel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartWheel.distance" title="Permalink to this definition"></a></dt>
+<dd><p>Compute distance between 2 wheels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wheel</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPartWheel" title="spike.scenario.parts.ScenarioPartWheel"><em>ScenarioPartWheel</em></a>) – other wheel to analyse</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>distance between the 2 wheels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float (cm)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartColorSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class color sensor dynamics part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">parts</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['37308C01']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Color sensor constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><em>ScenarioPart</em></a>) – part to set as motor</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – part is not a known color sensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor.export" title="Permalink to this definition"></a></dt>
+<dd><p>Export wheel as end-user dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary representing the wheel from the user perspective</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartColorSensor.read_color">
+<span class="sig-name descname"><span class="pre">read_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartColorSensor.read_color" title="Permalink to this definition"></a></dt>
+<dd><p>Read color at sensor position on mat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mat</strong> (<a class="reference internal" href="#spike.scenario.ground.ScenarioGround" title="spike.scenario.ground.ScenarioGround"><em>ScenarioGround</em></a>) – mat model</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartHub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartHub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartHub" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class hub dynamics part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartHub.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">parts</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartHub.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartHub.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['BB1142C01']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartHub.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartHub.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartHub.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Hub constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><em>ScenarioPart</em></a>) – part to set as hub</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – part is not a known hub</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartForceSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartForceSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartForceSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class force sensor dynamics part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartForceSensor.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">parts</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartForceSensor.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartForceSensor.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['37312C01']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartForceSensor.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartForceSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartForceSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Force sensor constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><em>ScenarioPart</em></a>) – part to set as force sensor</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – part is not a known force sensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartDistanceSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.parts.</span></span><span class="sig-name descname"><span class="pre">ScenarioPartDistanceSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartDistanceSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioPart</span></code></a></p>
+<p>Class distance sensor dynamics part</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartDistanceSensor.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">parts</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartDistanceSensor.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartDistanceSensor.s_ids">
+<span class="sig-name descname"><span class="pre">s_ids</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['37316C01']</span></em><a class="headerlink" href="#spike.scenario.parts.ScenarioPartDistanceSensor.s_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.parts.ScenarioPartDistanceSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.parts.ScenarioPartDistanceSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Distance sensor constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>part</strong> (<a class="reference internal" href="spike.scenario.parts.html#spike.scenario.parts.ScenarioPart" title="spike.scenario.parts.ScenarioPart"><em>ScenarioPart</em></a>) – part to set as distance sensor</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – part is not a known distance sensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.scenario">
+<span id="spike-scenario-scenario-module"></span><h2>spike.scenario.scenario module<a class="headerlink" href="#module-spike.scenario.scenario" title="Permalink to this heading"></a></h2>
+<p>Simulation scenario management API</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.scenario.</span></span><span class="sig-name descname"><span class="pre">ScenarioThreadData</span></span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Shared data for robot update thread</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.s_shared_timer">
+<span class="sig-name descname"><span class="pre">s_shared_timer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.timer.ScenarioTimer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.s_shared_timer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.s_modes">
+<span class="sig-name descname"><span class="pre">s_modes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['read',</span> <span class="pre">'compute']</span></em><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.s_modes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">scenario</span> <span class="pre">(NOTSET)&gt;</span></em><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.reinitialize">
+<span class="sig-name descname"><span class="pre">reinitialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.reinitialize" title="Permalink to this definition"></a></dt>
+<dd><p>Scenario reinitialization function
+Keeps registered software components but reinitialize dynamics</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configuration function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scenario</strong> (<em>string</em>) – scenario configuration file path</p></li>
+<li><p><strong>robot</strong> (<em>string</em>) – robot configuration file path</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – name of the sheet to use for component data feeding</p></li>
+<li><p><strong>logger</strong> (<em>string</em>) – logging configuration file path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – missing information, initial coordinates or workbook sheet
+or unknown data mode</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.register_component">
+<span class="sig-name descname"><span class="pre">register_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.register_component" title="Permalink to this definition"></a></dt>
+<dd><p>Register a software component associated with the robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.is_started">
+<span class="sig-name descname"><span class="pre">is_started</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.is_started" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the processing is started</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the processing is started, False otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.step" title="Permalink to this definition"></a></dt>
+<dd><p>Step into time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.command" title="Permalink to this definition"></a></dt>
+<dd><p>Add new command to process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component at the origin of the command</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – command name</p></li>
+<li><p><strong>args</strong> (<em>dictionary</em>) – command parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>command to perform</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>generator function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Return current robot status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the current robot status processed by the thread</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.set_shall_continue">
+<span class="sig-name descname"><span class="pre">set_shall_continue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.set_shall_continue" title="Permalink to this definition"></a></dt>
+<dd><p>Shall continue setting function - Atomic function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>boolean</em>) – True if thread processing shall continue, false otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.shall_continue">
+<span class="sig-name descname"><span class="pre">shall_continue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.shall_continue" title="Permalink to this definition"></a></dt>
+<dd><p>Shall continue accessor function - Atomic function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if thread processing shall continue, false otherwise</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.run" title="Permalink to this definition"></a></dt>
+<dd><p>Thread data processing function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.ScenarioThreadData.__check_configuration">
+<span class="sig-name descname"><span class="pre">__check_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.ScenarioThreadData.__check_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Check input json configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<em>dictionary</em>) – configuration file content</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – workbook sheet to use for synthetic data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – missing information, initial coordinates or workbook sheet
+or unknown data mode</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.scenario.</span></span><span class="sig-name descname"><span class="pre">Scenario</span></span><a class="headerlink" href="#spike.scenario.scenario.Scenario" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Singleton class managing the robot status</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.s_instance">
+<span class="sig-name descname"><span class="pre">s_instance</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.scenario.Scenario</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.scenario.Scenario.s_instance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">scenario</span> <span class="pre">(NOTSET)&gt;</span></em><a class="headerlink" href="#spike.scenario.scenario.Scenario.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.s_init">
+<span class="sig-name descname"><span class="pre">s_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.s_init" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor for singleton / only called once</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor for each instantiation / do nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scenario</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Loading configuration from file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scenario</strong> (<em>string</em>) – path of json file to read scenario data from</p></li>
+<li><p><strong>robot</strong> (<em>string</em>) – path of json file describing robot configuration</p></li>
+<li><p><strong>sheet</strong> (<em>string</em>) – sheet to read scenario data from</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.register" title="Permalink to this definition"></a></dt>
+<dd><p>Register a software component associated with the robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component initiated</p></li>
+<li><p><strong>port1</strong> (<em>string</em>) – first port to check</p></li>
+<li><p><strong>port2</strong> (<em>string</em>) – second port to check</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.start" title="Permalink to this definition"></a></dt>
+<dd><p>Robot starting function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.step" title="Permalink to this definition"></a></dt>
+<dd><p>Step into time from a period set by configuation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.command" title="Permalink to this definition"></a></dt>
+<dd><p>Process new robot command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component at the origin of the command</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – command name</p></li>
+<li><p><strong>args</strong> (<em>dictionary</em>) – command parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>command to perform</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>generator function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.stop" title="Permalink to this definition"></a></dt>
+<dd><p>End scenario</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset scenario — All components will be deregistered</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.scenario.Scenario.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.scenario.Scenario.status" title="Permalink to this definition"></a></dt>
+<dd><p>Return robot current status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot real status</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario.timer">
+<span id="spike-scenario-timer-module"></span><h2>spike.scenario.timer module<a class="headerlink" href="#module-spike.scenario.timer" title="Permalink to this heading"></a></h2>
+<p>Generic timer singleton representing world time</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.timer.</span></span><span class="sig-name descname"><span class="pre">ScenarioTimer</span></span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Singleton providing world clock to all timers</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.s_instance">
+<span class="sig-name descname"><span class="pre">s_instance</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;spike.scenario.timer.ScenarioTimer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.s_instance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.s_sleep_time">
+<span class="sig-name descname"><span class="pre">s_sleep_time</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.s_sleep_time" title="Permalink to this definition"></a></dt>
+<dd><p>Scenario measurements update frequency — Compliant with spike sensors frequency 100Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.s_logger">
+<span class="sig-name descname"><span class="pre">s_logger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Logger</span> <span class="pre">time</span> <span class="pre">(WARNING)&gt;</span></em><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.s_logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.s_init">
+<span class="sig-name descname"><span class="pre">s_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.s_init" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor for singleton / only called once</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor for each instantiation / do nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.reset" title="Permalink to this definition"></a></dt>
+<dd><p>World clock reset function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure world clock</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>configuration</strong> (<em>dictionary</em><em> (</em><em>mode + parameters</em><em>)</em>) – configuration values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.sleep">
+<span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.sleep" title="Permalink to this definition"></a></dt>
+<dd><p>Pause scenario according to time mode
+In controlled mode, the scenario shall sleep longer than the main thread to make sure
+no step is missed on the main thread part.
+In relatime mode, the scenario shall sleep less than the main thread to make sure
+the measurements are updated at each main thread call.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.step" title="Permalink to this definition"></a></dt>
+<dd><p>Function that steps into time - controlled scenario only</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.timer.ScenarioTimer.time">
+<span class="sig-name descname"><span class="pre">time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.timer.ScenarioTimer.time" title="Permalink to this definition"></a></dt>
+<dd><p>Clock time return function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current time in the world</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (seconds)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-spike.scenario">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spike.scenario" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

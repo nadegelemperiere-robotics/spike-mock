@@ -1,0 +1,29 @@
+﻿spike.colorsensor
+=================
+
+.. automodule:: spike.colorsensor
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      ColorSensor
+   
+   
+
+   
+   
+   
+
+
+

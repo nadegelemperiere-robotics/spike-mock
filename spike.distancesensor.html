@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.distancesensor &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.forcesensor" href="spike.forcesensor.html" />
+    <link rel="prev" title="spike.colorsensor" href="spike.colorsensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.distancesensor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.distancesensor.DistanceSensor"><code class="docutils literal notranslate"><span class="pre">DistanceSensor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.__init__"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.get_distance_cm"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_cm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.get_distance_inches"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_inches()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.get_distance_percentage"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_percentage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.wait_for_distance_farther_than"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.wait_for_distance_farther_than()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.wait_for_distance_closer_than"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.wait_for_distance_closer_than()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.light_up_all"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.light_up_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.light_up"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.light_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.__get_distance"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__get_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.__process_command"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__process_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.c_read"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.c_set_lights"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_set_lights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.distancesensor.DistanceSensor.port"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.distancesensor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.distancesensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.distancesensor">
+<span id="spike-distancesensor"></span><h1>spike.distancesensor<a class="headerlink" href="#module-spike.distancesensor" title="Permalink to this heading"></a></h1>
+<p>Distance sensor mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.distancesensor.DistanceSensor" title="spike.distancesensor.DistanceSensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistanceSensor</span></code></a>(port)</p></td>
+<td><p>Distance sensor mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.distancesensor.</span></span><span class="sig-name descname"><span class="pre">DistanceSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Distance sensor mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<em>string</em><em> (</em><em>'A'</em><em>,</em><em>'B'</em><em>,</em><em>'C'</em><em>,</em><em>'D'</em><em>,</em><em>'E'</em><em> or </em><em>'F'</em><em>)</em>) – the hub port to which the sensor is connected</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.get_distance_cm">
+<span class="sig-name descname"><span class="pre">get_distance_cm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.get_distance_cm" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the measured distance in centimeters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>short_range</strong> (<em>boolean</em>) – whether or not to use short range mode. Short range
+mode increases accuracy, but it can only detect nearby objects.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – short_range is not a boolean</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The measured distance or “none” if the distance can’t be measured.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.get_distance_inches">
+<span class="sig-name descname"><span class="pre">get_distance_inches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.get_distance_inches" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the measured distance in inches.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>short_range</strong> (<em>boolean</em>) – whether or not to use short range mode. Short range
+mode increases accuracy, but it can only detect nearby objects.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – short_range is not a boolean</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The measured distance or “none” if the distance can’t be measured.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.get_distance_percentage">
+<span class="sig-name descname"><span class="pre">get_distance_percentage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.get_distance_percentage" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the measured distance as a percentage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>short_range</strong> (<em>boolean</em>) – whether or not to use short range mode. Short range
+mode increases accuracy, but it can only detect nearby objects.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – short_range is not a boolean</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The measured distance or “none” if the distance can’t be measured.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [0,100]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.wait_for_distance_farther_than">
+<span class="sig-name descname"><span class="pre">wait_for_distance_farther_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.wait_for_distance_farther_than" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the measured distance is greater than the specified distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<em>float</em>) – the target distance to be detected from the sensor to an object.</p></li>
+<li><p><strong>unit</strong> (<em>string</em><em> (</em><em>cm</em><em>, </em><em>in</em><em>, </em><em>%</em><em>)</em>) – the unit in which the distance is measured.</p></li>
+<li><p><strong>short_range</strong> (<em>boolean</em>) – whether or not to use short range mode. Short range mode increases
+accuracy, but it can only detect nearby objects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – distance is not a number or unit is not a string or short_range is not
+a boolean.</p></li>
+<li><p><strong>ValueError</strong> – unit is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.wait_for_distance_closer_than">
+<span class="sig-name descname"><span class="pre">wait_for_distance_closer_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.wait_for_distance_closer_than" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the measured distance is less than the specified distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<em>float</em>) – the target distance to be detected from the sensor to an object.</p></li>
+<li><p><strong>unit</strong> (<em>string</em><em> (</em><em>cm</em><em>, </em><em>in</em><em>, </em><em>%</em><em>)</em>) – the unit in which the distance is measured.</p></li>
+<li><p><strong>short_range</strong> (<em>boolean</em>) – whether or not to use short range mode. Short range mode increases
+accuracy, but it can only detect nearby objects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – distance is not a number or unit is not a string or short_range is not
+a boolean.</p></li>
+<li><p><strong>ValueError</strong> – unit is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.light_up_all">
+<span class="sig-name descname"><span class="pre">light_up_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.light_up_all" title="Permalink to this definition"></a></dt>
+<dd><p>Lights up all of the lights on the Distance Sensor at the specified brightness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>brightness</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the specified brightness of all of the lights.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – brightness is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.light_up">
+<span class="sig-name descname"><span class="pre">light_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right_top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_bottom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bottom</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.light_up" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the brightness of the individual lights on the Distance Sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right_top</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s above the right part
+of the Distance Sensor.</p></li>
+<li><p><strong>left_top</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s above the left part of the
+Distance Sensor.</p></li>
+<li><p><strong>right_bottom</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s below the right part of the
+Distance Sensor.</p></li>
+<li><p><strong>left_bottom</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s below the left part of the
+Distance Sensor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – brightness is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.__get_distance">
+<span class="sig-name descname"><span class="pre">__get_distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.__get_distance" title="Permalink to this definition"></a></dt>
+<dd><p>Returns current distance in cm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>distance in centimeters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.__process_command">
+<span class="sig-name descname"><span class="pre">__process_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.__process_command" title="Permalink to this definition"></a></dt>
+<dd><p>Process command until over</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>generator function</em>) – command to process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.c_read">
+<span class="sig-name descname"><span class="pre">c_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.c_read" title="Permalink to this definition"></a></dt>
+<dd><p>Update the distance from scenario data</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>distance</strong> (<em>float</em>) – distance in centimeters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.c_set_lights">
+<span class="sig-name descname"><span class="pre">c_set_lights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">right_top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_bottom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_bottom</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.c_set_lights" title="Permalink to this definition"></a></dt>
+<dd><p>Light distance sensor LEDs</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right_top</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s above the right part of the
+Distance Sensor.</p></li>
+<li><p><strong>left_top</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s above the left part of the
+Distance Sensor.</p></li>
+<li><p><strong>right_bottom</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s below the right part of the
+Distance Sensor.</p></li>
+<li><p><strong>left_bottom</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – the brightness of the light that’s below the left part of the
+Distance Sensor.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.distancesensor.DistanceSensor.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#spike.distancesensor.DistanceSensor.port" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the component connection port</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the component port</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.colorsensor.html" class="btn btn-neutral float-left" title="spike.colorsensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.forcesensor.html" class="btn btn-neutral float-right" title="spike.forcesensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

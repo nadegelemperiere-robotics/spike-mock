@@ -1,0 +1,29 @@
+﻿spike.motor
+===========
+
+.. automodule:: spike.motor
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Motor
+   
+   
+
+   
+   
+   
+
+
+

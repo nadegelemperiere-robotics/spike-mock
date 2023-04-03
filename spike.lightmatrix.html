@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.lightmatrix &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.motionsensor" href="spike.motionsensor.html" />
+    <link rel="prev" title="spike.forcesensor" href="spike.forcesensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.lightmatrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.lightmatrix.LightMatrix"><code class="docutils literal notranslate"><span class="pre">LightMatrix</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.__init__"><code class="docutils literal notranslate"><span class="pre">LightMatrix.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.show_image"><code class="docutils literal notranslate"><span class="pre">LightMatrix.show_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.set_pixel"><code class="docutils literal notranslate"><span class="pre">LightMatrix.set_pixel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.write"><code class="docutils literal notranslate"><span class="pre">LightMatrix.write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.off"><code class="docutils literal notranslate"><span class="pre">LightMatrix.off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.__process_command"><code class="docutils literal notranslate"><span class="pre">LightMatrix.__process_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_reset"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_set_pixel"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_set_pixel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_show_image"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_show_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_write"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_off"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.lightmatrix.LightMatrix.c_get_matrix"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_get_matrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.lightmatrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.lightmatrix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.lightmatrix">
+<span id="spike-lightmatrix"></span><h1>spike.lightmatrix<a class="headerlink" href="#module-spike.lightmatrix" title="Permalink to this heading"></a></h1>
+<p>Hub light matrix mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.lightmatrix.LightMatrix" title="spike.lightmatrix.LightMatrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LightMatrix</span></code></a>()</p></td>
+<td><p>Hub light matrix mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.lightmatrix.</span></span><span class="sig-name descname"><span class="pre">LightMatrix</span></span><a class="headerlink" href="#spike.lightmatrix.LightMatrix" title="Permalink to this definition"></a></dt>
+<dd><p>Hub light matrix mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.show_image">
+<span class="sig-name descname"><span class="pre">show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.show_image" title="Permalink to this definition"></a></dt>
+<dd><p>Shows an image on the Light Matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>string</em><em> (</em><em>ANGRY</em><em>, </em><em>ARROW_E</em><em>, </em><em>ARROW_N</em><em>, </em><em>ARROW_NE</em><em>, </em><em>ARROW_NW</em><em>, </em><em>ARROW_S</em><em>, </em><em>ARROW_SE</em><em>,
+</em><em>ARROW_SW</em><em>, </em><em>ARROW_W</em><em>, </em><em>ASLEEP</em><em>, </em><em>BUTTERFLY</em><em>, </em><em>CHESSBOARD</em><em>, </em><em>CLOCK1</em><em>, </em><em>CLOCK10</em><em>, </em><em>CLOCK11</em><em>, </em><em>CLOCK12</em><em>,
+</em><em>CLOCK2</em><em>, </em><em>CLOCK3</em><em>, </em><em>CLOCK4</em><em>, </em><em>CLOCK5</em><em>, </em><em>CLOCK6</em><em>, </em><em>CLOCK7</em><em>, </em><em>CLOCK8</em><em>, </em><em>CLOCK9</em><em>, </em><em>CONFUSED</em><em>, </em><em>COW</em><em>, </em><em>DIAMOND</em><em>,
+</em><em>DIAMOND_SMALL</em><em>, </em><em>DUCK</em><em>, </em><em>FABULOUS</em><em>, </em><em>GHOST</em><em>, </em><em>GIRAFFE</em><em>, </em><em>GO_RIGHT</em><em>, </em><em>GO_LEFT</em><em>, </em><em>GO_UP</em><em>, </em><em>GO_DOWN</em><em>, </em><em>HAPPY</em><em>,
+</em><em>HEART</em><em>, </em><em>HEART_SMALL</em><em>, </em><em>HOUSE</em><em>, </em><em>MEH</em><em>, </em><em>MUSIC_CROTCHET</em><em>, </em><em>MUSIC_QUAVER</em><em>, </em><em>MUSIC_QUAVERS</em><em>, </em><em>NO</em><em>, </em><em>PACMAN</em><em>,
+</em><em>PITCHFORK</em><em>, </em><em>RABBIT</em><em>, </em><em>ROLLERSKATE</em><em>, </em><em>SAD</em><em>, </em><em>SILLY</em><em>, </em><em>SKULL</em><em>, </em><em>SMILE</em><em>, </em><em>SNAKE</em><em>, </em><em>SQUARE</em><em>, </em><em>SQUARE_SMALL</em><em>,
+</em><em>STICKFIGURE</em><em>, </em><em>SURPRISED</em><em>, </em><em>SWORD</em><em>, </em><em>TARGET</em><em>, </em><em>TORTOISE</em><em>, </em><em>TRIANGLE</em><em>, </em><em>TRIANGLE_LEFT</em><em>, </em><em>TSHIRT</em><em>, </em><em>UMBRELLA</em><em>,
+</em><em>XMAS</em><em>, </em><em>YES</em><em>)</em>) – the name of the image to display</p></li>
+<li><p><strong>brightness</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – brightness of the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – image is not a string or brightness is not an integer</p></li>
+<li><p><strong>ValueError</strong> – image is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.set_pixel">
+<span class="sig-name descname"><span class="pre">set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.set_pixel" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the brightness of one pixel (one of the 25 LEDs) on the Light Matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>4</em><em>]</em>) – pixel position, counting from the left.</p></li>
+<li><p><strong>y</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>4</em><em>]</em>) – pixel position, counting from the top.</p></li>
+<li><p><strong>brightness</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – brightness of the pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – x, y or brightness is not an integer.</p></li>
+<li><p><strong>ValueError</strong> – x, y is not within the allowed range of 0-4.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.write" title="Permalink to this definition"></a></dt>
+<dd><p>Displays text on the Light Matrix, one letter at a time, scrolling from right to left.
+Your program will not continue until all of the letters have been shown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>string</em>) – text to display</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.off">
+<span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.off" title="Permalink to this definition"></a></dt>
+<dd><p>Turns off all of the pixels on the Light Matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.__process_command">
+<span class="sig-name descname"><span class="pre">__process_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.__process_command" title="Permalink to this definition"></a></dt>
+<dd><p>Process command until over</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>generator function</em>) – command to process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_set_pixel">
+<span class="sig-name descname"><span class="pre">c_set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_set_pixel" title="Permalink to this definition"></a></dt>
+<dd><p>Pixel lighting function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>4</em><em>]</em>) – pixel position, counting from the left.</p></li>
+<li><p><strong>y</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>4</em><em>]</em>) – pixel position, counting from the top.</p></li>
+<li><p><strong>brightness</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – brightness of the pixel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_show_image">
+<span class="sig-name descname"><span class="pre">c_show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_show_image" title="Permalink to this definition"></a></dt>
+<dd><p>Image displaying function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>string</em><em> (</em><em>ANGRY</em><em>, </em><em>ARROW_E</em><em>, </em><em>ARROW_N</em><em>, </em><em>ARROW_NE</em><em>, </em><em>ARROW_NW</em><em>, </em><em>ARROW_S</em><em>, </em><em>ARROW_SE</em><em>,
+</em><em>ARROW_SW</em><em>, </em><em>ARROW_W</em><em>, </em><em>ASLEEP</em><em>, </em><em>BUTTERFLY</em><em>, </em><em>CHESSBOARD</em><em>, </em><em>CLOCK1</em><em>, </em><em>CLOCK10</em><em>, </em><em>CLOCK11</em><em>, </em><em>CLOCK12</em><em>,
+</em><em>CLOCK2</em><em>, </em><em>CLOCK3</em><em>, </em><em>CLOCK4</em><em>, </em><em>CLOCK5</em><em>, </em><em>CLOCK6</em><em>, </em><em>CLOCK7</em><em>, </em><em>CLOCK8</em><em>, </em><em>CLOCK9</em><em>, </em><em>CONFUSED</em><em>, </em><em>COW</em><em>, </em><em>DIAMOND</em><em>,
+</em><em>DIAMOND_SMALL</em><em>, </em><em>DUCK</em><em>, </em><em>FABULOUS</em><em>, </em><em>GHOST</em><em>, </em><em>GIRAFFE</em><em>, </em><em>GO_RIGHT</em><em>, </em><em>GO_LEFT</em><em>, </em><em>GO_UP</em><em>, </em><em>GO_DOWN</em><em>, </em><em>HAPPY</em><em>,
+</em><em>HEART</em><em>, </em><em>HEART_SMALL</em><em>, </em><em>HOUSE</em><em>, </em><em>MEH</em><em>, </em><em>MUSIC_CROTCHET</em><em>, </em><em>MUSIC_QUAVER</em><em>, </em><em>MUSIC_QUAVERS</em><em>, </em><em>NO</em><em>, </em><em>PACMAN</em><em>,
+</em><em>PITCHFORK</em><em>, </em><em>RABBIT</em><em>, </em><em>ROLLERSKATE</em><em>, </em><em>SAD</em><em>, </em><em>SILLY</em><em>, </em><em>SKULL</em><em>, </em><em>SMILE</em><em>, </em><em>SNAKE</em><em>, </em><em>SQUARE</em><em>, </em><em>SQUARE_SMALL</em><em>,
+</em><em>STICKFIGURE</em><em>, </em><em>SURPRISED</em><em>, </em><em>SWORD</em><em>, </em><em>TARGET</em><em>, </em><em>TORTOISE</em><em>, </em><em>TRIANGLE</em><em>, </em><em>TRIANGLE_LEFT</em><em>, </em><em>TSHIRT</em><em>, </em><em>UMBRELLA</em><em>,
+</em><em>XMAS</em><em>, </em><em>YES</em><em>)</em>) – the name of the image to display</p></li>
+<li><p><strong>brightness</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em>) – brightness of the image</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_write">
+<span class="sig-name descname"><span class="pre">c_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_write" title="Permalink to this definition"></a></dt>
+<dd><p>Text writing function (letters are displayed one by one)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>string</em>) – text to display</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_off">
+<span class="sig-name descname"><span class="pre">c_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_off" title="Permalink to this definition"></a></dt>
+<dd><p>Shut down all the pixel of the light matrix</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.lightmatrix.LightMatrix.c_get_matrix">
+<span class="sig-name descname"><span class="pre">c_get_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.lightmatrix.LightMatrix.c_get_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Return matrix state</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>5x5 array containing each pixel state</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.forcesensor.html" class="btn btn-neutral float-left" title="spike.forcesensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.motionsensor.html" class="btn btn-neutral float-right" title="spike.motionsensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

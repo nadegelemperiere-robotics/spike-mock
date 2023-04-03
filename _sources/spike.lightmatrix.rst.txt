@@ -1,0 +1,29 @@
+﻿spike.lightmatrix
+=================
+
+.. automodule:: spike.lightmatrix
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      LightMatrix
+   
+   
+
+   
+   
+   
+
+
+

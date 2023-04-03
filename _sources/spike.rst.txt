@@ -1,0 +1,117 @@
+spike package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   spike.scenario
+
+Submodules
+----------
+
+spike.button module
+-------------------
+
+.. automodule:: spike.button
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.colorsensor module
+------------------------
+
+.. automodule:: spike.colorsensor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.control module
+--------------------
+
+.. automodule:: spike.control
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.distancesensor module
+---------------------------
+
+.. automodule:: spike.distancesensor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.forcesensor module
+------------------------
+
+.. automodule:: spike.forcesensor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.hub module
+----------------
+
+.. automodule:: spike.hub
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.lightmatrix module
+------------------------
+
+.. automodule:: spike.lightmatrix
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.motionsensor module
+-------------------------
+
+.. automodule:: spike.motionsensor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.motor module
+------------------
+
+.. automodule:: spike.motor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.motorpair module
+----------------------
+
+.. automodule:: spike.motorpair
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.speaker module
+--------------------
+
+.. automodule:: spike.speaker
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+spike.statuslight module
+------------------------
+
+.. automodule:: spike.statuslight
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: spike
+   :members:
+   :undoc-members:
+   :show-inheritance:

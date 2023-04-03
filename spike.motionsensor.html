@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.motionsensor &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.motorpair" href="spike.motorpair.html" />
+    <link rel="prev" title="spike.lightmatrix" href="spike.lightmatrix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.motionsensor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.motionsensor.MotionSensor"><code class="docutils literal notranslate"><span class="pre">MotionSensor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.__init__"><code class="docutils literal notranslate"><span class="pre">MotionSensor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.get_roll_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_roll_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.get_pitch_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_pitch_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.get_yaw_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_yaw_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.reset_yaw_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.reset_yaw_angle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.get_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_gesture()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.was_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.was_gesture()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.get_orientation"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_orientation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.wait_for_new_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.wait_for_new_gesture()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.wait_for_new_orientation"><code class="docutils literal notranslate"><span class="pre">MotionSensor.wait_for_new_orientation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">MotionSensor.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motionsensor.MotionSensor.c_read"><code class="docutils literal notranslate"><span class="pre">MotionSensor.c_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.motionsensor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.motionsensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.motionsensor">
+<span id="spike-motionsensor"></span><h1>spike.motionsensor<a class="headerlink" href="#module-spike.motionsensor" title="Permalink to this heading"></a></h1>
+<p>Hub motion sensor mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.motionsensor.MotionSensor" title="spike.motionsensor.MotionSensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotionSensor</span></code></a>()</p></td>
+<td><p>Motion sensor mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.motionsensor.</span></span><span class="sig-name descname"><span class="pre">MotionSensor</span></span><a class="headerlink" href="#spike.motionsensor.MotionSensor" title="Permalink to this definition"></a></dt>
+<dd><p>Motion sensor mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.get_roll_angle">
+<span class="sig-name descname"><span class="pre">get_roll_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.get_roll_angle" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the Hub’s roll angle.
+Roll is the rotation around the front-back (longitudinal) axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the roll angle, specified in degrees.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [-180,180]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.get_pitch_angle">
+<span class="sig-name descname"><span class="pre">get_pitch_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.get_pitch_angle" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the Hub’s pitch angle.
+Pitch is the rotation around the left-right (transverse) axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the pitch angle, specified in degrees.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [-180,180]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.get_yaw_angle">
+<span class="sig-name descname"><span class="pre">get_yaw_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.get_yaw_angle" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the Hub’s yaw angle.
+Yaw is the rotation around the front-back (vertical) axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the yaw angle, specified in degrees.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [-180,180]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.reset_yaw_angle">
+<span class="sig-name descname"><span class="pre">reset_yaw_angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.reset_yaw_angle" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the yaw angle to “0.”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.get_gesture">
+<span class="sig-name descname"><span class="pre">get_gesture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.get_gesture" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the most recently-detected gesture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>last gesture</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.was_gesture">
+<span class="sig-name descname"><span class="pre">was_gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.was_gesture" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether a gesture has occurred since the last time was_gesture()
+was used, or since the beginning of the program (for the first use).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gesture</strong> (<em>string</em><em> (</em><em>&quot;shaken&quot;</em><em>,</em><em>&quot;tapped&quot;</em><em>,</em><em>&quot;double-tapped&quot;</em><em>,</em><em>&quot;falling&quot;</em><em>,</em><em>&quot;none&quot;</em><em>)</em>) – the name of the gesture.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – gesture is not one of the allowed values.</p></li>
+<li><p><strong>TypeError</strong> – gesture is not a string</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the gesture has occurred since the last time was_gesture() was called,
+otherwise False.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.get_orientation">
+<span class="sig-name descname"><span class="pre">get_orientation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.get_orientation" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the Hub’s current orientation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the hub current orientation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string (‘front’,’back’,’up’,’down’,’leftside’,’rightside’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.wait_for_new_gesture">
+<span class="sig-name descname"><span class="pre">wait_for_new_gesture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.wait_for_new_gesture" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until a new gesture happens.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.wait_for_new_orientation">
+<span class="sig-name descname"><span class="pre">wait_for_new_orientation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.wait_for_new_orientation" title="Permalink to this definition"></a></dt>
+<dd><p>Waits until the Hub’s orientation changes.</p>
+<p>The first time this method is called, it will immediately return the current value.
+After that, calling this method will block the program until the Hub’s orientation
+has changed since the previous time this method was called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the hub new orientation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string (‘front’,’back’,’up’,’down’,’leftside’,’rightside’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motionsensor.MotionSensor.c_read">
+<span class="sig-name descname"><span class="pre">c_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motionsensor.MotionSensor.c_read" title="Permalink to this definition"></a></dt>
+<dd><p>Update the current orientation from scenario data</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>yaw</strong> (<em>integer</em><em> [</em><em>-180</em><em>,</em><em>180</em><em>]</em>) – the yaw angle, specified in degrees.</p></li>
+<li><p><strong>pitch</strong> (<em>integer</em><em> [</em><em>-180</em><em>,</em><em>180</em><em>]</em>) – the pitch angle, specified in degrees.</p></li>
+<li><p><strong>roll</strong> (<em>integer</em><em> [</em><em>-180</em><em>,</em><em>180</em><em>]</em>) – the roll angle, specified in degrees.</p></li>
+<li><p><strong>gesture</strong> (<em>string</em><em> (</em><em>&quot;shaken&quot;</em><em>,</em><em>&quot;tapped&quot;</em><em>,</em><em>&quot;double-tapped&quot;</em><em>,</em><em>&quot;falling&quot;</em><em>,</em><em>&quot;none&quot;</em><em>)</em>) – the name of the gesture.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Invalid gesture</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.lightmatrix.html" class="btn btn-neutral float-left" title="spike.lightmatrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.motorpair.html" class="btn btn-neutral float-right" title="spike.motorpair" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

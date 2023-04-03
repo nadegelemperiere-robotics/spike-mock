@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">spike</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spike">
+<h1>spike<a class="headerlink" href="#spike" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.html">spike package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.scenario.html">spike.scenario package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.abaqus">spike.scenario.abaqus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.commands">spike.scenario.commands module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.components">spike.scenario.components module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.data">spike.scenario.data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.dynamics">spike.scenario.dynamics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.ground">spike.scenario.ground module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.model">spike.scenario.model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.parts">spike.scenario.parts module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.scenario">spike.scenario.scenario module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario.timer">spike.scenario.timer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.scenario.html#module-spike.scenario">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.button">spike.button module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.button.Button"><code class="docutils literal notranslate"><span class="pre">Button</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.s_sides"><code class="docutils literal notranslate"><span class="pre">Button.s_sides</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">Button.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.__init__"><code class="docutils literal notranslate"><span class="pre">Button.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.wait_until_pressed"><code class="docutils literal notranslate"><span class="pre">Button.wait_until_pressed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.wait_until_released"><code class="docutils literal notranslate"><span class="pre">Button.wait_until_released()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.was_pressed"><code class="docutils literal notranslate"><span class="pre">Button.was_pressed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.is_pressed"><code class="docutils literal notranslate"><span class="pre">Button.is_pressed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.c_reset"><code class="docutils literal notranslate"><span class="pre">Button.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.button.Button.c_read"><code class="docutils literal notranslate"><span class="pre">Button.c_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.colorsensor">spike.colorsensor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor"><code class="docutils literal notranslate"><span class="pre">ColorSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.s_css3_to_spike_colormap"><code class="docutils literal notranslate"><span class="pre">ColorSensor.s_css3_to_spike_colormap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.s_allowed_colors"><code class="docutils literal notranslate"><span class="pre">ColorSensor.s_allowed_colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">ColorSensor.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">ColorSensor.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.__init__"><code class="docutils literal notranslate"><span class="pre">ColorSensor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_ambiant_light"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_ambiant_light()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_reflected_light"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_reflected_light()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_rgb_intensity"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_rgb_intensity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_red"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_red()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_green"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.get_blue"><code class="docutils literal notranslate"><span class="pre">ColorSensor.get_blue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.wait_until_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.wait_until_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.wait_for_new_color"><code class="docutils literal notranslate"><span class="pre">ColorSensor.wait_for_new_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.light_up_all"><code class="docutils literal notranslate"><span class="pre">ColorSensor.light_up_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.light_up"><code class="docutils literal notranslate"><span class="pre">ColorSensor.light_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.__process_command"><code class="docutils literal notranslate"><span class="pre">ColorSensor.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.c_read"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.c_set_lights"><code class="docutils literal notranslate"><span class="pre">ColorSensor.c_set_lights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.colorsensor.ColorSensor.port"><code class="docutils literal notranslate"><span class="pre">ColorSensor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.control">spike.control module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.control.equal_to"><code class="docutils literal notranslate"><span class="pre">equal_to()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.control.Timer"><code class="docutils literal notranslate"><span class="pre">Timer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.control.Timer.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">Timer.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.control.Timer.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">Timer.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.control.Timer.__init__"><code class="docutils literal notranslate"><span class="pre">Timer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.control.Timer.now"><code class="docutils literal notranslate"><span class="pre">Timer.now()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.control.Timer.reset"><code class="docutils literal notranslate"><span class="pre">Timer.reset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.control.wait_for_seconds"><code class="docutils literal notranslate"><span class="pre">wait_for_seconds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.control.wait_until"><code class="docutils literal notranslate"><span class="pre">wait_until()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.distancesensor">spike.distancesensor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor"><code class="docutils literal notranslate"><span class="pre">DistanceSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.s_cm_to_inches"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.s_cm_to_inches</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.s_max_distance"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.s_max_distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.s_max_distance_short_range"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.s_max_distance_short_range</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.__init__"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.get_distance_cm"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_cm()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.get_distance_inches"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_inches()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.get_distance_percentage"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.get_distance_percentage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.wait_for_distance_farther_than"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.wait_for_distance_farther_than()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.wait_for_distance_closer_than"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.wait_for_distance_closer_than()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.light_up_all"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.light_up_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.light_up"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.light_up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.__get_distance"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__get_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.__process_command"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.c_read"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.c_set_lights"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.c_set_lights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.distancesensor.DistanceSensor.port"><code class="docutils literal notranslate"><span class="pre">DistanceSensor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.forcesensor">spike.forcesensor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor"><code class="docutils literal notranslate"><span class="pre">ForceSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.s_force_for_being_pressed"><code class="docutils literal notranslate"><span class="pre">ForceSensor.s_force_for_being_pressed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.s_max_force"><code class="docutils literal notranslate"><span class="pre">ForceSensor.s_max_force</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">ForceSensor.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.__init__"><code class="docutils literal notranslate"><span class="pre">ForceSensor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.wait_until_pressed"><code class="docutils literal notranslate"><span class="pre">ForceSensor.wait_until_pressed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.wait_until_released"><code class="docutils literal notranslate"><span class="pre">ForceSensor.wait_until_released()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.is_pressed"><code class="docutils literal notranslate"><span class="pre">ForceSensor.is_pressed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.get_force_newton"><code class="docutils literal notranslate"><span class="pre">ForceSensor.get_force_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.get_force_percentage"><code class="docutils literal notranslate"><span class="pre">ForceSensor.get_force_percentage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">ForceSensor.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.c_read"><code class="docutils literal notranslate"><span class="pre">ForceSensor.c_read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.forcesensor.ForceSensor.port"><code class="docutils literal notranslate"><span class="pre">ForceSensor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.hub">spike.hub module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.hub.PrimeHub"><code class="docutils literal notranslate"><span class="pre">PrimeHub</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.hub.PrimeHub.__init__"><code class="docutils literal notranslate"><span class="pre">PrimeHub.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.lightmatrix">spike.lightmatrix module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix"><code class="docutils literal notranslate"><span class="pre">LightMatrix</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.s_lightmatrix_images"><code class="docutils literal notranslate"><span class="pre">LightMatrix.s_lightmatrix_images</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">LightMatrix.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">LightMatrix.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.__init__"><code class="docutils literal notranslate"><span class="pre">LightMatrix.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.show_image"><code class="docutils literal notranslate"><span class="pre">LightMatrix.show_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.set_pixel"><code class="docutils literal notranslate"><span class="pre">LightMatrix.set_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.write"><code class="docutils literal notranslate"><span class="pre">LightMatrix.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.off"><code class="docutils literal notranslate"><span class="pre">LightMatrix.off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.__process_command"><code class="docutils literal notranslate"><span class="pre">LightMatrix.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_reset"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_set_pixel"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_set_pixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_show_image"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_show_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_write"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_off"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.lightmatrix.LightMatrix.c_get_matrix"><code class="docutils literal notranslate"><span class="pre">LightMatrix.c_get_matrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.motionsensor">spike.motionsensor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor"><code class="docutils literal notranslate"><span class="pre">MotionSensor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.s_gestures"><code class="docutils literal notranslate"><span class="pre">MotionSensor.s_gestures</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">MotionSensor.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.__init__"><code class="docutils literal notranslate"><span class="pre">MotionSensor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.get_roll_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_roll_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.get_pitch_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_pitch_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.get_yaw_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_yaw_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.reset_yaw_angle"><code class="docutils literal notranslate"><span class="pre">MotionSensor.reset_yaw_angle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.get_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_gesture()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.was_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.was_gesture()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.get_orientation"><code class="docutils literal notranslate"><span class="pre">MotionSensor.get_orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.wait_for_new_gesture"><code class="docutils literal notranslate"><span class="pre">MotionSensor.wait_for_new_gesture()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.wait_for_new_orientation"><code class="docutils literal notranslate"><span class="pre">MotionSensor.wait_for_new_orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.c_reset"><code class="docutils literal notranslate"><span class="pre">MotionSensor.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motionsensor.MotionSensor.c_read"><code class="docutils literal notranslate"><span class="pre">MotionSensor.c_read()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.motor">spike.motor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.motor.Motor"><code class="docutils literal notranslate"><span class="pre">Motor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_max_speed"><code class="docutils literal notranslate"><span class="pre">Motor.s_max_speed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_max_steering"><code class="docutils literal notranslate"><span class="pre">Motor.s_max_steering</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_max_power"><code class="docutils literal notranslate"><span class="pre">Motor.s_max_power</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_min_position"><code class="docutils literal notranslate"><span class="pre">Motor.s_min_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_max_position"><code class="docutils literal notranslate"><span class="pre">Motor.s_max_position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_motor_directions"><code class="docutils literal notranslate"><span class="pre">Motor.s_motor_directions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_motor_stop_actions"><code class="docutils literal notranslate"><span class="pre">Motor.s_motor_stop_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">Motor.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">Motor.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.__init__"><code class="docutils literal notranslate"><span class="pre">Motor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.run_to_position"><code class="docutils literal notranslate"><span class="pre">Motor.run_to_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.run_to_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.run_to_degrees_counted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.run_for_degrees"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_degrees()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.run_for_rotations"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_rotations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.run_for_seconds"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_seconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.start"><code class="docutils literal notranslate"><span class="pre">Motor.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.stop"><code class="docutils literal notranslate"><span class="pre">Motor.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.start_at_power"><code class="docutils literal notranslate"><span class="pre">Motor.start_at_power()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.get_speed"><code class="docutils literal notranslate"><span class="pre">Motor.get_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.get_default_speed"><code class="docutils literal notranslate"><span class="pre">Motor.get_default_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.get_position"><code class="docutils literal notranslate"><span class="pre">Motor.get_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.was_stalled"><code class="docutils literal notranslate"><span class="pre">Motor.was_stalled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.was_interrupted"><code class="docutils literal notranslate"><span class="pre">Motor.was_interrupted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.get_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.get_degrees_counted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.set_default_speed"><code class="docutils literal notranslate"><span class="pre">Motor.set_default_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.set_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.set_degrees_counted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.set_stall_detection"><code class="docutils literal notranslate"><span class="pre">Motor.set_stall_detection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.set_stop_action"><code class="docutils literal notranslate"><span class="pre">Motor.set_stop_action()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.__process_command"><code class="docutils literal notranslate"><span class="pre">Motor.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.c_reset"><code class="docutils literal notranslate"><span class="pre">Motor.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.c_read"><code class="docutils literal notranslate"><span class="pre">Motor.c_read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.c_set_stall_detection"><code class="docutils literal notranslate"><span class="pre">Motor.c_set_stall_detection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.c_set_stop_action"><code class="docutils literal notranslate"><span class="pre">Motor.c_set_stop_action()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motor.Motor.port"><code class="docutils literal notranslate"><span class="pre">Motor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.motorpair">spike.motorpair module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair"><code class="docutils literal notranslate"><span class="pre">MotorPair</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_cm_to_inches"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_cm_to_inches</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_max_speed"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_max_speed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_max_steering"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_max_steering</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_max_power"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_max_power</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_motorpair_units"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_motorpair_units</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_motor_stop_actions"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_motor_stop_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">MotorPair.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.__init__"><code class="docutils literal notranslate"><span class="pre">MotorPair.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.move"><code class="docutils literal notranslate"><span class="pre">MotorPair.move()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.start"><code class="docutils literal notranslate"><span class="pre">MotorPair.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.stop"><code class="docutils literal notranslate"><span class="pre">MotorPair.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.move_tank"><code class="docutils literal notranslate"><span class="pre">MotorPair.move_tank()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.start_tank"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_tank()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.start_at_power"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_at_power()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.start_tank_at_power"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_tank_at_power()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.get_default_speed"><code class="docutils literal notranslate"><span class="pre">MotorPair.get_default_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.set_motor_rotation"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_motor_rotation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.set_default_speed"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_default_speed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.set_stop_action"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_stop_action()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.__process_command"><code class="docutils literal notranslate"><span class="pre">MotorPair.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.c_reset"><code class="docutils literal notranslate"><span class="pre">MotorPair.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.c_set_stop_action"><code class="docutils literal notranslate"><span class="pre">MotorPair.c_set_stop_action()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.left"><code class="docutils literal notranslate"><span class="pre">MotorPair.left</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.motorpair.MotorPair.right"><code class="docutils literal notranslate"><span class="pre">MotorPair.right</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.speaker">spike.speaker module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.speaker.Speaker"><code class="docutils literal notranslate"><span class="pre">Speaker</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.s_max_volume"><code class="docutils literal notranslate"><span class="pre">Speaker.s_max_volume</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.s_min_note"><code class="docutils literal notranslate"><span class="pre">Speaker.s_min_note</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.s_max_note"><code class="docutils literal notranslate"><span class="pre">Speaker.s_max_note</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">Speaker.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">Speaker.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.__init__"><code class="docutils literal notranslate"><span class="pre">Speaker.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.beep"><code class="docutils literal notranslate"><span class="pre">Speaker.beep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.start_beep"><code class="docutils literal notranslate"><span class="pre">Speaker.start_beep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.stop"><code class="docutils literal notranslate"><span class="pre">Speaker.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.get_volume"><code class="docutils literal notranslate"><span class="pre">Speaker.get_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.set_volume"><code class="docutils literal notranslate"><span class="pre">Speaker.set_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.__process_command"><code class="docutils literal notranslate"><span class="pre">Speaker.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.c_reset"><code class="docutils literal notranslate"><span class="pre">Speaker.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.c_beep"><code class="docutils literal notranslate"><span class="pre">Speaker.c_beep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.c_start_beep"><code class="docutils literal notranslate"><span class="pre">Speaker.c_start_beep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.c_stop"><code class="docutils literal notranslate"><span class="pre">Speaker.c_stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.speaker.Speaker.c_set_volume"><code class="docutils literal notranslate"><span class="pre">Speaker.c_set_volume()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike.statuslight">spike.statuslight module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight"><code class="docutils literal notranslate"><span class="pre">StatusLight</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.s_status_light_colors"><code class="docutils literal notranslate"><span class="pre">StatusLight.s_status_light_colors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.s_shared_scenario"><code class="docutils literal notranslate"><span class="pre">StatusLight.s_shared_scenario</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.s_shared_timer"><code class="docutils literal notranslate"><span class="pre">StatusLight.s_shared_timer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.__init__"><code class="docutils literal notranslate"><span class="pre">StatusLight.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.on"><code class="docutils literal notranslate"><span class="pre">StatusLight.on()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.off"><code class="docutils literal notranslate"><span class="pre">StatusLight.off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.__process_command"><code class="docutils literal notranslate"><span class="pre">StatusLight.__process_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.c_reset"><code class="docutils literal notranslate"><span class="pre">StatusLight.c_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.c_on"><code class="docutils literal notranslate"><span class="pre">StatusLight.c_on()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.c_off"><code class="docutils literal notranslate"><span class="pre">StatusLight.c_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.c_get_color"><code class="docutils literal notranslate"><span class="pre">StatusLight.c_get_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="spike.html#spike.statuslight.StatusLight.c_get_status"><code class="docutils literal notranslate"><span class="pre">StatusLight.c_get_status()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spike.html#module-spike">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿spike.motionsensor
+==================
+
+.. automodule:: spike.motionsensor
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      MotionSensor
+   
+   
+
+   
+   
+   
+
+
+

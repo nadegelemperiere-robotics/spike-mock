@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.motorpair &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.hub" href="spike.hub.html" />
+    <link rel="prev" title="spike.motionsensor" href="spike.motionsensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.motorpair</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.motorpair.MotorPair"><code class="docutils literal notranslate"><span class="pre">MotorPair</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.__init__"><code class="docutils literal notranslate"><span class="pre">MotorPair.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.move"><code class="docutils literal notranslate"><span class="pre">MotorPair.move()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.start"><code class="docutils literal notranslate"><span class="pre">MotorPair.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.stop"><code class="docutils literal notranslate"><span class="pre">MotorPair.stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.move_tank"><code class="docutils literal notranslate"><span class="pre">MotorPair.move_tank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.start_tank"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_tank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.start_at_power"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_at_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.start_tank_at_power"><code class="docutils literal notranslate"><span class="pre">MotorPair.start_tank_at_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.get_default_speed"><code class="docutils literal notranslate"><span class="pre">MotorPair.get_default_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.set_motor_rotation"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_motor_rotation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.set_default_speed"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_default_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.set_stop_action"><code class="docutils literal notranslate"><span class="pre">MotorPair.set_stop_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.__process_command"><code class="docutils literal notranslate"><span class="pre">MotorPair.__process_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.c_reset"><code class="docutils literal notranslate"><span class="pre">MotorPair.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.c_set_stop_action"><code class="docutils literal notranslate"><span class="pre">MotorPair.c_set_stop_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.left"><code class="docutils literal notranslate"><span class="pre">MotorPair.left</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motorpair.MotorPair.right"><code class="docutils literal notranslate"><span class="pre">MotorPair.right</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.motorpair</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.motorpair.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.motorpair">
+<span id="spike-motorpair"></span><h1>spike.motorpair<a class="headerlink" href="#module-spike.motorpair" title="Permalink to this heading"></a></h1>
+<p>Motor pair mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.motorpair.MotorPair" title="spike.motorpair.MotorPair"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotorPair</span></code></a>(left_port, right_port)</p></td>
+<td><p>MotorPair mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.motorpair.</span></span><span class="sig-name descname"><span class="pre">MotorPair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair" title="Permalink to this definition"></a></dt>
+<dd><p>MotorPair mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_port</strong> (<em>string</em><em> (</em><em>'A'</em><em>,</em><em>'B'</em><em>,</em><em>'C'</em><em>,</em><em>'D'</em><em>,</em><em>'E'</em><em> or </em><em>'F'</em><em>)</em>) – The port on which the left motor is located</p></li>
+<li><p><strong>right_port</strong> (<em>string</em><em> (</em><em>'A'</em><em>,</em><em>'B'</em><em>,</em><em>'C'</em><em>,</em><em>'D'</em><em>,</em><em>'E'</em><em> or </em><em>'F'</em><em>)</em>) – The port on which the right motor is located</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.move" title="Permalink to this definition"></a></dt>
+<dd><p>Start both motors simultaneously to move a Driving Base.</p>
+<p>Steering = “0” makes the Driving Base go straight. Negative numbers make the Driving Base
+turn left. Positive numbers make the Driving Base turn right.</p>
+<p>The program will not continue until the specified value is reached.</p>
+<p>If the value of steering is equal to “-100” or “100,” the Driving Base will perform a
+rotation on itself (i.e., “tank move”) at the default speed of each motor.</p>
+<p>If the value of steering is outside of the allowed range, the value will be set to “-100”
+or “100,” depending on whether the value is positive or negative.</p>
+<p>If speed is outside of the allowed range, the value will be set to “-100” or “100,”
+depending on whether the value is positive or negative.</p>
+<p>If the speed is negative, the Driving Base will move backward instead of forward.
+Likewise, if the “amount” is negative, the Driving Base will move backward instead of
+forward. If both the speed and the “amount” are negative, the Driving Base will move
+forward.</p>
+<p>When the specified unit is “cm” or “in,” the “amount” of the unit parameter is equal to
+the horizontal distance that the Driving Base will travel before stopping. The relationship
+between the motor rotations and distance traveled can be adjusted by calling
+set_motor_rotation().</p>
+<p>When the “unit” is “rotations” or “degrees,” the “amount” parameter value specifies how
+much the motor axle will turn before stopping.</p>
+<p>When the “unit” is “seconds,” the “amount” parameter value specifies the duration that
+the motors will run before stopping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> (<em>float</em>) – The quantity to move in relation to the specified unit of measurement.</p></li>
+<li><p><strong>unit</strong> (<em>string</em><em> (</em><em>cm</em><em>,</em><em>in</em><em>,</em><em>rotations</em><em>,</em><em>degrees</em><em>,</em><em>seconds</em><em>)</em>) – The unit of measurement specified for the “amount” parameter.</p></li>
+<li><p><strong>speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed at which the Driving Base will move while performing a curve.</p></li>
+<li><p><strong>steering</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The steering direction (-100 to 100). “0” makes the Driving Base move
+straight. Negative numbers make the Driving Base turn left. Positive numbers make the
+Driving Base turn right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – amount, left_speed or right_speed is not a number or unit is not a
+string.</p></li>
+<li><p><strong>ValueError</strong> – unit is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.start" title="Permalink to this definition"></a></dt>
+<dd><p>Start both motors simultaneously to move a Driving Base.</p>
+<p>Steering = “0” makes the Driving Base go straight. Negative numbers make the Driving Base
+turn left. Positive numbers make the Driving Base turn right.</p>
+<p>The program flow is not interrupted. This is most likely interrupted by sensor input and
+a condition.</p>
+<p>If the value of steering is equal to “-100” or “100,” the Driving Base will perform a
+rotation on itself (i.e., “tank move”) at the default speed of each motor.</p>
+<p>If the value of “steering” is outside of the allowed range, the value will be set to
+“-100” or “100,” depending on whether the value is positive or negative.</p>
+<p>If speed is outside of the allowed range, the value will be set to “-100” or “100,”
+depending on whether the value is positive or negative.</p>
+<p>If the speed is negative, the Driving Base will move backward instead of forward.
+Likewise, if the “amount” is negative, the Driving Base will move backward instead of
+forward. If both the speed and the “amount” are negative, the Driving Base will move
+forward.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed at which the Driving Base will move while performing a curve.</p></li>
+<li><p><strong>steering</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The steering direction (-100 to 100). “0” makes the Driving Base move
+straight. Negative numbers make the Driving Base turn left. Positive numbers make the
+Driving Base turn right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – steering or speed is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops both motors simultaneously, which will stop a Driving Base.</p>
+<p>The motors will either actively hold their current position or coast
+freely depending on the option that’s been selected by set_stop_action().</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.move_tank">
+<span class="sig-name descname"><span class="pre">move_tank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.move_tank" title="Permalink to this definition"></a></dt>
+<dd><p>Moves the Driving Base using differential (tank) steering.</p>
+<p>The speed of each motor can be controlled independently for differential (tank)
+drive Driving Bases.</p>
+<p>When the specified unit is “cm” or “in,” the “amount” of the unit parameter is equal
+to the horizontal distance that the Driving Base will travel before stopping. The
+relationship between the motor rotations and distance traveled can be adjusted by
+calling set_motor_rotation().</p>
+<p>When the “unit” is “rotations” or “degrees,” the “amount” parameter value specifies
+how much the motor axle will turn before stopping.</p>
+<p>When the “unit” is “seconds,” the “amount” parameter value specifies the duration
+that the motors will run before stopping.</p>
+<p>If left_speed or right_speed is outside of the allowed range, the value will be set
+to “-100” or “100” depending on whether the value is positive or negative.</p>
+<p>If one of the speeds (i.e., left_speed or right_speed) is negative, the negative-speed
+motor will run backward instead of forward. If the “amount” parameter value is negative,
+both motors will rotate backward instead of forward. If both of the speed values (i.e.,
+left_speed and right_speed) are negative and the “amount” parameter value is negative,
+both motors will rotate forward.</p>
+<p>The program will not continue until the specified value is reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> (<em>float</em>) – The quantity to move in relation to the specified unit of measurement.</p></li>
+<li><p><strong>unit</strong> (<em>string</em><em> (</em><em>cm</em><em>,</em><em>in</em><em>,</em><em>rotations</em><em>,</em><em>degrees</em><em>,</em><em>seconds</em><em>)</em>) – The unit of measurement specified for the “amount” parameter.</p></li>
+<li><p><strong>left_speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed of the left motor.</p></li>
+<li><p><strong>right_speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed of the right motor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – amount, left_speed or right_speed is not a number or unit is not a
+string.</p></li>
+<li><p><strong>ValueError</strong> – unit is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.start_tank">
+<span class="sig-name descname"><span class="pre">start_tank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.start_tank" title="Permalink to this definition"></a></dt>
+<dd><p>Starts moving the Driving Base using differential (tank) steering.</p>
+<p>The speed of each motor can be controlled independently for differential (tank) drive
+Driving Bases.</p>
+<p>If left_speed or right_speed is outside of the allowed range, the value will be set to
+“-100” or “100” depending on whether the value is positive or negative.</p>
+<p>If the speed is negative, the motors will move backward instead of forward.</p>
+<p>The program flow is not interrupted. This is most likely interrupted by sensor input
+and a condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed of the left motor.</p></li>
+<li><p><strong>right_speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The speed of the right motor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – left_speed or right_speed is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.start_at_power">
+<span class="sig-name descname"><span class="pre">start_at_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.start_at_power" title="Permalink to this definition"></a></dt>
+<dd><p>Starts moving the Driving Base without speed control.</p>
+<p>The motors can also be driven without speed control. This is useful when using your own
+control algorithm (e.g., a proportional line-follower).</p>
+<p>If the steering is outside of the allowed range, the value will be set to “-100” or “100”
+depending on whether the value is positive or negative.</p>
+<p>If the power is outside of the allowed range, the value will be set to “-100” or “100”
+depending on whether the value is positive or negative.</p>
+<p>If the power is negative, the Driving Base will move backward instead of forward.</p>
+<p>The program flow is not interrupted. This can most likely be interrupted by sensor input
+and a condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The amount of power to send to the motors.</p></li>
+<li><p><strong>steering</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The steering direction (-100 to 100). “0” makes the Driving Base move
+straight. Negative numbers make the Driving Base turn left. Positive numbers make the
+Driving Base turn right.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – steering or power is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.start_tank_at_power">
+<span class="sig-name descname"><span class="pre">start_tank_at_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_power</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_power</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.start_tank_at_power" title="Permalink to this definition"></a></dt>
+<dd><p>Starts moving the Driving Base using differential (tank) steering without speed control.</p>
+<p>The motors can also be driven without speed control. This is useful when using your own
+control algorithm (e.g., a proportional line-follower).</p>
+<p>If the left_power or right_power is outside of the allowed range, the value will be
+rounded to “-100” or “100” depending on whether the value is positive or negative.</p>
+<p>If the power is a negative value, the corresponding motor will move backward instead
+of forward.</p>
+<p>The program flow is not interrupted. This can most likely be interrupted by sensor input
+and a condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_power</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The power of the left motor.</p></li>
+<li><p><strong>right_power</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – The power of the right motor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – left_power or right_power is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.get_default_speed">
+<span class="sig-name descname"><span class="pre">get_default_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.get_default_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the default motor speed.
+—
+:return: The motors default speed
+:rtype: int [-100,100]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.set_motor_rotation">
+<span class="sig-name descname"><span class="pre">set_motor_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.set_motor_rotation" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the ratio of one motor rotation to the distance traveled.</p>
+<p>If there are no gears used between the motors and the wheels of the Driving Base,
+the “amount” is the circumference of one wheel.</p>
+<p>Calling this method does not affect the Driving Base if it’s already running.
+It will only have an effect the next time one of the move or start methods is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>amount</strong> (<em>float</em>) – The distance that the Driving Base moves when both motors move one
+rotation each, 17.6 default (5.6 diameter wheel)</p></li>
+<li><p><strong>unit</strong> (<em>string</em><em> (</em><em>cm</em><em>,</em><em>in</em><em>)</em>) – The unit of measurement specified for the “amount” parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – amount is not a number or unit is not a string.</p></li>
+<li><p><strong>ValueError</strong> – unit is not one of the allowed values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.set_default_speed">
+<span class="sig-name descname"><span class="pre">set_default_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.set_default_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the default motor speed.</p>
+<p>If speed is outside of the allowed range, the value will be set to “-100” or “100”
+depending on whether the value is positive or negative.</p>
+<p>Setting the speed will not have any effect until one of the move or start methods is
+called, even if the Driving Base is already moving.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>int</em><em>(</em><em>-100</em><em>,</em><em>100</em><em>)</em>) – The default motor speed.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – speed is not a number</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.set_stop_action">
+<span class="sig-name descname"><span class="pre">set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the motor action that will be used when the Driving Base stops.</p>
+<p>If the action is “brake,” the motors will stop quickly and be allowed to turn freely.</p>
+<p>If the action is “hold,” the motors will actively hold their current position and cannot
+be turned manually.</p>
+<p>If the action is set to “coast,” the motors will stop slowly and can be turned freely.</p>
+<p>Setting the “stop” action does not take immediate effect on the motors. The setting will
+be saved and used whenever stop() is called or when one of the move methods has completed
+without being interrupted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>string</em><em> (</em><em>coast</em><em>, </em><em>hold</em><em>, </em><em>brake</em><em>)</em>) – The desired action of the motors when the Driving Base stops.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – action is not a string</p></li>
+<li><p><strong>ValueError</strong> – action is not one of the allowed values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.__process_command">
+<span class="sig-name descname"><span class="pre">__process_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.__process_command" title="Permalink to this definition"></a></dt>
+<dd><p>Process command until over</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>generator function</em>) – command to process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.c_set_stop_action">
+<span class="sig-name descname"><span class="pre">c_set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motorpair.MotorPair.c_set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the action to be performed on stop</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>string</em><em> (</em><em>coast</em><em>, </em><em>hold</em><em>, </em><em>brake</em><em>)</em>) – The desired motor behavior when the motor stops.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.left">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left</span></span><a class="headerlink" href="#spike.motorpair.MotorPair.left" title="Permalink to this definition"></a></dt>
+<dd><p>Returns left motor</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Left motor port, None if not set</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="spike.motor.html#spike.motor.Motor" title="spike.motor.Motor">Motor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.motorpair.MotorPair.right">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right</span></span><a class="headerlink" href="#spike.motorpair.MotorPair.right" title="Permalink to this definition"></a></dt>
+<dd><p>Returns right port</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Right motor, None if not set</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="spike.motor.html#spike.motor.Motor" title="spike.motor.Motor">Motor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.motionsensor.html" class="btn btn-neutral float-left" title="spike.motionsensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.hub.html" class="btn btn-neutral float-right" title="spike.hub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

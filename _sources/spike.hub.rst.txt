@@ -1,0 +1,29 @@
+﻿spike.hub
+=========
+
+.. automodule:: spike.hub
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      PrimeHub
+   
+   
+
+   
+   
+   
+
+
+

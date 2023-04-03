@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.scenario.commands &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.scenario.components" href="spike.scenario.components.html" />
+    <link rel="prev" title="spike.scenario.scenario" href="spike.scenario.scenario.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.scenario.commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__init__"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.reset"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.configure"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.give"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.give()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__statuslight_on"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__statuslight_on()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__statuslight_off"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__statuslight_off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__colorsensor_light_up"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__colorsensor_light_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_show_image"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__lightmatrix_show_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_set_pixel"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__lightmatrix_set_pixel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_write"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__lightmatrix_write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_off"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__lightmatrix_off()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__speaker_beep"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__speaker_beep()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__speaker_start_beep"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__speaker_start_beep()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__speaker_stop"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__speaker_stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__speaker_set_volume"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__speaker_set_volume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands.__motorpair_set_stop_action"><code class="docutils literal notranslate"><span class="pre">ScenarioCommands.__motorpair_set_stop_action()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api2.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.scenario.commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.scenario.commands.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.scenario.commands">
+<span id="spike-scenario-commands"></span><h1>spike.scenario.commands<a class="headerlink" href="#module-spike.scenario.commands" title="Permalink to this heading"></a></h1>
+<p>Software component commands management</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.scenario.commands.ScenarioCommands" title="spike.scenario.commands.ScenarioCommands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScenarioCommands</span></code></a>()</p></td>
+<td><p>Class managing robot command and their impact on dynamics</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.commands.</span></span><span class="sig-name descname"><span class="pre">ScenarioCommands</span></span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands" title="Permalink to this definition"></a></dt>
+<dd><p>Class managing robot command and their impact on dynamics</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Commands reset function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configuration function for command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dynamics</strong> (<a class="reference internal" href="spike.scenario.dynamics.html#spike.scenario.dynamics.ScenarioDynamics" title="spike.scenario.dynamics.ScenarioDynamics"><em>ScenarioDynamics</em></a>) – robot dynamic data to update from command</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.give">
+<span class="sig-name descname"><span class="pre">give</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.give" title="Permalink to this definition"></a></dt>
+<dd><p>Register a new command being given to the hub</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>object</em><em> (</em><a class="reference internal" href="spike.button.html#spike.button.Button" title="spike.button.Button"><em>Button</em></a><em>, </em><a class="reference internal" href="spike.colorsensor.html#spike.colorsensor.ColorSensor" title="spike.colorsensor.ColorSensor"><em>ColorSensor</em></a><em>,</em><em>...</em><em>)</em>) – the software component at the origin of the command</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – command name</p></li>
+<li><p><strong>args</strong> (<em>dictionary</em>) – command parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Command not known</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>command to perform</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>generator function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__statuslight_on">
+<span class="sig-name descname"><span class="pre">__statuslight_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__statuslight_on" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight “on” command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__statuslight_off">
+<span class="sig-name descname"><span class="pre">__statuslight_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__statuslight_off" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight “off” command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__colorsensor_light_up">
+<span class="sig-name descname"><span class="pre">__colorsensor_light_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__colorsensor_light_up" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight light up commands</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_show_image">
+<span class="sig-name descname"><span class="pre">__lightmatrix_show_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_show_image" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix show image command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_set_pixel">
+<span class="sig-name descname"><span class="pre">__lightmatrix_set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_set_pixel" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix set pixel command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_write">
+<span class="sig-name descname"><span class="pre">__lightmatrix_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_write" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix write command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__lightmatrix_off">
+<span class="sig-name descname"><span class="pre">__lightmatrix_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__lightmatrix_off" title="Permalink to this definition"></a></dt>
+<dd><p>Process LightMatrix off command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_beep">
+<span class="sig-name descname"><span class="pre">__speaker_beep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_beep" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight beep command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_start_beep">
+<span class="sig-name descname"><span class="pre">__speaker_start_beep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_start_beep" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight start beep command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_stop">
+<span class="sig-name descname"><span class="pre">__speaker_stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_stop" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight stop command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__speaker_set_volume">
+<span class="sig-name descname"><span class="pre">__speaker_set_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__speaker_set_volume" title="Permalink to this definition"></a></dt>
+<dd><p>Process StatusLight set volume command</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.commands.ScenarioCommands.__motorpair_set_stop_action">
+<span class="sig-name descname"><span class="pre">__motorpair_set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.commands.ScenarioCommands.__motorpair_set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Process MotorPair set stop action command</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.scenario.scenario.html" class="btn btn-neutral float-left" title="spike.scenario.scenario" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.scenario.components.html" class="btn btn-neutral float-right" title="spike.scenario.components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

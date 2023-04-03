@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tests" href="test.html" />
+    <link rel="prev" title="Design" href="design.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#robot-design">Robot design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scenario-context">Scenario Context</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h1>
+<p>To configure the scenario, the library needs 2 main information</p>
+<section id="robot-design">
+<h2>Robot design<a class="headerlink" href="#robot-design" title="Permalink to this heading"></a></h2>
+<p>The library needs to know how the robot is built so that it can derive how it moves on the mat.
+Those information are centralized on a json configuration file</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;design&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;robot.ldr&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ldu&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;abaqus&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abaqus.xlsx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;components&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ColorSensor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;37308C01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ForceSensor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;37312C01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DistanceSensor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;37316C01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Motor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;54696&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Motor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;54675&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;E&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Motor&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;54675&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wheel&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;39367PB01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;E&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spin&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wheel&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;39367PB01&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;spin&quot;</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;index&quot;</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <strong>design</strong> entry contains the definition of the robot structure:</p>
+<ul class="simple">
+<li><p><em>filename</em> is the link to the robot <a class="reference external" href="https://www.ldraw.org/">ldraw</a> design file relative to this configuration file
+directory. This file can be obtained from a robot designed in <a class="reference external" href="https://www.bricklink.com/v3/studio/download.page">Studio2.0</a> exported in
+ldraw format.</p></li>
+<li><p><em>ldu</em> defines the size of the <cite>ldraw unit</cite> in centimeters</p></li>
+</ul>
+<p>The <strong>abaqus</strong> entry contains the path to the workbook containing the robot abaqus relative to
+this configuration file directory. The abaqus contains 2 information in 2 sheets :</p>
+<ul class="simple">
+<li><p>The link between a motor command its angular speed. In spike, it is not linked to the size
+of the motor, both have the same angular speed, though different torque.</p></li>
+<li><p>The link between wheels ldraw part identifier and their diameters in centimeters.</p></li>
+</ul>
+<p>Check this <a class="reference external" href="https://github.com/nadegelemperiere/spike-mock/blob/main/conf/abaqus.xlsx">abaqus link</a> to get an example of the current abaqus file format</p>
+<p>The <strong>components</strong> entry lists the connection between robot key components. For each component
+we give :</p>
+<ul class="simple">
+<li><p>the <em>type</em> attribute defining the component type</p></li>
+<li><p>the <em>id</em> attribute setting the ldraw unique identifier of the component</p></li>
+<li><p>the <em>port</em> attribute setting the hub port to which the component is connected - In case of the
+wheel, it is the port of the motor moving the wheel</p></li>
+<li><p>the <em>index</em> attribute setting the index of the component between all the component of the same
+type in the ldraw model</p></li>
+<li><p>for wheels only, the <em>spin</em> attribute defines the relation between the motor speed and the
+wheel speed. It is negative if the wheel does not rotate in the same direction as the motor
+(due to gears for example) and its absolute value reflects the proportionality between the
+motor speed and the wheel speed (typically the gear ratio)</p></li>
+</ul>
+<p>The ldraw format is managed using a fork of the python-ldraw project, which provides parsing
+functions. The use of those parser requires having a database of all useful lego parts available
+when using the library. You must build a folder structure such as :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>database
+├── parts.lst
+├── parts
+│   ├── 1.dat
+│   └── 2.dat
+│   └── ...
+├── p
+│   ├── 1-4ccyli.dat
+│   └── 1-4cchrd.dat
+│   └── ...
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://www.ldraw.org/parts/direct-parts-access.html">ldraw for developers</a> website provides a basic database with the tools to generate the
+parts.lst file from the content of p and parts. Sadly, the spike parts are not included in this
+database. The spike parts can be retrieved in the configuration folder of Studio2.0 once installed
+on a local endpoint, and the parts.list can then be rebuilt using the tool provided by ldraw.</p>
+<p>Finally, a configuration file shall define the path of the database so that the library python-ldraw
+can discover it. This file shall be copied locally in ~/.config/pyldraw/config.yml.</p>
+</section>
+<section id="scenario-context">
+<h2>Scenario Context<a class="headerlink" href="#scenario-context" title="Permalink to this heading"></a></h2>
+<p>The library enable to choose the way the sensors measures are computed and delivered to the library
+interface.</p>
+<p>For a better mastering of the scenario, the user has the choice between playing it in real time
+which is closer to what happens on the hub, or in time controlled mode, when the user chooses
+when the time pass and to what extent.</p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="w"> </span><span class="p">:</span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mode&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;compute&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;coordinates&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;north&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;east&quot;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;yaw&quot;</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;time&quot;</span><span class="w"> </span><span class="p">:</span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;mode&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;realtime&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <strong>data</strong> entry defines the way data are fed to the components:</p>
+<ul class="simple">
+<li><p><em>mode</em> enables to choose between “compute” and “read”. In <em>read</em> mode, the components
+measurements are all directly read from a workbook and fed to the components. No API calling
+can change those measurements. In <em>compute</em> mode, the components measurements are derived
+from the robots kinematics that are directly impacted by the robot commands.</p></li>
+<li><p><em>coordinates</em> [compute only] sets the robot starting coordinates for the scenario</p></li>
+<li><p><em>filename</em> [read only] gives the path to a workbook containing the data to feed the components</p></li>
+</ul>
+<p>The <strong>time</strong> entry defines the way the time passes during a scenario :</p>
+<ul class="simple">
+<li><p><em>mode</em> enables to choose between “realtime” and “controlled”. In <em>readtime</em> mode, the time
+is given by the clock located on the execution endpoint, as it would do on the real spike hub.
+The processing time of the algorithms then impacts the measurement frequency
+In <em>controlled time</em>, the time increases when the user decides it.</p></li>
+<li><p><em>period</em> [controlled only] sets the number of seconds passing at each scenario steps</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="design.html" class="btn btn-neutral float-left" title="Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test.html" class="btn btn-neutral float-right" title="Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.scenario.model &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.scenario.parts" href="spike.scenario.parts.html" />
+    <link rel="prev" title="spike.scenario.dynamics" href="spike.scenario.dynamics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motor.html">spike.motor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.scenario.model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.scenario.model.ScenarioModel"><code class="docutils literal notranslate"><span class="pre">ScenarioModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__init__"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.configure"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.configure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.altitude"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.altitude()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.ports"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.ports()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.by_port"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.by_port()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.by_type"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.by_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.all"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__check_configuration"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__check_configuration()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__read"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__convert_pose"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__convert_pose()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__add_port_to_parts"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__add_port_to_parts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.scenario.model.ScenarioModel.__organize_parts"><code class="docutils literal notranslate"><span class="pre">ScenarioModel.__organize_parts()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api2.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.scenario.model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.scenario.model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.scenario.model">
+<span id="spike-scenario-model"></span><h1>spike.scenario.model<a class="headerlink" href="#module-spike.scenario.model" title="Permalink to this heading"></a></h1>
+<p>Classes describing lego robot static structure</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.scenario.model.ScenarioModel" title="spike.scenario.model.ScenarioModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScenarioModel</span></code></a>()</p></td>
+<td><p>Class modelling robot static relative geometry</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.scenario.model.</span></span><span class="sig-name descname"><span class="pre">ScenarioModel</span></span><a class="headerlink" href="#spike.scenario.model.ScenarioModel" title="Permalink to this definition"></a></dt>
+<dd><p>Class modelling robot static relative geometry</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.configure">
+<span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.configure" title="Permalink to this definition"></a></dt>
+<dd><p>Configure robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Robot configuration file path</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Component not found for port, component type does not match ldraw type
+or 2 parts connected to the same hub port or missing attribute for component or missing
+robot design file or missing ldraw unit size or unknown topic in configuration file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.altitude">
+<span class="sig-name descname"><span class="pre">altitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.altitude" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot wheels center altitude in NED local reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot altitude</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float (cm)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.ports">
+<span class="sig-name descname"><span class="pre">ports</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.ports" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the allocated ports with their part type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ports associated with their components</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.by_port">
+<span class="sig-name descname"><span class="pre">by_port</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.by_port" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot parts indexed by port</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.by_type">
+<span class="sig-name descname"><span class="pre">by_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.by_type" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot parts indexed by type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.all">
+<span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.all" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the robot active or sensive parts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>robot parts</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__check_configuration">
+<span class="sig-name descname"><span class="pre">__check_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__check_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Check input json configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conf</strong> (<em>dictionary</em>) – configuration file content</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – missing attribute for component or missing robot design file
+or missing ldraw unit size or unknown topic in configuration file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__read">
+<span class="sig-name descname"><span class="pre">__read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ldu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.04</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__read" title="Permalink to this definition"></a></dt>
+<dd><p>Build robot model from ldraw file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – ldraw formatted filename path</p></li>
+<li><p><strong>ldu</strong> (<em>float</em>) – ldu (ldraw unit) size in centimeters, default 0.4 mm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>robot parts, robot model, ldraw parts</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list, list, dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__convert_pose">
+<span class="sig-name descname"><span class="pre">__convert_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__convert_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Convert part pose in a new coordinates system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parts</strong> (<em>list</em>) – robot parts with pose in ldraw reference</p></li>
+<li><p><strong>system</strong> (<em>CoordinateSystem</em>) – coordinate system to transform parts into</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>converted parts</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__add_port_to_parts">
+<span class="sig-name descname"><span class="pre">__add_port_to_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parts</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__add_port_to_parts" title="Permalink to this definition"></a></dt>
+<dd><p>Add hub ports info to parts from the robot configuration file.
+Extract wheel spins info for further use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conf</strong> (<em>dictionary</em>) – robot configuration file content</p></li>
+<li><p><strong>parts</strong> (<em>list</em>) – robot parts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Component not found for port, component type does not match ldraw type
+or 2 parts connected to the same hub port</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>parts, wheel spins</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple (list, dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.scenario.model.ScenarioModel.__organize_parts">
+<span class="sig-name descname"><span class="pre">__organize_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.scenario.model.ScenarioModel.__organize_parts" title="Permalink to this definition"></a></dt>
+<dd><p>Organize parts to be accessible by port or by type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parts</strong> (<em>list</em>) – list of parts to organize</p></li>
+<li><p><strong>spins</strong> (<em>dictionary</em>) – wheel spins already extracted from the configuration file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>extended parts, parts by type, parts by port</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple (list, dictionary, dictionary)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Can not manage other than 2 wheels</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.scenario.dynamics.html" class="btn btn-neutral float-left" title="spike.scenario.dynamics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.scenario.parts.html" class="btn btn-neutral float-right" title="spike.scenario.parts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

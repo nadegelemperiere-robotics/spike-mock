@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spike.motor &mdash; spike-mock  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="spike.speaker" href="spike.speaker.html" />
+    <link rel="prev" title="spike.hub" href="spike.hub.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            spike-mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Using spike mock</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Spike library mocking API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="spike.button.html">spike.button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.colorsensor.html">spike.colorsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.distancesensor.html">spike.distancesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.forcesensor.html">spike.forcesensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.lightmatrix.html">spike.lightmatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motionsensor.html">spike.motionsensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.motorpair.html">spike.motorpair</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.hub.html">spike.hub</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">spike.motor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spike.motor.Motor"><code class="docutils literal notranslate"><span class="pre">Motor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.__init__"><code class="docutils literal notranslate"><span class="pre">Motor.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.run_to_position"><code class="docutils literal notranslate"><span class="pre">Motor.run_to_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.run_to_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.run_to_degrees_counted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.run_for_degrees"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_degrees()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.run_for_rotations"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_rotations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.run_for_seconds"><code class="docutils literal notranslate"><span class="pre">Motor.run_for_seconds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.start"><code class="docutils literal notranslate"><span class="pre">Motor.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.stop"><code class="docutils literal notranslate"><span class="pre">Motor.stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.start_at_power"><code class="docutils literal notranslate"><span class="pre">Motor.start_at_power()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.get_speed"><code class="docutils literal notranslate"><span class="pre">Motor.get_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.get_default_speed"><code class="docutils literal notranslate"><span class="pre">Motor.get_default_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.get_position"><code class="docutils literal notranslate"><span class="pre">Motor.get_position()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.was_stalled"><code class="docutils literal notranslate"><span class="pre">Motor.was_stalled()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.was_interrupted"><code class="docutils literal notranslate"><span class="pre">Motor.was_interrupted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.get_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.get_degrees_counted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.set_default_speed"><code class="docutils literal notranslate"><span class="pre">Motor.set_default_speed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.set_degrees_counted"><code class="docutils literal notranslate"><span class="pre">Motor.set_degrees_counted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.set_stall_detection"><code class="docutils literal notranslate"><span class="pre">Motor.set_stall_detection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.set_stop_action"><code class="docutils literal notranslate"><span class="pre">Motor.set_stop_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.__process_command"><code class="docutils literal notranslate"><span class="pre">Motor.__process_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.c_reset"><code class="docutils literal notranslate"><span class="pre">Motor.c_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.c_read"><code class="docutils literal notranslate"><span class="pre">Motor.c_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.c_set_stall_detection"><code class="docutils literal notranslate"><span class="pre">Motor.c_set_stall_detection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.c_set_stop_action"><code class="docutils literal notranslate"><span class="pre">Motor.c_set_stop_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spike.motor.Motor.port"><code class="docutils literal notranslate"><span class="pre">Motor.port</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spike.speaker.html">spike.speaker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.statuslight.html">spike.statuslight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.control.html">spike.control</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Synthetic scenario management API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.scenario.html">spike.scenario.scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.commands.html">spike.scenario.commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.components.html">spike.scenario.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.dynamics.html">spike.scenario.dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.model.html">spike.scenario.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.parts.html">spike.scenario.parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.data.html">spike.scenario.data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spike.scenario.abaqus.html">spike.scenario.abaqus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">spike-mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">&lt;no title&gt;</a></li>
+      <li class="breadcrumb-item active">spike.motor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spike.motor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-spike.motor">
+<span id="spike-motor"></span><h1>spike.motor<a class="headerlink" href="#module-spike.motor" title="Permalink to this heading"></a></h1>
+<p>Motor mock API</p>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#spike.motor.Motor" title="spike.motor.Motor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Motor</span></code></a>(port)</p></td>
+<td><p>Motor mocking class</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="spike.motor.Motor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">spike.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor" title="Permalink to this definition"></a></dt>
+<dd><p>Motor mocking class</p>
+<p>Class is accessed simultaneously by the user side thread and the
+ground truth update thread. It is therefore protected by a mutex</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Contructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<em>string</em><em> (</em><em>'A'</em><em>,</em><em>'B'</em><em>,</em><em>'C'</em><em>,</em><em>'D'</em><em>,</em><em>'E'</em><em> or </em><em>'F'</em><em>)</em>) – the hub port to which the motor is connected</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.run_to_position">
+<span class="sig-name descname"><span class="pre">run_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'shortest</span> <span class="pre">path'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.run_to_position" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the motor to an absolute position.</p>
+<p>The sign of the speed will be ignored (i.e., absolute value), and the motor will
+always travel in the direction that’s been specified by the “direction” parameter.
+If the speed is greater than “100,” it will be limited to “100.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degrees</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>359</em><em>]</em>) – the target position.</p></li>
+<li><p><strong>direction</strong> (<em>string</em><em> (</em><em>&quot;Shortest path&quot; could run in either direction</em><em>,
+</em><em>depending on the shortest distance to the target. &quot;Clockwise&quot; will make
+the motor run clockwise until it reaches the target position.
+&quot;Counterclockwise&quot; will make the motor run counterclockwise until it
+reaches the target position.</em><em>)</em>) – the direction to use to reach the target position.</p></li>
+<li><p><strong>speed</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>TypeError</strong> – degrees or speed is not an integer or direction is not a string.</p></li>
+<li><p><strong>ValueError</strong> – direction is not one of the allowed values or degrees is not
+within the range of 0-359 (both inclusive).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.run_to_degrees_counted">
+<span class="sig-name descname"><span class="pre">run_to_degrees_counted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.run_to_degrees_counted" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the motor until the number of degrees counted is equal to the value that
+has been specified by the “degrees” parameter.</p>
+<p>The sign of the speed will be ignored (i.e., absolute value), and the motor will
+always travel in the direction that’s been specified by the “direction” parameter.
+If the speed is greater than “100,” it will be limited to “100.”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degrees</strong> (<em>integer</em>) – the target degrees counted.</p></li>
+<li><p><strong>speed</strong> (<em>integer</em><em> [</em><em>0</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – degrees or speed is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.run_for_degrees">
+<span class="sig-name descname"><span class="pre">run_for_degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.run_for_degrees" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the motor for a specified number of degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degrees</strong> (<em>integer</em>) – the number of degrees that the motor should run.</p></li>
+<li><p><strong>speed</strong> (<em>integer</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – degrees or speed is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.run_for_rotations">
+<span class="sig-name descname"><span class="pre">run_for_rotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.run_for_rotations" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the motor for a specified number of rotations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degrees</strong> (<em>float</em>) – the number of rotations that the motor should run.</p></li>
+<li><p><strong>speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – rotations is not a number or speed is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.run_for_seconds">
+<span class="sig-name descname"><span class="pre">run_for_seconds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.run_for_seconds" title="Permalink to this definition"></a></dt>
+<dd><p>The number of seconds for which the motor should run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seconds</strong> (<em>float</em>) – the number of rotations that the motor should run.</p></li>
+<li><p><strong>speed</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – seconds is not a number or speed is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.start" title="Permalink to this definition"></a></dt>
+<dd><p>Starts running the motor at a specified speed.</p>
+<p>The motor will keep moving at this speed until you give it another motor
+command or when your program ends.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>integer</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em><em>. If no value is specified</em><em>, </em><em>it will use the
+default speed that’s been set by set_default_speed</em><em>(</em><em>)</em><em>.</em>) – the motor’s speed</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – speed is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stops the motor.</p>
+<p>What the motor does after it stops depends on the action that’s been
+set in set_stop_action(). The default value of set_stop_action() is “coast.”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.start_at_power">
+<span class="sig-name descname"><span class="pre">start_at_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.start_at_power" title="Permalink to this definition"></a></dt>
+<dd><p>Starts running the motor at a specified power level.</p>
+<p>The motor will keep moving at this speed until you give it another motor
+command or when your program ends.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>power</strong> (<em>int</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em><em>.</em>) – power of the motor</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – power is not an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.get_speed">
+<span class="sig-name descname"><span class="pre">get_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.get_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the motor speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current motor speed</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int [-100,100]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.get_default_speed">
+<span class="sig-name descname"><span class="pre">get_default_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.get_default_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the motor default speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current motor default speed value</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int [-100,100]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.get_position">
+<span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.get_position" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the motor position. This is the clockwise angle between the moving
+marker and the zero-point marker on the motor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the motor’s position.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer [0,359]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.was_stalled">
+<span class="sig-name descname"><span class="pre">was_stalled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.was_stalled" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the motor was stalled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the motor has stalled since the last time was_stalled() was called,
+otherwise false.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.was_interrupted">
+<span class="sig-name descname"><span class="pre">was_interrupted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.was_interrupted" title="Permalink to this definition"></a></dt>
+<dd><p>Tests whether the motor was interrupted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the motor was interrupted since the last time was_interrupted() was
+called, otherwise false.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.get_degrees_counted">
+<span class="sig-name descname"><span class="pre">get_degrees_counted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.get_degrees_counted" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieves the number of degrees that have been counted by the motor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current counted degrees</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.set_default_speed">
+<span class="sig-name descname"><span class="pre">set_default_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.set_default_speed" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the default motor speed. This speed will be used when you omit
+the speed argument in one of the other methods, such as run_for_degrees.
+Setting the default speed does not affect any motors that are currently running.
+It will only have an effect when another motor method is called after this method.
+If the value of default_speed is outside of the allowed range, the default speed will
+be set to “-100” or “100” depending on whether the value is negative or positive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<em>integer</em><em> [</em><em>-100</em><em>,</em><em>100</em><em>]</em>) – the default speed value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – default_speed is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.set_degrees_counted">
+<span class="sig-name descname"><span class="pre">set_degrees_counted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degrees_counted</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.set_degrees_counted" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the “number of degrees counted” to the desired value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>degrees_counted</strong> (<em>integer</em>) – new degrees value</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>TypeError</strong> – degrees_counted is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.set_stall_detection">
+<span class="sig-name descname"><span class="pre">set_stall_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_when_stalled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.set_stall_detection" title="Permalink to this definition"></a></dt>
+<dd><p>Turns stall detection on or off.</p>
+<p>Stall detection senses when a motor has been blocked and can t move.
+If stall detection has been enabled and a motor is blocked, the motor will be
+powered off after two seconds and the current motor command will be interrupted.
+If stall detection has been disabled, the motor will keep trying to run and programs
+will “get stuck” until the motor is no longer blocked.</p>
+<p>Stall detection is enabled by default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stop_when_stalled</strong> (<em>boolean</em>) – choose “true” to enable stall detection or “false” to disable it.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.set_stop_action">
+<span class="sig-name descname"><span class="pre">set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the default behavior when a motor stops.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>string</em><em> (</em><em>coast</em><em>,</em><em>brake</em><em>,</em><em>hold</em><em>)</em>) – the desired motor behavior when the motor stops.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.__process_command">
+<span class="sig-name descname"><span class="pre">__process_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.__process_command" title="Permalink to this definition"></a></dt>
+<dd><p>Process command until over</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>generator function</em>) – command to process</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.c_reset">
+<span class="sig-name descname"><span class="pre">c_reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.c_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Reset function</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.c_read">
+<span class="sig-name descname"><span class="pre">c_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.c_read" title="Permalink to this definition"></a></dt>
+<dd><p>Update the motor from scenario data</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – current motor degrees value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.c_set_stall_detection">
+<span class="sig-name descname"><span class="pre">c_set_stall_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_when_stalled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.c_set_stall_detection" title="Permalink to this definition"></a></dt>
+<dd><p>Turns stall detection on or off.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stop_when_stalled</strong> (<em>boolean</em>) – True to enable stall detection or False to disable it.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spike.motor.Motor.c_set_stop_action">
+<span class="sig-name descname"><span class="pre">c_set_stop_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spike.motor.Motor.c_set_stop_action" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the default behavior when a motor stops.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>string</em><em> (</em><em>coast</em><em>,</em><em>brake</em><em>,</em><em>hold</em><em>)</em>) – the desired motor behavior when the motor stops.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spike.motor.Motor.port">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#spike.motor.Motor.port" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the component connection port</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is not part of the spike API. It is provided to update the
+component from scenario data and shall not be used by the end-user.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the component port</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spike.hub.html" class="btn btn-neutral float-left" title="spike.hub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spike.speaker.html" class="btn btn-neutral float-right" title="spike.speaker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nadege Lemperiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
