@@ -90,7 +90,7 @@ jobs:
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:
-                github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+                github-token: ${{ secrets.GITHUB_TOKEN }}
                 path-to-lcov: coverage.lcov
 
             - name: Push doc to Github Pages
