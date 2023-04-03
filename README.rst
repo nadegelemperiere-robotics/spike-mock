@@ -10,6 +10,9 @@ This project contains python classes emulating lego spike library API
 .. image:: https://badgen.net/github/checks/nadegelemperiere/spike-mock
    :target: https://github.com/nadegelemperiere/spike-mock/actions/workflows/release.yml
    :alt: Status
+.. image:: https://coveralls.io/repos/github/nadegelemperiere/spike-mock/badge.svg
+   :target: https://coveralls.io/github/nadegelemperiere/spike-mock
+   :alt: Coverage
 .. image:: https://badgen.net/github/commits/nadegelemperiere/spike-mock/main
    :target: https://github.com/nadegelemperiere/spike-mock
    :alt: Commits

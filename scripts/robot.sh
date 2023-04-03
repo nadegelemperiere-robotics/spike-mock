@@ -40,7 +40,7 @@ pip install --quiet --no-warn-script-location -r $scriptpath/../requirements-tes
 pip install --quiet --no-warn-script-location $scriptpath/../
 
 # Launch python scripts to setup terraform environment
-coverage run -m robot --variable data:$scriptpath/../test/data/                  \
+coverage run --source=$scriptpath/../spike/ -m robot --variable data:$scriptpath/../test/data/                  \
                  $args                                                      \
                  $scriptpath/../test/cases
 coverage lcov
