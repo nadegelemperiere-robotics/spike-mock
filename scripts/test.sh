@@ -21,6 +21,6 @@ scriptpath=`dirname $script`
 docker run  -it --rm \
             --volume $scriptpath/../:/package:rw \
             --volume $scriptpath/../../ldraw-parts:/parts:ro \
-            --workdir /package \
+            --workdir /home/fll \
             nadegelemperiere/fll-test-docker:v2.2.2  \
-            ./scripts/robot.sh $@
+            /package/scripts/robot.sh $@

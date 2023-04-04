@@ -87,6 +87,11 @@ jobs:
             - name: Launching tests
               run: ./module/scripts/robot.sh -l WARN -d ./module/docs/build/html
 
+            - uses: actions/upload-artifact@v3
+              with:
+                name: code-coverage
+                path: ./module/coverage.lcov
+
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:

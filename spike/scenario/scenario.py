@@ -156,15 +156,6 @@ class ScenarioThreadData() :
         """
         return self.__commands.give(component, name, args)
 
-    # def process_command(self, dynamics) :
-    #     """
-    #     Process current command if any
-
-    #     :param dynamics: robot dynamic status to update
-    #     :type dynamics:  ScenarioDynamics
-    #     """
-    #     self.__commands.process(dynamics)
-
     def get_status(self) :
         """ Return current robot status
 
@@ -172,6 +163,14 @@ class ScenarioThreadData() :
         :rtype:  dictionary
         """
         return self.__dynamics.current()
+
+    def get_components(self) :
+        """ Return robot components
+
+        :return: the robot components
+        :rtype:  list
+        """
+        return self.__model.all()
 
     def set_shall_continue(self, value):
         """
@@ -373,6 +372,15 @@ class Scenario() :
         :rtype:  dictionary
         """
         return self.__processing_data.get_status()
+
+    def components(self) :
+        """
+        Return robot components list
+
+        :return: robot component lists
+        :rtype:  list
+        """
+        return self.__processing_data.get_components()
 
 
 # pylint: enable=W0201, R0902, W0231
