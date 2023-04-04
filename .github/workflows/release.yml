@@ -97,6 +97,7 @@ jobs:
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
                 path-to-lcov: ./module/coverage.lcov
+                base-path: ./module/
 
             - name: Push doc to Github Pages
               uses: peaceiris/actions-gh-pages@v3
