@@ -27,6 +27,8 @@ do
     esac
 done
 
+cd $scriptpath/../
+
 # Create virtual environment
 python3 -m venv ${HOME}/mock
 . ${HOME}/mock/bin/activate
