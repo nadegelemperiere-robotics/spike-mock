@@ -17,14 +17,14 @@ from io                     import BytesIO
 from PIL                    import Image, ImageDraw, ImageFont
 
 # Local includes
-from spike.scenario.font    import roboto_condensed
+from spike.scenario.font    import ROBOTO_CONDENSED
 
 # pylint: disable=C0103
 class ScenarioGround() :
     """ Scene mat modelling """
 
     s_logger       = getLogger('ground')
-    s_font_ttf     = roboto_condensed
+    s_font_ttf     = ROBOTO_CONDENSED
 
     def __init__(self) :
         """ Constructor """
@@ -146,7 +146,7 @@ class ScenarioGround() :
 
             draw = ImageDraw.Draw(result)
             draw.polygon([xfl,yfl,xfr,yfr,xbr,ybr,xbl,ybl],width=5,outline=(255, 0, 0, 255))
-            draw.text([10,10], text, fill=(255, 0, 0, 255), font=font, anchor=None, spacing=5, align='left')
+            draw.text([10,10], text, fill=(255, 0, 0, 255), font=font, spacing=5, align='left')
 
         return result
 
