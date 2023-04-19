@@ -32,7 +32,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Start Scenario   ${scenario}
     @{members} =     Create List      get_color    get_ambiant_light    get_reflected_light    get_rgb_intensity    get_red     get_green     get_blue     wait_until_color    wait_for_new_color     light_up     light_up_all
     Should Have Members    ${sensor}    ${members}
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 2.2 Ensure Error Management Is Correctly Implemented
     [Tags]  ColorSensor
@@ -43,7 +43,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Run Keyword And Expect Error    TypeError: light_1 is not an integer       Use Object Method  ${sensor}     light_up        False    -1    12.5  50    50
     Run Keyword And Expect Error    TypeError: light_2 is not an integer       Use Object Method  ${sensor}     light_up        False    -1    50    12.5    50
     Run Keyword And Expect Error    TypeError: light_3 is not an integer       Use Object Method  ${sensor}     light_up        False    -1    50    50    12.5
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 2.3 Test Color Sensor Behavior On Read Only Time Controlled Scenario
     [Tags]  ColorSensor
@@ -82,7 +82,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Integers    ${rft}    ${rf}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 2.4 Test Color Sensor Behavior On Computed Time Controlled Scenario
     [Tags]  ColorSensor
@@ -146,7 +146,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Stop Scenario  ${scenario}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 2.5 Test Color Sensor Behavior On Read Only Real Time Scenario
     [Tags]  ColorSensor
@@ -189,7 +189,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Integers    ${rft}    ${rf}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 2.6 Test Color Sensor Behavior On Computed Real Time Scenario
     [Tags]  ColorSensor
@@ -245,7 +245,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Stop Scenario  ${scenario}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 2.7 Test The Parallel Behaviour Of Wait Functions On Time Controlled Scenario
     [Tags]  ColorSensor
@@ -272,7 +272,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Not Be True  ${is_alive}
     ${c}        Use Object Method  ${sensor}    get_color  True
     Should Be Equal     green    ${c}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 
 2.8 Test The Parallel Behaviour Of Wait Functions On Real Time Scenario
     [Tags]  ColorSensor
@@ -299,7 +299,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Not Be True  ${is_alive}
     ${c}        Use Object Method  ${sensor}    get_color  True
     Should Be Equal     green    ${c}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 
 2.9 Test The Light Adjustment Functions And Their Impact On Color
     # No impact on color: when calling get_color, the sensor lights all its lights!
@@ -321,4 +321,4 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps  1
     ${c}                Use Object Method  ${sensor}    get_color  True
     Should Be Equal     white    ${c}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}

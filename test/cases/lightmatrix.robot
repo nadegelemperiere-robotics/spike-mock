@@ -17,6 +17,8 @@ Library         Collections
 *** Variables ***
 ${ROTC_JSON_CONF_FILE}           ${data}/rotc.json
 ${RORT_JSON_CONF_FILE}           ${data}/rort.json
+${CPTC_JSON_CONF_FILE}           ${data}/cptc.json
+${CPRT_JSON_CONF_FILE}           ${data}/cprt.json
 ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
 
 *** Test Cases ***
@@ -28,28 +30,108 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${matrix}       Create Object    LightMatrix
     @{members} =    Create List      show_image    set_pixel    write     off
     Should Have Members    ${matrix}    ${members}
-    [Teardown]      Reset Scenario   ${scenario}
+    [Teardown]      Reinitialize Scenario   ${scenario}
 
-8.2 Test Light Matrix Image Display
+8.2 Test Light Matrix Image Display On Read Only Time Controlled Scenario
     [Tags]    LightMatrix
     ${scenario}     Create Scenario     ${ROTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}  time
     Start Scenario  ${scenario}
     ${matrix}       Create Object    LightMatrix
-    Play Scenario During Steps      1
     Use Object Method  ${matrix}  show_image    False    -1    HEART
-    ${heart}       Use Object Method  ${matrix}   c_get_matrix    True
-    ${p}           Get From List      ${heart}    0
+    Play Scenario During Steps      1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
     Should Be Equal As Integers   ${p}        0
-    ${p}           Get From List      ${heart}    1
+    ${p}            Get From List      ${heart}    1
     Should Be Equal As Integers   ${p}        100
     Use Object Method  ${matrix}  set_pixel   False    -1    0    0    50
-    ${heart}       Use Object Method  ${matrix}   c_get_matrix    True
-    ${p}           Get From List      ${heart}    0
+    Play Scenario During Steps      1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
     Should Be Equal As Integers   ${p}        50
     Use Object Method  ${matrix}  off
-    ${empty}       Use Object Method  ${matrix}   c_get_matrix    True
-    ${p}           Get From List      ${empty}    0
+    Play Scenario During Steps      1
+    ${empty}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${empty}    0
     Should Be Equal As Integers   ${p}        0
-    ${p}           Get From List      ${empty}    1
+    ${p}            Get From List      ${empty}    1
     Should Be Equal As Integers   ${p}        0
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]      Reinitialize Scenario   ${scenario}
+
+8.3 Test Light Matrix Image Display On Read Only Real Time Scenario
+    [Tags]    LightMatrix
+    ${scenario}     Create Scenario     ${RORT_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}  time
+    Start Scenario  ${scenario}
+    ${matrix}       Create Object    LightMatrix
+    Use Object Method  ${matrix}  show_image    False    -1    HEART
+    Sleep           0.1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${heart}    1
+    Should Be Equal As Integers   ${p}        100
+    Use Object Method  ${matrix}  set_pixel   False    -1    0    0    50
+    Sleep           0.1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        50
+    Use Object Method  ${matrix}  off
+    Sleep           0.1
+    ${empty}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${empty}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${empty}    1
+    Should Be Equal As Integers   ${p}        0
+    [Teardown]      Reinitialize Scenario   ${scenario}
+
+8.4 Test Light Matrix Image Display On Computed Time Controlled Scenario
+    [Tags]    LightMatrix
+    ${scenario}     Create Scenario     ${CPTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}  time
+    Start Scenario  ${scenario}
+    ${matrix}       Create Object    LightMatrix
+    Use Object Method  ${matrix}  show_image    False    -1    HEART
+    Play Scenario During Steps      1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${heart}    1
+    Should Be Equal As Integers   ${p}        100
+    Use Object Method  ${matrix}  set_pixel   False    -1    0    0    50
+    Play Scenario During Steps      1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        50
+    Use Object Method  ${matrix}  off
+    Play Scenario During Steps      1
+    ${empty}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${empty}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${empty}    1
+    Should Be Equal As Integers   ${p}        0
+    [Teardown]      Reinitialize Scenario   ${scenario}
+
+8.5 Test Light Matrix Image Display On Computed Real Time Scenario
+    [Tags]    LightMatrix
+    ${scenario}     Create Scenario     ${CPRT_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}  time
+    Start Scenario  ${scenario}
+    ${matrix}       Create Object    LightMatrix
+    Use Object Method  ${matrix}  show_image    False    -1    HEART
+    Sleep           0.1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${heart}    1
+    Should Be Equal As Integers   ${p}        100
+    Use Object Method  ${matrix}  set_pixel   False    -1    0    0    50
+    Sleep           0.1
+    ${heart}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${heart}    0
+    Should Be Equal As Integers   ${p}        50
+    Use Object Method  ${matrix}  off
+    Sleep           0.1
+    ${empty}        Use Object Method  ${matrix}   c_get_matrix    True
+    ${p}            Get From List      ${empty}    0
+    Should Be Equal As Integers   ${p}        0
+    ${p}            Get From List      ${empty}    1
+    Should Be Equal As Integers   ${p}        0
+    [Teardown]      Reinitialize Scenario   ${scenario}

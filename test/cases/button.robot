@@ -17,6 +17,8 @@ Library         Collections
 *** Variables ***
 ${ROTC_JSON_CONF_FILE}           ${data}/rotc.json
 ${RORT_JSON_CONF_FILE}           ${data}/rort.json
+${CPTC_JSON_CONF_FILE}           ${data}/cptc.json
+${CPRT_JSON_CONF_FILE}           ${data}/cprt.json
 ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
 
 *** Test Cases ***
@@ -28,7 +30,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${button}            Create Object    Button    left
     @{members} =         Create List      wait_until_pressed    wait_until_released    was_pressed    is_pressed
     Should Have Members  ${button}        ${members}
-    [Teardown]           Reset Scenario   ${scenario}
+    [Teardown]           Reinitialize Scenario   ${scenario}
 
 1.2 Test Button Behavior On Read Only Time Controlled Scenario
     [Tags]    Button
@@ -53,7 +55,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Not Be True  ${was_pressed[2]}
     Should Be True      ${is_pressed[3]}
     Should Be True      ${was_pressed[3]}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 
 1.3 Test Button Behavior On Read Only Real Time Scenario
     [Tags]    Button
@@ -84,9 +86,73 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Not Be True  ${was_pressed[2]}
     Should Be True      ${is_pressed[3]}
     Should Be True      ${was_pressed[3]}
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]     Reinitialize Scenario   ${scenario}
 
-1.4 Test The Parallel Behaviour Of Wait Functions On Time Controlled Scenario
+1.4 Test Button Behavior On Computed Time Controlled Scenario
+    [Tags]    Button
+    ${scenario}         Create Scenario   ${CPTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
+    Start Scenario      ${scenario}
+    ${button}           Create Object     Button    left
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Be True      ${is_p}
+    Should Be True      ${was_p}
+    ${shall_continue}   Play Scenario During Steps    10
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Be True      ${is_p}
+    Should Be True      ${was_p}
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Not Be True  ${is_p}
+    Should Not Be True  ${was_p}
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Not Be True  ${is_p}
+    Should Be True      ${was_p}
+    [Teardown]          Reinitialize Scenario   ${scenario}
+
+1.5 Test Button Behavior On Computed Real Time Scenario
+    [Tags]    Button
+    ${scenario}         Create Scenario   ${CPRT_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
+    Start Scenario      ${scenario}
+    ${button}           Create Object     Button    left
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    Sleep               0.1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Be True      ${is_p}
+    Should Be True      ${was_p}
+    Sleep               2
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Be True      ${is_p}
+    Should Be True      ${was_p}
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    Sleep               0.1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Not Be True  ${is_p}
+    Should Not Be True  ${was_p}
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    Sleep               0.1
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    Sleep               0.1
+    ${is_p}             Use Object Method  ${button}    is_pressed    True
+    ${was_p}            Use Object Method  ${button}    was_pressed    True
+    Should Not Be True  ${is_p}
+    Should Be True      ${was_p}
+    [Teardown]          Reinitialize Scenario   ${scenario}
+
+1.6 Test The Parallel Behaviour Of Wait Functions On Read Only Time Controlled Scenario
     [Tags]              Button
     ${scenario}         Create Scenario      ${ROTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
     Start Scenario      ${scenario}
@@ -103,9 +169,9 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${shall_continue}   Play Scenario During Steps    20
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario       ${scenario}
+    [Teardown]          Reinitialize Scenario       ${scenario}
 
-1.5 Test The Parallel Behaviour Of Wait Functions On Real Time Scenario
+1.7 Test The Parallel Behaviour Of Wait Functions On Read Only Real Time Scenario
     [Tags]              Button
     ${scenario}         Create Scenario      ${RORT_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
     Start Scenario      ${scenario}
@@ -122,4 +188,58 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep               2
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario       ${scenario}
+    [Teardown]          Reinitialize Scenario       ${scenario}
+
+1.8 Test The Parallel Behaviour Of Wait Functions On Computed Time Controlled Scenario
+    [Tags]              Button
+    ${scenario}         Create Scenario      ${CPTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
+    Start Scenario      ${scenario}
+    ${button}           Create Object        Button    left
+    ${thread}           Start Method In A Thread    ${button}    wait_until_pressed
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    ${shall_continue}   Play Scenario During Steps    36
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Not Be True  ${is_alive}
+    ${thread}           Start Method In A Thread    ${button}    wait_until_released
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    ${shall_continue}   Play Scenario During Steps    20
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    ${shall_continue}   Play Scenario During Steps    1
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Not Be True  ${is_alive}
+    [Teardown]          Reinitialize Scenario       ${scenario}
+
+1.9 Test The Parallel Behaviour Of Wait Functions On Computed Real Time Scenario
+    [Tags]              Button
+    ${scenario}         Create Scenario      ${CPTC_JSON_CONF_FILE}    ${ROBOT_JSON_CONF_FILE}    button
+    Start Scenario      ${scenario}
+    ${button}           Create Object        Button    left
+    ${thread}           Start Method In A Thread    ${button}    wait_until_pressed
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Sleep               2
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Use Object Method   ${scenario}       push_button    False    -1    left
+    Sleep               0.1
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Not Be True  ${is_alive}
+    ${thread}           Start Method In A Thread    ${button}    wait_until_released
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Sleep               2
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Be True      ${is_alive}
+    Use Object Method   ${scenario}       release_button    False    -1    left
+    Sleep               0.1
+    ${is_alive}         Is Thread Running    ${thread}
+    Should Not Be True  ${is_alive}
+    [Teardown]          Reinitialize Scenario       ${scenario}

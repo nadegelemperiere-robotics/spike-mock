@@ -57,6 +57,7 @@ class ScenarioDynamics() :
         self.__model         = model
         self.__mat           = mat
         self.__parts         = self.__model.all()
+        self.__corners       = self.__model.corners()
         self.__wheels        = {}
         self.__motors        = {}
         self.__colors        = {}
@@ -82,8 +83,11 @@ class ScenarioDynamics() :
             self.__wheel_speeds      = DifferentialDriveWheelSpeeds(0,0)
             self.__chassis_speed     = ChassisSpeeds(0,0,0)
             self.__current_pose      = self.__initial_pose
-            for part in self.__parts :
-                part.derive_pose(self.__current_pose)
+            if self.__current_pose is not None :
+                for part in self.__parts :
+                    part.derive_pose(self.__current_pose)
+                for corner in self.__corners.values() :
+                    corner.derive_pose(self.__current_pose)
             for motor in self.__motors.values() : motor.reset()
 
     def configure(self, coordinates = None) :
@@ -131,6 +135,10 @@ class ScenarioDynamics() :
             result += 'PART ' + str(i_part) + ' : '
             result += str(part)
             i_part += 1
+        for pos, corner in self.__corners.items() :
+            result += '\n'
+            result += 'CORNER ' + str(pos) + ' : '
+            result += str(corner)
 
         return result
 
@@ -156,6 +164,9 @@ class ScenarioDynamics() :
                 if part.type not in result['parts'][part.port] :
                     result['parts'][part.port][part.type] = []
                 result['parts'][part.port][part.type].append(part.export())
+            result['corners'] = {}
+            for loc, corner in self.__corners.items() :
+                result['corners'][loc] = corner.export()
 
             self.s_logger.info(str(self))
 
@@ -640,6 +651,8 @@ class ScenarioDynamics() :
 
             for part in self.__parts :
                 part.derive_pose(self.__current_pose)
+            for corner in self.__corners.values() :
+                corner.derive_pose(self.__current_pose)
             for motor in self.__motors.values() :
                 motor.extrapolate(delta_time)
             for sensor in self.__colors.values() :

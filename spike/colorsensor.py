@@ -218,12 +218,10 @@ class ColorSensor() :
                     distance_min = distance
                     selected_color = color_name
             result = selected_color
-            print(str(result))
 
             if result in self.s_css3_to_spike_colormap :
                 result = self.s_css3_to_spike_colormap[result]
 
-            print(str(result))
             if result not in self.s_allowed_colors : result = None
 
         return result
@@ -481,7 +479,7 @@ class ColorSensor() :
 
     @property
     def port(self) :
-        """ Sets the component connection port
+        """ Gets the component connection port
 
         .. warning:: This function is not part of the spike API. It is provided to update the
          component from scenario data and shall not be used by the end-user.

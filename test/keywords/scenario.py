@@ -24,7 +24,7 @@ from spike.scenario.scenario    import Scenario
 def create_scenario(configuration, robot, sheet) :
 
     scenario = Scenario()
-    scenario.configure(configuration, robot, sheet)
+    scenario.configure_from_files(configuration, robot, sheet)
     return scenario
 
 @keyword('Start Scenario')
@@ -44,10 +44,12 @@ def play_scenario_during_steps(step) :
 @keyword('Stop Scenario')
 def stop_scenario(scenario) :
     scenario.stop()
+    scenario.restart()
 
-@keyword('Reset Scenario')
-def reset_scenario(scenario) :
-    scenario.reset()
+@keyword('Reinitialize Scenario')
+def restart_scenario(scenario) :
+    scenario.reinitialize()
+    scenario.restart()
 
 @keyword('Get Time Milliseconds')
 def get_time_milliseconds() :

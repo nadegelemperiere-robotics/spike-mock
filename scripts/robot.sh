@@ -45,5 +45,5 @@ pip install --quiet --no-warn-script-location $scriptpath/../
 coverage run --source=$scriptpath/../spike/ -m robot --variable data:$scriptpath/../test/data/                  \
                  $args                                                      \
                  $scriptpath/../test/cases
-coverage lcov
+coverage xml
 deactivate

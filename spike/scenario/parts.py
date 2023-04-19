@@ -34,19 +34,19 @@ class ScenarioPart() :
         """
 
         if copy is None :
-            self.__type     = ''
-            self.__id       = None
-            self.__pose     = Pose3d(Translation3d(),Rotation3d())
-            self.__relative = Pose3d(Translation3d(),Rotation3d())
-            self.__color    = -1
-            self.__port     = None
+            self.__type         = ''
+            self.__identifier   = None
+            self.__pose         = Pose3d(Translation3d(),Rotation3d())
+            self.__relative     = Pose3d(Translation3d(),Rotation3d())
+            self.__color        = -1
+            self.__port         = None
         else :
-            self.__type     = copy.type
-            self.__id       = copy.id
-            self.__pose     = copy.pose
-            self.__relative = copy.relative
-            self.__color    = copy.color
-            self.__port     = copy.port
+            self.__type         = copy.type
+            self.__identifier   = copy.identifier
+            self.__pose         = copy.pose
+            self.__relative     = copy.relative
+            self.__color        = copy.color
+            self.__port         = copy.port
 
     @property
     def type(self) :
@@ -67,22 +67,22 @@ class ScenarioPart() :
         self.__type = value
 
     @property
-    def id(self) :
+    def identifier(self) :
         """ Part identifier getter
 
         :return: part ldraw identifier
         :rtype:  string
         """
-        return self.__id
-    @id.setter
-    def id(self, value):
+        return self.__identifier
+    @identifier.setter
+    def identifier(self, value):
         """
         Part ldraw identifier setter
 
         :param value: part ldraw identifier
         :type value:  string
         """
-        self.__id = value
+        self.__identifier = value
 
     @property
     def pose(self) :
@@ -163,10 +163,10 @@ class ScenarioPart() :
         """
         if not isinstance(other, ScenarioPart):
             return False
-        return (self.id       == other.id and \
-                self.port     == other.port and \
-                self.relative == other.relative and \
-                self.color    == other.color)
+        return (self.identifier == other.identifier and \
+                self.port       == other.port and \
+                self.relative   == other.relative and \
+                self.color      == other.color)
 
     def __str__(self) :
         """
@@ -259,8 +259,8 @@ class ScenarioPartMotor(ScenarioPart) :
         :raises ValueError: part is not a known motor
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known motor')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known motor')
 
         super().__init__(part)
         self.__wheel     = None
@@ -419,7 +419,7 @@ class ScenarioPartMotor(ScenarioPart) :
         :return:      True if motors can be paired, False otherwise
         :rtype:       boolean
         """
-        result = (self.id == other.id)
+        result = (self.identifier == other.identifier)
         return result
 
     def extrapolate(self, delta) :
@@ -465,15 +465,15 @@ class ScenarioPartWheel(ScenarioPart) :
         :raises ValueError: part is not a known wheel
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known wheel')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known wheel')
 
         super().__init__(part)
 
         self.__motor       = motor
         self.type          = 'Wheel'
         self.__side        = None
-        self.__radius      = self.s_wheel_radius_abaqus.get('diameter', self.id) * 0.5
+        self.__radius      = self.s_wheel_radius_abaqus.get('diameter', self.identifier) * 0.5
         self.__motor.wheel = self
 
         # Depending on the way wheels are connected to the motor (number of gears)
@@ -586,8 +586,8 @@ class ScenarioPartColorSensor(ScenarioPart) :
         :raises ValueError: part is not a known color sensor
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known color sensor')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known color sensor')
 
         super().__init__(part)
 
@@ -672,8 +672,8 @@ class ScenarioPartHub(ScenarioPart) :
         :raises ValueError: part is not a known hub
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known hub')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known hub')
 
         super().__init__(part)
         self.type    = 'Hub'
@@ -695,8 +695,8 @@ class ScenarioPartForceSensor(ScenarioPart) :
         :raises ValueError: part is not a known force sensor
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known force sensor')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known force sensor')
 
         super().__init__(part)
         self.type    = 'ForceSensor'
@@ -718,8 +718,8 @@ class ScenarioPartDistanceSensor(ScenarioPart) :
         :raises ValueError: part is not a known distance sensor
         """
 
-        if part.id not in self.s_ids :
-            raise ValueError('Part ' + str(part.id) + ' is not a known distance sensor')
+        if part.identifier not in self.s_ids :
+            raise ValueError('Part ' + str(part.identifier) + ' is not a known distance sensor')
 
         super().__init__(part)
         self.type    = 'DistanceSensor'

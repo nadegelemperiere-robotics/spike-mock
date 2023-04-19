@@ -89,10 +89,10 @@ def create_part(tpe, x, y, z, roll, pitch, yaw) :
 @keyword('Create ColorSensor')
 def create_colorsensor(x, y, z, roll, pitch, yaw) :
 
-    part      = ScenarioPart()
-    part.id   = ScenarioPartColorSensor.s_ids[0]
-    part      = ScenarioPartColorSensor(part)
-    part.pose = Pose3d(
+    part            = ScenarioPart()
+    part.identifier = ScenarioPartColorSensor.s_ids[0]
+    part            = ScenarioPartColorSensor(part)
+    part.pose       = Pose3d(
         Translation3d(float(x),float(y),float(z)),
         Rotation3d(float(roll)  * pi / 180, float(pitch) * pi / 180, float(yaw) * pi / 180))
 
@@ -101,10 +101,10 @@ def create_colorsensor(x, y, z, roll, pitch, yaw) :
 @keyword('Create Motor')
 def create_motor(x, y, z, roll, pitch, yaw) :
 
-    part      = ScenarioPart()
-    part.id   = ScenarioPartMotor.s_ids[0]
-    part      = ScenarioPartMotor(part)
-    part.pose = Pose3d(
+    part            = ScenarioPart()
+    part.identifier = ScenarioPartMotor.s_ids[0]
+    part            = ScenarioPartMotor(part)
+    part.pose       = Pose3d(
         Translation3d(float(x),float(y),float(z)),
         Rotation3d(float(roll)  * pi / 180, float(pitch) * pi / 180, float(yaw) * pi / 180))
 

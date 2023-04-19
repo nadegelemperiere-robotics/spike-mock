@@ -34,7 +34,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
     ${motor}        Create Object    MotorPair     E     F
     @{members} =    Create List      move    start    stop    move_tank    start_tank    start_at_power    start_tank_at_power    get_default_speed    set_motor_rotation    set_default_speed    set_stop_action
     Should Have Members    ${motor}    ${members}
-    [Teardown]      Reset Scenario   ${scenario}
+    [Teardown]      Reinitialize Scenario   ${scenario}
 
 11.2 Ensure Error Management Is Correctly Implemented
     [Tags]  MotorPair
@@ -67,7 +67,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
     Run Keyword And Expect Error     TypeError: speed is not a number                     Use Object Method  ${motor}     set_default_speed      False    -1    100.0
     Run Keyword And Expect Error     TypeError: action is not a string                    Use Object Method  ${motor}     set_stop_action        False    -1    95.5
     Run Keyword And Expect Error     ValueError: action is not one of the allowed values  Use Object Method  ${motor}     set_stop_action        False    -1    whatever
-    [Teardown]    Reset Scenario   ${scenario}
+    [Teardown]    Reinitialize Scenario   ${scenario}
 
 11.3 Test MotorPair Behavior On Read Only Time Controlled Scenario
     [Tags]    MotorPair
@@ -95,7 +95,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         Should Be Equal As Integers    ${pt}     ${pl}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.4 Test MotorPair Move Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -145,7 +145,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.5 Test MotorPair Start/Stop Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -191,7 +191,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.6 Test MotorPair Start At Power/Stop Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -237,7 +237,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.7 Test MotorPair Move Tank Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -287,7 +287,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.8 Test MotorPair Start Tank/Stop Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -333,7 +333,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.9 Test MotorPair Start Tank At Power/Stop Behavior On Computed Time Controlled Scenario
     [Tags]    MotorPair
@@ -379,7 +379,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.10 Test MotorPair Behavior On Read Only Real Time Scenario
     [Tags]    MotorPair
@@ -411,7 +411,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         Should Be Equal As Numbers With Precision    ${pt}     ${pl}    1
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.11 Test MotorPair Move Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -459,7 +459,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.12 Test MotorPair Start/Stop Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -503,7 +503,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.13 Test MotorPair Start At Power/Stop Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -547,7 +547,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.14 Test MotorPair Move Tank Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -595,7 +595,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.15 Test MotorPair Start Tank/Stop Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -639,7 +639,7 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 11.16 Test MotorPair Start Tank At Power/Stop Behavior On Computed Real Time Scenario
     [Tags]    MotorPair
@@ -683,5 +683,5 @@ ${TIME_SPENT_LAUNCHING_COMMAND}  0.015
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 

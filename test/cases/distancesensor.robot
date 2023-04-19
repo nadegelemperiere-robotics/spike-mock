@@ -28,7 +28,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Start Scenario   ${scenario}
     @{members} =     Create List    get_distance_cm    get_distance_inches    get_distance_percentage    wait_for_distance_farther_than    wait_for_distance_closer_than     light_up     light_up_all
     Should Have Members    ${sensor}    ${members}
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 4.2 Ensure Error Management Is Correctly Implemented
     [Tags]    DistanceSensor
@@ -40,7 +40,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Run Keyword And Expect Error    TypeError: left_top is not an integer       Use Object Method  ${sensor}     light_up        False    -1    50    12.5  50    50
     Run Keyword And Expect Error    TypeError: right_bottom is not an integer   Use Object Method  ${sensor}     light_up        False    -1    50    50    12.5  50
     Run Keyword And Expect Error    TypeError: left_bottom is not an integer    Use Object Method  ${sensor}     light_up        False    -1    50    50    50    12.5
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]     Reinitialize Scenario   ${scenario}
 
 4.3 Test Distance Sensor Behavior On Read Only Time Controlled Scenario
     [Tags]    DistanceSensor
@@ -78,7 +78,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Integers    ${pt}     ${p}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 4.4 Test Distance Sensor Behavior On Read Only Real Time Scenario
     [Tags]    DistanceSensor
@@ -120,7 +120,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Numbers With Precision      ${pt}     ${p}    3
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]       Reset Scenario   ${scenario}
+    [Teardown]       Reinitialize Scenario   ${scenario}
 
 4.5 Test The Parallel Behaviour Of Wait Functions On Time Controlled Scenario
     [Tags]  DistanceSensor
@@ -152,7 +152,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps    45
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 
 4.6 Test The Parallel Behaviour Of Wait Functions On Real Time Scenario
     [Tags]  DistanceSensor
@@ -184,5 +184,5 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep               4.5
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 

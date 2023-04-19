@@ -28,7 +28,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${sensor}        Create Object  MotionSensor
     @{members} =     Create List    get_yaw_angle    get_pitch_angle    get_roll_angle    get_orientation    get_gesture     was_gesture    reset_yaw_angle    wait_for_new_gesture     wait_for_new_orientation
     Should Have Members    ${sensor}    ${members}
-    [Teardown]       Reset Scenario     ${scenario}
+    [Teardown]       Reinitialize Scenario     ${scenario}
 
 9.2 Ensure Error Management Is Correctly Implemented
     [Tags]      MotionSensor
@@ -36,7 +36,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Start Scenario   ${scenario}
     ${sensor}        Create Object  MotionSensor
     Run Keyword And Expect Error    ValueError: gesture is not one of the allowed values  Use Object Method  ${sensor}     was_gesture    True    -1     'gesture'
-    [Teardown]       Reset Scenario      ${scenario}
+    [Teardown]       Reinitialize Scenario      ${scenario}
 
 9.3 Test Motion Sensor Behavior On Read Only Time Controlled Scenario
     [Tags]      MotionSensor
@@ -70,7 +70,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal                ${ot}     ${o}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 9.4 Test Motion Sensor Behavior On Read Only Real Time Scenario
     [Tags]      MotionSensor
@@ -108,7 +108,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal                              ${ot}    ${o}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 9.5 Test Yaw Reset Function Behaviour
     [Tags]  MotionSensor
@@ -130,7 +130,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps     80
     ${y}        Use Object Method  ${sensor}  get_yaw_angle  True
     Should Be Equal As Integers    ${y}       -120
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 9.6 Test Was Gesture Behaviour
     [Tags]  MotionSensor
@@ -150,7 +150,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal                ${r}     ${rt}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 9.7 Test The Parallel Behaviour Of Wait Functions On Time Controlled SCenario
     [Tags]  MotionSensor
@@ -171,7 +171,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps    20
     ${is_alive}        Is Thread Running      ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 9.8 Test The Parallel Behaviour Of Wait Functions On Real Time SCenario
     [Tags]  MotionSensor
@@ -192,5 +192,5 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep              2
     ${is_alive}        Is Thread Running      ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 

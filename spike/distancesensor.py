@@ -329,7 +329,7 @@ class DistanceSensor() :
     @property
     def port(self) :
         """
-        Sets the component connection port
+        Gets the component connection port
 
         .. warning:: This function is not part of the spike API. It is provided to update the
          component from scenario data and shall not be used by the end-user.

@@ -100,28 +100,20 @@ class StatusLight() :
             self.__color   = 'white'
             self.__is_on   = False
 
-    def c_on(self, color) :
+    def c_read(self, is_on, color) :
         """ Switch on function
 
         .. warning:: This function is not part of the spike API. It is provided to update the
          component from scenario data and shall not be used by the end-user.
 
+        :param is_on: The light status
+        :type is_on:  boolean
         :param color: The light color
         :type color:  string
         """
         with self.__mutex :
             self.__color = color
-            self.__is_on = True
-
-    def c_off(self) :
-        """
-        Switch off function
-
-        .. warning:: This function is not part of the spike API. It is provided to update the
-         component from scenario data and shall not be used by the end-user.
-        """
-        with self.__mutex :
-            self.__is_on = False
+            self.__is_on = is_on
 
     def c_get_color(self) :
         """

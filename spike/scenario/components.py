@@ -102,7 +102,7 @@ class ScenarioComponents() :
             else :
                 raise ValueError('Unknwon component type : ' + cmp_type)
 
-    def update_from_data(self, time, data) :
+    def update_from_data(self, time, data, hub) :
         """
         Update component from synthetic data
 
@@ -110,8 +110,11 @@ class ScenarioComponents() :
         :type time:  float
         :param data: data to use to update components states
         :type data:  ScenarioData
+        :param hub:      hub dynamic state
+        :type hub:       ScenarioHub
         """
         self.s_logger.debug('Updating from data')
+        current_hub = hub.current()
         with self.__mutex :
             if self.__motion_sensor is not None :
                 self.__motion_sensor.c_read(
@@ -139,8 +142,19 @@ class ScenarioComponents() :
             for name,force in self.__force_sensors.items() :
                 force.c_read(
                     data.extrapolate(name + '_force', time))
+            if self.__light_matrix :
+                self.__light_matrix.c_read(current_hub['lightmatrix'])
+            if self.__status_light :
+                self.__status_light.c_read(
+                    current_hub['statuslight']['status'],current_hub['statuslight']['color'])
+            if self.__speaker :
+                self.__speaker.c_read(
+                    current_hub['speaker']['beeping'],
+                    current_hub['speaker']['note'],
+                    current_hub['speaker']['volume'])
 
-    def update_from_mecanics(self, time, dynamics) :
+# pylint: disable=R0914
+    def update_from_mecanics(self, time, dynamics, hub) :
         """
         Update component from robot dynamic data
 
@@ -148,24 +162,46 @@ class ScenarioComponents() :
         :type time:      float
         :param dynamics: robot dynamic state
         :type dynamics:  ScenarioDynamics
+        :param hub:      hub dynamic state
+        :type hub:       ScenarioHub
         """
 
         self.s_logger.debug('Updating from dynamics information')
         dynamics.extrapolate(time)
-        current = dynamics.current()
-        if self.__motion_sensor is not None :
-            self.__motion_sensor.c_read( current['yaw'], current['pitch'], current['roll'], None)
-        for port, motor in self.__motors.items() :
-            if port != 'pair' :
-                degrees = current['parts'][motor.port]['Motor'][0]['degrees']
-                motor.c_read(degrees)
-        for port, sensor in self.__color_sensors.items() :
-            if port in current['parts'] :
-                if 'ColorSensor' in current['parts'][sensor.port] :
-                    red =   current['parts'][sensor.port]['ColorSensor'][0]['red'] * 1024 / 255
-                    green = current['parts'][sensor.port]['ColorSensor'][0]['green'] * 1024 / 255
-                    blue =  current['parts'][sensor.port]['ColorSensor'][0]['blue'] * 1024 / 255
-                    sensor.c_read(red, green, blue ,0,1024)
+        current_dyn = dynamics.current()
+        current_hub = hub.current()
+
+        with self.__mutex :
+            if self.__motion_sensor is not None :
+                self.__motion_sensor.c_read(
+                    current_dyn['yaw'], current_dyn['pitch'], current_dyn['roll'], None)
+            for port, motor in self.__motors.items() :
+                if port != 'pair' :
+                    degrees = current_dyn['parts'][motor.port]['Motor'][0]['degrees']
+                    motor.c_read(degrees)
+            for port, sensor in self.__color_sensors.items() :
+                if port in current_dyn['parts'] :
+                    if 'ColorSensor' in current_dyn['parts'][sensor.port] :
+                        part = current_dyn['parts'][sensor.port]['ColorSensor'][0]
+                        red = part['red'] * 1024 / 255
+                        gre = part['green'] * 1024 / 255
+                        blu = part['blue'] * 1024 / 255
+                        sensor.c_read(red, gre, blu ,0,1024)
+            if self.__light_matrix :
+                self.__light_matrix.c_read(current_hub['lightmatrix'])
+            for name,button in self.__buttons.items() :
+                for curbutton in current_hub['buttons'] :
+                    if name == curbutton['side'] :
+                        button.c_read(curbutton['pressed'])
+            if self.__status_light :
+                self.__status_light.c_read(
+                    current_hub['statuslight']['status'],current_hub['statuslight']['color'])
+            if self.__speaker :
+                self.__speaker.c_read(
+                    current_hub['speaker']['beeping'],
+                    current_hub['speaker']['note'],
+                    current_hub['speaker']['volume'])
+# pylint: enable=R0914
 
     def __register_motor(self, component, port1, port2) :
         """
@@ -340,6 +376,7 @@ class ScenarioComponents() :
         if port1 in self.__buttons :
             raise ValueError('Button already created on side ' + port1)
 
+        component.side = port1
         self.__buttons[port1] = component
 
     def __register_lightmatrix(self, component, port1, port2) :

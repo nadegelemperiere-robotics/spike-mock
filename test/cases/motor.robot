@@ -32,7 +32,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${motor}           Create Object      Motor    E
     @{members} =       Create List        run_to_position    run_to_degrees_counted    run_for_degrees    run_for_rotations    run_for_seconds    start    stop    start_at_power    get_speed    get_position    get_degrees_counted    get_default_speed    was_interrupted    was_stalled    set_degrees_counted    set_default_speed    set_stop_action    set_stall_detection
     Should Have Members    ${motor}    ${members}
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 10.2 Ensure Error Management Is Correctly Implemented
     [Tags]    Motor
@@ -60,7 +60,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Run Keyword And Expect Error    TypeError: action is not a string                          Use Object Method  ${motor}     set_stop_action         False    -1    95.5
     Run Keyword And Expect Error    ValueError: action is not in the list of allowed values    Use Object Method  ${motor}     set_stop_action         False    -1    whatever
     Run Keyword And Expect Error    TypeError: stop_when_stalled is not a boolean              Use Object Method  ${motor}     set_stall_detection     False    -1    100
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 10.3 Test Motor Behavior On Read Only Time Controlled Scenario
     [Tags]    Motor
@@ -83,7 +83,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Integers    ${pt}     ${p}
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 10.4 Test Motor Run For Degrees Behavior On Computed Time Controlled Scenario
     [Tags]    Motor
@@ -139,7 +139,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.5 Test Motor Run For Rotations Behavior On Computed Time Controlled Scenario
     [Tags]    Motor
@@ -197,7 +197,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.6 Test Motor Run For Seconds Behavior On Computed Time Controlled Scenario
     [Tags]    Motor
@@ -253,7 +253,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.7 Test Motor Run To Position Behavior On Computed Time Controlled Scenario
     [Tags]    Motor
@@ -340,7 +340,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.8 Test Motor Start At Power/Stop Behavior On Computed Time Controlled Scenario
     [Tags]    Motor
@@ -398,7 +398,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.9 Test Motor Behavior On Read Only Real Time Scenario
     [Tags]    Motor
@@ -424,7 +424,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         Should Be Equal As Numbers With Precision     ${pt}     ${p}    1
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]         Reset Scenario   ${scenario}
+    [Teardown]         Reinitialize Scenario   ${scenario}
 
 10.10 Test Motor Run For Degrees Behavior On Computed Real Time Scenario
     [Tags]    Motor
@@ -480,7 +480,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.11 Test Motor Run For Rotations Behavior On Computed Real Time Scenario
     [Tags]    Motor
@@ -538,7 +538,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.12 Test Motor Run For Seconds Behavior On Computed Real Time Scenario
     [Tags]    Motor
@@ -594,7 +594,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.13 Test Motor Run To Position Behavior On Computed Real Time Scenario
     [Tags]    Motor
@@ -654,7 +654,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 10.14 Test Motor Start At Power/Stop Behavior On Computed Real Time Scenario
     [Tags]    Motor
@@ -712,4 +712,4 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
         END
         ${i_step} =     Set Variable   ${i_step + 1}
     END
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}

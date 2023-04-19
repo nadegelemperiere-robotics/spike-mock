@@ -28,7 +28,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${sensor}        Create Object  ForceSensor    B
     @{members} =     Create List    wait_until_pressed    wait_until_released    is_pressed    get_force_newton    get_force_percentage
     Should Have Members    ${sensor}    ${members}
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]     Reinitialize Scenario   ${scenario}
 
 6.2 Test Force Sensor Behavior On Read Only Time Controlled Scenario
     [Tags]    ForceSensor
@@ -58,7 +58,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Be True      ${is_pressed[2]}
     Should Be True      ${is_pressed[3]}
     Should Not Be True  ${is_pressed[4]}
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]     Reinitialize Scenario   ${scenario}
 
 6.3 Test Force Sensor Behavior On Read Only Real Time Scenario
     [Tags]    ForceSensor
@@ -92,7 +92,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Should Be True      ${is_pressed[2]}
     Should Be True      ${is_pressed[3]}
     Should Not Be True  ${is_pressed[4]}
-    [Teardown]     Reset Scenario   ${scenario}
+    [Teardown]     Reinitialize Scenario   ${scenario}
 
 6.4 Test The Parallel Behaviour Of Wait Functions On Time Controlled Scenario
     [Tags]    ForceSensor
@@ -111,7 +111,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps    25
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}
 
 6.5 Test The Parallel Behaviour Of Wait Functions On Real Time Scenario
     [Tags]    ForceSensor
@@ -130,4 +130,4 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep               2.5
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario   ${scenario}
+    [Teardown]          Reinitialize Scenario   ${scenario}

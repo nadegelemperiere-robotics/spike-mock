@@ -72,7 +72,7 @@ class Speaker() :
 
         command = self.s_shared_scenario.command(self,'beep',{
             'note'    : note,
-            'seconds' : seconds,
+            'seconds' : seconds
         })
         self.__process_command(command)
 
@@ -96,7 +96,7 @@ class Speaker() :
             raise ValueError('note is not within the allowed range of 44-123')
 
         command = self.s_shared_scenario.command(self,'start_beep',{
-            'note'    : note,
+            'note'    : note
         })
         self.__process_command(command)
 
@@ -168,61 +168,37 @@ class Speaker() :
             self.__note       = 0
             self.__volume     = 0
 
-    def c_beep(self, note=60, seconds=0.2) :
+    def c_read(self, status, note, volume) :
         """
-        Plays a beep on the Hub.
+        Updates the speaker status
 
         .. warning:: This function is not part of the spike API. It is provided to update the
          component from scenario data and shall not be used by the end-user.
 
-        :param note: The MIDI note number
-        :type note: float
-        :param seconds: Beep duration in seconds
-        :type seconds: float
-        """
-        self.c_start_beep(note)
-
-        current_time = self.s_shared_timer.time()
-        while self.s_shared_timer.time() - current_time < seconds :
-            sleep(0.01)
-
-        self.c_stop()
-
-    def c_start_beep(self, note=60) :
-        """
-        Plays a beep on the Hub.
-
-        .. warning:: This function is not part of the spike API. It is provided to update the
-         component from scenario data and shall not be used by the end-user.
-
-        :param note: The MIDI note number
-        :type note: float
-
-        """
-        with self.__mutex :
-            self.__is_beeping = True
-            self.__note       = note
-
-    def c_stop(self) :
-        """
-        Stops the beep
-
-        .. warning:: This function is not part of the spike API. It is provided to update the
-         component from scenario data and shall not be used by the end-user.
-        """
-        with self.__mutex :
-            self.__is_beeping = False
-            self.__note       = 0
-
-    def c_set_volume(self, volume) :
-        """
-        Sets the speaker volume.
-
-        .. warning:: This function is not part of the spike API. It is provided to update the
-         component from scenario data and shall not be used by the end-user.
-
+        :param status: True if the speaker is beeping, False otherwise
+        :type status:  boolean
+        :param note:   The MIDI note number
+        :type note:    float
         :param volume: The new volume percentage.
         :type volume:  int [0,100]
         """
-        self.__volume = volume
+        with self.__mutex :
+            self.__is_beeping = status
+            self.__note       = note
+            self.__volume     = volume
+
+    def c_get_note(self) :
+        """
+        Retrieves the speaker note.
+
+        .. warning:: This function is not part of the spike API. It is provided to update the
+         component from scenario data and shall not be used by the end-user.
+
+        :return: The speaker note
+        :rtype: note: float
+        """
+        result = 0
+        with self.__mutex :
+            result = self.__note
+        return result
 # pylint: enable=W0238, R0801

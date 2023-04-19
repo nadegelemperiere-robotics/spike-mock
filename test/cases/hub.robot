@@ -25,4 +25,4 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${hub}          Create Object    Hub
     @{members} =    Create List    left_button    right_button    speaker    light_matrix    status_light    motion_sensor
     Should Have Members    ${hub}    ${members}
-    [Teardown]      Reset Scenario   ${scenario}
+    [Teardown]      Reinitialize Scenario   ${scenario}

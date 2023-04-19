@@ -23,6 +23,7 @@ from spike.scenario.components      import ScenarioComponents
 from spike.scenario.model           import ScenarioModel
 from spike.scenario.dynamics        import ScenarioDynamics
 from spike.scenario.ground          import ScenarioGround
+from spike.scenario.hub             import ScenarioHub
 
 # pylint: disable=W0201, R0902, W0231
 # Singleton structure makes it that __init__ is called for each copy of the singleton
@@ -33,7 +34,8 @@ class ScenarioThreadData() :
     """ Shared data for robot update thread """
 
     s_shared_timer = ScenarioTimer()
-    s_modes = ['read', 'compute']
+    s_data_modes = ['read', 'compute']
+    s_time_modes = ['realtime', 'controlled']
     s_logger = Logger('scenario')
 
     def __init__(self) :
@@ -46,28 +48,70 @@ class ScenarioThreadData() :
         self.__data             = ScenarioData()
         self.__mode             = 'compute'
         self.__commands         = ScenarioCommands()
+        self.__hub              = ScenarioHub()
         self.__is_step_ongoing  = False
         self.__is_started       = False
-        self.reset()
-
-    def reset(self) :
-        """ Reset function"""
-        self.s_logger.debug('Resetting ScenarioThreadData')
+        self.restart()
         self.reinitialize()
-        self.__components.reset()
 
-    def reinitialize(self) :
-        """
-        Scenario reinitialization function
-        Keeps registered software components but reinitialize dynamics
-        """
-        self.__shall_continue = True
-        self.__is_step_ongoing  = False
-        self.__is_started = False
+    def restart(self) :
+        """ Restart function : reset robot position and time"""
         self.s_shared_timer.reset()
         self.__dynamics.reset()
+        self.__hub.reset()
 
-    def configure(self, scenario, robot, sheet = None, logger = None) :
+    def reinitialize(self) :
+        """ Reinitialize function """
+        self.s_logger.debug('Resetting ScenarioThreadData')
+        self.__shall_continue  = True
+        self.__is_step_ongoing = False
+        self.__is_started      = False
+        self.__components.reset()
+
+# pylint: disable=R0913
+    def configure_from_values(self, scenario, robot, mode, period, north, east, yaw, logger=None) :
+        """ Loading configuration from external data - compute mode only
+
+        :param mode:     scenario time mode
+        :type scenario:  string
+        :param period:   scenario period in seconds
+        :type period:    float
+        :param north:    scenario starting north coordinate in centimeters
+        :type north:     float
+        :param east:     scenario starting east coordinate in centimeters
+        :type east:      float
+        :param yaw:      scenario starting yaw angle in degrees
+        :type yaw:       float
+        :param logger:   logging configuration file path
+        :type logger:    string
+        """
+         # Configure logging
+        if logger is not None : config.fileConfig(logger)
+
+        # opening file and check configuration
+        conf = {}
+        with open(scenario,'r', encoding='UTF-8') as file :
+            conf = load(file)
+            file.close()
+        conf = self.__merge_configuration(conf, mode, period, north, east, yaw)
+        self.__mode = conf['data']['mode']
+
+        # Configure ground
+        if 'ground' in conf :
+            self.__mat.configure(conf['ground'],path.dirname(scenario))
+
+        # Configure robot
+        self.__model.configure(robot)
+        self.__dynamics = ScenarioDynamics(self.__model, self.__mat)
+        self.__dynamics.configure(conf['data']['coordinates'])
+
+        # Configure scenario
+        self.__commands.configure(self.__dynamics, self.__hub)
+        self.__components.configure(self.__model)
+        self.s_shared_timer.configure(conf['time'])
+# pylint: enable=R0913
+
+    def configure_from_files(self, scenario, robot, sheet = None, logger = None) :
         """
         Configuration function
 
@@ -108,7 +152,7 @@ class ScenarioThreadData() :
             self.__data.configure(path.dirname(scenario) + '/' + conf['data']['filename'], sheet)
 
         # Configure scenario
-        self.__commands.configure(self.__dynamics)
+        self.__commands.configure(self.__dynamics, self.__hub)
         self.__components.configure(self.__model)
         self.s_shared_timer.configure(conf['time'])
 
@@ -138,6 +182,7 @@ class ScenarioThreadData() :
         self.s_shared_timer.step()
         self.__is_step_ongoing = True
         while self.__is_step_ongoing:
+            print('sleeping')
             sleep(self.s_shared_timer.s_sleep_time)
 
     def command(self, component, name, args) :
@@ -162,15 +207,28 @@ class ScenarioThreadData() :
         :return: the current robot status processed by the thread
         :rtype:  dictionary
         """
-        return self.__dynamics.current()
 
-    def get_components(self) :
-        """ Return robot components
+        self.s_logger.debug('Retrieving current scenario status')
 
-        :return: the robot components
-        :rtype:  list
+        result = self.__dynamics.current()
+        result['hub'] = self.__hub.current()
+
+        return result
+
+    def get_mat(self) :
+        """ Return current robot status
+
+        :return: the mat image with robot located on it
+        :rtype:  PIL Image
         """
-        return self.__model.all()
+        status = self.__dynamics.current()
+        corners = {}
+        for pos, corner in status['corners'].items() :
+            corners[pos] = {
+                'north': corner['pose'].translation().X(),
+                'east' : corner['pose'].translation().Y()
+            }
+        return self.__mat.get_scene(corners, status['x'], status['y'], status['yaw'])
 
     def set_shall_continue(self, value):
         """
@@ -197,8 +255,7 @@ class ScenarioThreadData() :
         """ Thread data processing function """
         try :
 
-            self.__dynamics.reset()
-            self.s_shared_timer.reset()
+
             while self.shall_continue():
 
                 self.__is_started = True
@@ -206,17 +263,20 @@ class ScenarioThreadData() :
                 # Get current time
                 time = self.s_shared_timer.time()
 
+                # Check that a step has been processed from the beginning before stepping
+                processing_step = self.__is_step_ongoing
+
                 # Manage update from measurements
                 if self.__mode == 'read' :
-                    self.__components.update_from_data(time, self.__data)
+                    self.__components.update_from_data(time, self.__data, self.__hub)
                 elif self.__mode == 'compute' :
-                    self.__components.update_from_mecanics(time, self.__dynamics)
+                    self.__components.update_from_mecanics(time, self.__dynamics, self.__hub)
                     self.__dynamics.extrapolate(time)
 
                 # command = self.process_command(self.__dynamics)
                 # shall_continue = next(command)
 
-                self.__is_step_ongoing = False
+                if processing_step : self.__is_step_ongoing = False
                 self.s_shared_timer.sleep()
 
 # pylint: disable=W0703
@@ -225,7 +285,9 @@ class ScenarioThreadData() :
             self.set_shall_continue(False)
 # pylint: enable=W0703
 
-
+        self.__shall_continue   = True
+        self.__is_step_ongoing  = False
+        self.__is_started       = False
         self.s_logger.info('Scenario is over')
 
     def __check_configuration(self, conf, sheet) :
@@ -249,7 +311,7 @@ class ScenarioThreadData() :
             raise ValueError('Missing mode information in scenario data configuration')
 
         mode = conf['data']['mode']
-        if not mode in self.s_modes :
+        if not mode in self.s_data_modes :
             raise ValueError('Unknown data mode ' + mode)
 
         if mode == 'read' :
@@ -260,6 +322,47 @@ class ScenarioThreadData() :
         elif mode == "compute" :
             if not 'coordinates' in conf['data'] :
                 raise ValueError('Missing initial coordinates information in data configuration')
+
+# pylint: disable=R0913
+    def __merge_configuration(self, conf, mode, period, north, east, yaw) :
+        """
+        Check input configuration
+
+        :param conf:     configuration file content
+        :type conf:      dictionary
+        :param period:   scenario period in seconds
+        :type period:    float
+        :param north:    scenario starting north coordinate in centimeters
+        :type north:     float
+        :param east:     scenario starting east coordinate in centimeters
+        :type east:      float
+        :param yaw:      scenario starting yaw angle in degrees
+        :type yaw:       float
+
+        :raises ValueError: missing information, initial coordinates or workbook sheet
+         or unknown data mode
+        """
+
+        result = conf
+
+        if not 'time' in conf :
+            raise ValueError('Missing time information in scenario configuration')
+        if not 'data' in conf :
+            raise ValueError('Missing data information in scenario configuration')
+        if not mode in self.s_time_modes:
+            raise ValueError('Time mode ' + mode + ' not in allowed values')
+
+        conf['data']['mode'] = 'computed'
+        conf['data']['coordinates'] = {
+            'north' : north,
+            'east' : east,
+            'yaw' : yaw
+        }
+        conf['time']['mode']   = mode
+        conf['time']['period'] = period
+
+        return result
+# pylint: enable=R0913
 
 class Scenario() :
     """ Singleton class managing the robot status """
@@ -289,12 +392,28 @@ class Scenario() :
     def __init__(self) :
         """ Contructor for each instantiation / do nothing """
 
-    # @property
-    # def ports(self) :
-    #     """ robot ports getter """
-    #     self.__processing_data.__model.ports()
+# pylint: disable=R0913
+    def configure_from_values(self, scenario, robot, mode, period, north, east, yaw, logger) :
+        """ Loading configuration from file
 
-    def configure(self, scenario, robot, sheet = None) :
+        :param mode:     scenario time mode
+        :type scenario:  string
+        :param period:   scenario period in seconds
+        :type period:    float
+        :param north:    scenario starting north coordinate in centimeters
+        :type north:     float
+        :param east:     scenario starting east coordinate in centimeters
+        :type east:      float
+        :param yaw:      scenario starting yaw angle in degrees
+        :type yaw:       float
+        :param logger:   logger configuration file
+        :type logger:    string
+        """
+        self.__processing_data.configure_from_values(
+            scenario, robot, mode, period, north, east, yaw, logger)
+# pylint: enable=R0913
+
+    def configure_from_files(self, scenario, robot, sheet = None, logger=None) :
         """ Loading configuration from file
 
         :param scenario: path of json file to read scenario data from
@@ -303,9 +422,11 @@ class Scenario() :
         :type robot:     string
         :param sheet:    sheet to read scenario data from
         :type sheet:     string
+        :param logger:   logger configuration file
+        :type logger:    string
         """
-
-        self.__processing_data.configure(scenario, robot, sheet)
+        self.__processing_data.configure_from_files(
+            scenario, robot, sheet, logger)
 
     def register(self, component, port1=None, port2=None) :
         """
@@ -322,7 +443,6 @@ class Scenario() :
 
     def start(self) :
         """ Robot starting function """
-        self.__processing_data.reinitialize()
         self.__processing_thread    = Thread( target = self.__processing_data.run)
         self.__processing_thread.start()
         while not self.__processing_data.is_started() :
@@ -356,13 +476,36 @@ class Scenario() :
         self.__processing_data.set_shall_continue(False)
         while   self.__processing_thread is not None and \
                 self.__processing_thread.is_alive() : pass
-        self.__processing_data.reinitialize()
 
-    def reset(self) :
-        """ Reset scenario --- All components will be deregistered """
+    def push_button(self, side) :
+        """
+        Push hub button
+
+        :param side: Side of the button to push
+        :type side: string
+        """
+        self.__processing_data.command(None, 'push_button',{'side':side })
+
+    def release_button(self, side) :
+        """
+        Release hub button
+
+        :param side: Side of the button to push
+        :type side: string
+        """
+        self.__processing_data.command(None, 'release_button',{'side':side })
+
+    def reinitialize(self) :
+        """ Reinitialize scenario """
         if self.__processing_thread and self.__processing_thread.is_alive() :
             self.stop()
-        self.__processing_data.reset()
+        self.__processing_data.reinitialize()
+
+    def restart(self) :
+        """ Restart scenario """
+        if self.__processing_thread and self.__processing_thread.is_alive() :
+            self.stop()
+        self.__processing_data.restart()
 
     def status(self) :
         """
@@ -373,14 +516,15 @@ class Scenario() :
         """
         return self.__processing_data.get_status()
 
-    def components(self) :
+    def mat(self) :
         """
-        Return robot components list
+        Return mat current image
 
-        :return: robot component lists
-        :rtype:  list
+        :return: mat image with robot located on it
+        :rtype:  PIL Image
         """
-        return self.__processing_data.get_components()
+        return self.__processing_data.get_mat()
+
 
 
 # pylint: enable=W0201, R0902, W0231

@@ -28,7 +28,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     ${timer}         Create Object    Timer
     @{members} =     Create List    now    reset
     Should Have Members    ${timer}    ${members}
-    [Teardown]       Reset Scenario    ${scenario}
+    [Teardown]       Reinitialize Scenario    ${scenario}
 
 16.2 Test Timer Behavior On Time Controlled Scenario
     [Tags]  Timer
@@ -45,7 +45,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps    1
     ${delay}           Use Object Method  ${timer2}    now    True
     Should Be Equal As Numbers    ${delay}    0.1
-    [Teardown]         Reset Scenario      ${scenario}
+    [Teardown]         Reinitialize Scenario      ${scenario}
 
 16.3 Test Timer Behavior On Real Time Scenario
     [Tags]  Timer
@@ -61,7 +61,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep              0.1
     ${delay}           Use Object Method  ${timer2}    now    True
     Should Be Equal As Numbers With Precision  ${delay}    0.1    0.03
-    [Teardown]         Reset Scenario      ${scenario}
+    [Teardown]         Reinitialize Scenario      ${scenario}
 
 16.4 Test The Parallel Behaviour Of Wait Functions On Time Controlled Scenario
     [Tags]  Timer
@@ -77,7 +77,7 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Play Scenario During Steps    20
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario       ${scenario}
+    [Teardown]          Reinitialize Scenario       ${scenario}
 
 16.5 Test The Parallel Behaviour Of Wait functions On Real Time Scenario
     [Tags]  Timer
@@ -92,5 +92,5 @@ ${ROBOT_JSON_CONF_FILE}          ${data}/robot.json
     Sleep               1.1
     ${is_alive}         Is Thread Running    ${thread}
     Should Not Be True  ${is_alive}
-    [Teardown]          Reset Scenario       ${scenario}
+    [Teardown]          Reinitialize Scenario       ${scenario}
 

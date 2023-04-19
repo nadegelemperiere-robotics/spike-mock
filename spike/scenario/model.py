@@ -29,7 +29,7 @@ from spike.scenario.parts   import ScenarioPart, ScenarioPartMotor, ScenarioPart
 from spike.scenario.parts   import ScenarioPartColorSensor, ScenarioPartForceSensor
 from spike.scenario.parts   import ScenarioPartDistanceSensor, ScenarioPartHub
 
-# pylint: disable=W0238
+# pylint: disable=W0238, R0902, C0103
 class ScenarioModel() :
     """ Class modelling robot static relative geometry """
 
@@ -47,6 +47,10 @@ class ScenarioModel() :
         self.__parts_by_type = {}
         self.__parts_by_port = {}
         self.__model         = None
+        self.__front_left    = ScenarioPart()
+        self.__front_right   = ScenarioPart()
+        self.__back_left     = ScenarioPart()
+        self.__back_right    = ScenarioPart()
 
         # Global data
         self.__altitude = 0
@@ -82,6 +86,8 @@ class ScenarioModel() :
             path.dirname(filename) + '/' + conf['design']['filename'], \
             conf['design']['ldu'])
         parts = self.__convert_pose(parts, CoordinateSystem.NED())
+        self.__front_left, self.__front_right, self.__back_left, self.__back_right = \
+            self.__compute_shape(parts)
         parts, spins = self.__add_port_to_parts(conf, parts)
         self.__parts, self.__parts_by_type, self.__parts_by_port = \
             self.__organize_parts(parts, spins)
@@ -97,6 +103,10 @@ class ScenarioModel() :
         self.s_logger.info('Compute other parts relative orientation from wheel center')
         for part in self.__parts :
             part.derive_relative(center_relative_pose)
+        self.__front_left.derive_relative(center_relative_pose)
+        self.__front_right.derive_relative(center_relative_pose)
+        self.__back_left.derive_relative(center_relative_pose)
+        self.__back_right.derive_relative(center_relative_pose)
 
     def altitude(self) :
         """
@@ -107,6 +117,21 @@ class ScenarioModel() :
         """
 
         result = self.__altitude
+        return result
+
+    def corners(self):
+        """
+        Returns the model surrounding rectangle corners coordinates
+
+        :return: front left, front right, back left and back right coordintates
+        :rtype:  dict
+        """
+        result =  {
+            'fl' : self.__front_left,
+            'fr' : self.__front_right,
+            'bl' : self.__back_left,
+            'br' : self.__back_right
+        }
         return result
 
     def ports(self) :
@@ -183,6 +208,7 @@ class ScenarioModel() :
             elif not key in self.s_topics :
                 raise ValueError('Unknown topic ' + key + ' in robot configuration')
 
+
     def __read(self, filename, ldu=0.04) :
         """
         Build robot model from ldraw file
@@ -203,9 +229,9 @@ class ScenarioModel() :
                 continue
 
             part = ScenarioPart()
-            part.id = obj.part
-            part.color = obj.colour
-            rotation     = ndarray((3,3), buffer=array([
+            part.identifier = obj.part
+            part.color      = obj.colour
+            rotation        = ndarray((3,3), buffer=array([
                 round(obj.matrix.rows[0][0],5), round(obj.matrix.rows[0][1],5),
                 round(obj.matrix.rows[0][2],5), round(obj.matrix.rows[1][0],5),
                 round(obj.matrix.rows[1][1],5), round(obj.matrix.rows[1][2],5),
@@ -218,12 +244,12 @@ class ScenarioModel() :
                 Rotation3d(rotation))
 
             part.type = ''
-            if part.id in ScenarioPartWheel.s_ids             : part.type = 'Wheel'
-            elif part.id in ScenarioPartColorSensor.s_ids     : part.type = 'ColorSensor'
-            elif part.id in ScenarioPartDistanceSensor.s_ids  : part.type = 'DistanceSensor'
-            elif part.id in ScenarioPartForceSensor.s_ids     : part.type = 'ForceSensor'
-            elif part.id in ScenarioPartMotor.s_ids           : part.type = 'Motor'
-            elif part.id in ScenarioPartHub.s_ids             : part.type = 'Hub'
+            if part.identifier in ScenarioPartWheel.s_ids            : part.type = 'Wheel'
+            elif part.identifier in ScenarioPartColorSensor.s_ids    : part.type = 'ColorSensor'
+            elif part.identifier in ScenarioPartDistanceSensor.s_ids : part.type = 'DistanceSensor'
+            elif part.identifier in ScenarioPartForceSensor.s_ids    : part.type = 'ForceSensor'
+            elif part.identifier in ScenarioPartMotor.s_ids          : part.type = 'Motor'
+            elif part.identifier in ScenarioPartHub.s_ids            : part.type = 'Hub'
 
             result.append(part)
 
@@ -262,6 +288,42 @@ class ScenarioModel() :
 
         return result
 
+    def __compute_shape(self, parts) :
+        """
+        Derive robot external shape from parts list
+
+        :param parts: list of all robot parts
+        :type parts:  list
+        :return:      front left, front right, back left and back right corner of the robot
+        :rtype:       tuple (front left, front right, back left, back right)
+        """
+
+        xfl = xfr = ybr = yfr = -1e8
+        xbl = xbr = ybl = yfl = 1e8
+
+
+        for part in parts :
+            if part.pose.translation().X() > xfr : xfr = part.pose.translation().X()
+            if part.pose.translation().X() > xfl : xfl = part.pose.translation().X()
+            if part.pose.translation().X() < xbr : xbr = part.pose.translation().X()
+            if part.pose.translation().X() < xbl : xbl = part.pose.translation().X()
+
+            if part.pose.translation().Y() > yfr : yfr = part.pose.translation().Y()
+            if part.pose.translation().Y() < yfl : yfl = part.pose.translation().Y()
+            if part.pose.translation().Y() > ybr : ybr = part.pose.translation().Y()
+            if part.pose.translation().Y() < ybl : ybl = part.pose.translation().Y()
+
+        front_left  = ScenarioPart()
+        front_right = ScenarioPart()
+        back_left   = ScenarioPart()
+        back_right  = ScenarioPart()
+        front_left.pose = Pose3d(Translation3d(xfl,yfl,0),Rotation3d())
+        front_right.pose = Pose3d(Translation3d(xfr,yfr,0),Rotation3d())
+        back_left.pose = Pose3d(Translation3d(xbl,ybl,0),Rotation3d())
+        back_right.pose = Pose3d(Translation3d(xbr,ybr,0),Rotation3d())
+
+        return front_left, front_right, back_left, back_right
+
     def __add_port_to_parts(self, conf, parts) :
         """
         Add hub ports info to parts from the robot configuration file.
@@ -285,7 +347,7 @@ class ScenarioModel() :
             selected_part = None
             i_part = 0
             for part in parts :
-                if part.id == comp['id'] :
+                if part.identifier == comp['id'] :
                     if comp['index'] == i_part :
                         selected_part = part
                     i_part += 1
@@ -318,6 +380,7 @@ class ScenarioModel() :
                 result.append(part)
 
         return result, spins
+
 
     def __organize_parts(self, parts, spins) :
         """
@@ -386,4 +449,4 @@ class ScenarioModel() :
         return all_parts, result_by_type, result_by_port
 
 
-# pylint: enable=W0238
+# pylint: enable=W0238, R0902, C0103

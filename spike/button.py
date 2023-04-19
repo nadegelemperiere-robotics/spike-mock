@@ -42,7 +42,7 @@ class Button() :
 
         self.__is_pressed   = False
         self.__was_pressed  = False
-
+        self.__side         = ""
         self.s_shared_scenario.register(self, side)
 
     def wait_until_pressed(self) :
@@ -111,3 +111,31 @@ class Button() :
             self.__is_pressed = is_pressed
             if not self.__was_pressed :
                 self.__was_pressed = self.__is_pressed
+
+    @property
+    def side(self) :
+        """ Get the component side
+
+        .. warning:: This function is not part of the spike API. It is provided to update the
+         component from scenario data and shall not be used by the end-user.
+
+        :return: the component side
+        :rtype:  string
+        """
+        result = None
+        with self.__mutex :
+            result = self.__side
+        return result
+
+    @side.setter
+    def side(self, side) :
+        """ Sets the component side
+
+        .. warning:: This function is not part of the spike API. It is provided to update the
+         component from scenario data and shall not be used by the end-user.
+
+        :param port: the component side
+        :type port:  string
+        """
+        with self.__mutex :
+            self.__side = side

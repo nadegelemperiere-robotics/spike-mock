@@ -66,6 +66,6 @@ ${ROBOT_JSON_CONF_FILE}     ${data}/robot.json
     ${statuslight}   Create Object    StatusLight
     Run Keyword And Expect Error	ValueError: Status light already created   Create Object    StatusLight
 
-    [Teardown]      Reset Scenario  ${scenario}
+    [Teardown]      Reinitialize Scenario  ${scenario}
 
 

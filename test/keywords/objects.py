@@ -12,7 +12,6 @@
 from threading import Thread
 from time import sleep as local_sleep # To avoid conflict with the Sleep keyword...
 from math import fabs
-from inspect import isclass
 
 # Robotframework includes
 from robot.libraries.BuiltIn import BuiltIn, _Misc
