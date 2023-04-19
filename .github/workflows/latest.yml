@@ -85,3 +85,14 @@ jobs:
             - name: Launching tests
               continue-on-error: true
               run: ./module/scripts/robot.sh -l WARN -d tests
+
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v3
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
+                files: coverage.xml
+                directory: ./module/
+                name: codecov-${{ github.event.repository.name }}
+                fail_ci_if_error: true
+                verbose: true
+                commit_parent: ${{ github.ref_name }}
